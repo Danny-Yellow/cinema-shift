@@ -1,5 +1,5 @@
 import axios from 'axios';
 
-const instance = axios.create({
-	baseURL: 'https://shift-backend.onrender.com/',
+export const api = axios.create({
+	baseURL: 'https://shift-backend.onrender.com/cinema',
 });
