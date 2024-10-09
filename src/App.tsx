@@ -1,5 +1,18 @@
+import { Container } from '@src/components/UI/Container';
+import { TopNavigation } from '@src/components/TopNavigation';
+import { Poster } from '@src/components/Poster';
+
 function App() {
-	return <h1 className="text-3xl font-bold underline">Hello world</h1>;
+	return (
+		<header>
+			<Container>
+				<TopNavigation />
+				<div className="mt-12">
+					<Poster />
+				</div>
+			</Container>
+		</header>
+	);
 }
 
 export default App;
