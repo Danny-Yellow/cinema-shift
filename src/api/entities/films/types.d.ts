@@ -33,5 +33,5 @@ interface IFilm {
 interface IFilmsResponse {
 	success: boolean;
 	reason?: string;
-	films: IFilm;
+	films: IFilm[];
 }
