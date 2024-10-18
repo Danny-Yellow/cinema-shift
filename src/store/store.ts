@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { filmsApi } from '@src/store/api/filmsApi';
+import { api } from '@src/store/api/api';
 
 export const store = configureStore({
 	reducer: {
-		[filmsApi.reducerPath]: filmsApi.reducer,
+		[api.reducerPath]: api.reducer,
 	},
 	middleware: (getDefaultMiddleware) =>
-		getDefaultMiddleware().concat(filmsApi.middleware),
+		getDefaultMiddleware().concat(api.middleware),
 });
 
 export type AppStore = typeof store;

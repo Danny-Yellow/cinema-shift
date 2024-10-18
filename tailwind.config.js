@@ -13,7 +13,7 @@ export default {
 				gray: '#637083',
 				light: '#CED2DA',
 				primary: '#9534D2',
-				secondary: '#24292E',
+				secondary: '#F3F4F6',
 			},
 			gridTemplateColumns: {
 				'auto-fill-300': 'repeat(auto-fill, 300px)',

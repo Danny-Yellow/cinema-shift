@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { Rating } from '@src/components/UI/Rating';
 import { Button } from '@src/components/UI/Button';
 import { useNavigate } from 'react-router-dom';
+import { calculateStars } from '@src/helpers/stars';
 
 interface IFilmsItemProps {
 	film: IFilm;
@@ -10,7 +11,7 @@ interface IFilmsItemProps {
 export const FilmItem: FC<IFilmsItemProps> = ({ film }) => {
 	const navigate = useNavigate();
 
-	const countOfStars = Math.round(+film.userRatings.kinopoisk / 2);
+	const countOfStars = calculateStars(+film.userRatings.kinopoisk);
 
 	function handleClickButton() {
 		navigate(`/film/${film.id}`);

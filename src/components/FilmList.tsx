@@ -7,7 +7,7 @@ interface IFilmListProps {
 
 export const FilmList: FC<IFilmListProps> = ({ films }) => {
 	return (
-		<ul className="grid-cols-auto-fill-300 grid justify-center gap-x-8 gap-y-16">
+		<ul className="grid grid-cols-auto-fill-300 justify-center gap-x-8 gap-y-16">
 			{films.map((film) => (
 				<li key={film.id}>
 					<FilmItem film={film} />

@@ -4,4 +4,5 @@ type TVariants<T extends Record<string, string>> = {
 
 type TStyles<T extends Record<string, string>> = {
 	variants: TVariants<T>;
+	defaultVariants: object;
 };

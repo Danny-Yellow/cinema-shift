@@ -13,19 +13,22 @@ export const Button: FC<IButtonProps> = ({
 	children,
 	...variants
 }) => {
-	const styles = cva('flex h-14 items-center justify-center rounded-2xl', {
-		variants: {
-			variant: {
-				contained: 'text-white bg-primary',
-				outlined: 'border-[1px] text-neutral',
-			},
-			size: {
-				full: 'w-full',
-				medium: 'max-w-[328px]',
-				large: 'max-w-[432px]',
+	const styles = cva<TVariants<typeof variants>>(
+		'flex h-14 items-center justify-center rounded-2xl',
+		{
+			variants: {
+				variant: {
+					contained: 'text-white bg-primary',
+					outlined: 'border-[1px] text-neutral',
+				},
+				size: {
+					full: 'w-full',
+					medium: 'max-w-[328px]',
+					large: 'max-w-[432px]',
+				},
 			},
 		},
-	});
+	);
 
 	return (
 		<button onClick={onClick} className={styles(variants)}>

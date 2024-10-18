@@ -1,5 +1,5 @@
 import { FilmList } from '@src/components/FilmList';
-import { useGetFilmsQuery } from '@src/store/api/filmsApi';
+import { useGetFilmsQuery } from '@src/store/api/api';
 
 export const PosterPage = () => {
 	const { data, isSuccess } = useGetFilmsQuery();

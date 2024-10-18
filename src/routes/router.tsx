@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { Layout } from '@src/components/Layout';
 import { FilmPage } from '@src/pages/FilmPage';
 import { PosterPage } from '@src/pages/PosterPage';
@@ -6,6 +6,10 @@ import { PosterPage } from '@src/pages/PosterPage';
 const isAuth = false;
 
 const publicRoutes = [
+	{
+		path: '/',
+		element: <Navigate to="/poster" />,
+	},
 	{
 		path: '/',
 		element: <Layout />,
@@ -20,7 +24,11 @@ const publicRoutes = [
 			},
 			{
 				path: '/film/:id',
-				element: <FilmPage />,
+				element: (
+					<div className="mt-6">
+						<FilmPage />
+					</div>
+				),
 			},
 		],
 	},

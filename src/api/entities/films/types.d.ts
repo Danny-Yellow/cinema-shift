@@ -30,6 +30,12 @@ interface IFilm {
 	};
 }
 
+interface IFilmResponse {
+	success: boolean;
+	reason?: string;
+	film: IFilm;
+}
+
 interface IFilmsResponse {
 	success: boolean;
 	reason?: string;
