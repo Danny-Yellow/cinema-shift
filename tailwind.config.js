@@ -12,6 +12,7 @@ export default {
 				neutral: '#344051',
 				gray: '#637083',
 				light: '#CED2DA',
+				medium: '#97A1AF',
 				primary: '#9534D2',
 				secondary: '#F3F4F6',
 			},

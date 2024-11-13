@@ -1,40 +1,48 @@
-import { ToggleButtonGroup } from '@src/components/UI/ToggleButtonGroup';
-import { ToggleButton } from '@src/components/UI/ToggleButton';
 import { FC, useState } from 'react';
-import { parseDate } from '@src/helpers/date/parseDate';
-import { getWeekDay } from '@src/helpers/date/getWeekDay';
-import { getMonth } from '@src/helpers/date/getMonth';
+import { ScheduleDays } from './ScheduleDays';
+import { ScheduleAllTimes } from './ScheduleAllTimes';
 
 interface IFilmSchedule {
 	schedules: ISchedule[];
 }
 
-export const FilmSchedule: FC<IFilmSchedule> = ({ schedules }) => {
-	const [dateValue, setDateValue] = useState(schedules[0].date);
+interface ISeance {
+	hall: string;
+	time: string;
+}
 
-	function handleDateClick(newValue: string) {
-		setDateValue(newValue);
+export const FilmSchedule: FC<IFilmSchedule> = ({ schedules }) => {
+	const [currentSchedule, setCurrentSchedule] = useState(schedules[0]);
+	const [selectedSeance, setSelectedSeance] = useState({
+		hall: 'Red',
+		time: '10:50',
+	});
+
+	function handleDateClick(date: string) {
+		const newSchedule = schedules.find((schedule) => schedule.date === date);
+
+		if (newSchedule) {
+			setCurrentSchedule(newSchedule);
+		}
+	}
+
+	function handleTimeClick(seance: ISeance) {
+		setSelectedSeance(seance);
 	}
 
 	return (
 		<div>
 			<h2 className="mb-6 text-2xl font-bold">Расписание</h2>
-			<ToggleButtonGroup value={dateValue} onClick={handleDateClick}>
-				{schedules.map((schedule) => {
-					const parsedDate = parseDate(schedule.date);
-					const date = new Date(parsedDate);
-
-					const day = date.getDate();
-					const weekDay = getWeekDay(date);
-					const month = getMonth(date);
-
-					return (
-						<ToggleButton value={schedule.date}>
-							{weekDay}, {day} {month}
-						</ToggleButton>
-					);
-				})}
-			</ToggleButtonGroup>
+			<ScheduleDays
+				value={currentSchedule.date}
+				handleClick={handleDateClick}
+				schedules={schedules}
+			/>
+			<ScheduleAllTimes
+				handleTimeClick={handleTimeClick}
+				seances={currentSchedule.seances}
+				selectedSeance={selectedSeance}
+			/>
 		</div>
 	);
 };

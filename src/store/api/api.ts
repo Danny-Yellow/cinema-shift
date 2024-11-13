@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const BASE_URL = 'https://shift-backend.onrender.com';
+const BASE_URL = 'http://localhost:3001';
 
 export const api = createApi({
 	reducerPath: 'filmsApi',
