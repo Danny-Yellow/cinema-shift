@@ -1,48 +1,52 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { ScheduleDays } from './ScheduleDays';
 import { ScheduleAllTimes } from './ScheduleAllTimes';
+import { useDispatch } from 'react-redux';
+import {
+	changeSelectedDate,
+	changeSelectedTime,
+} from '@src/store/features/schedule/scheduleForm.slice';
 
-interface IFilmSchedule {
+interface IFilmScheduleProps {
 	schedules: ISchedule[];
+	selectedSchedule: ISelectedSchedule;
 }
 
-interface ISeance {
-	hall: string;
-	time: string;
-}
+export const FilmSchedule: FC<IFilmScheduleProps> = ({
+	schedules,
+	selectedSchedule,
+}) => {
+	const dispatch = useDispatch();
 
-export const FilmSchedule: FC<IFilmSchedule> = ({ schedules }) => {
-	const [currentSchedule, setCurrentSchedule] = useState(schedules[0]);
-	const [selectedSeance, setSelectedSeance] = useState({
-		hall: 'Red',
-		time: '10:50',
-	});
+	const seancesOfDate = schedules.find(
+		(schedule) => schedule.date === selectedSchedule.date,
+	)?.seances;
 
 	function handleDateClick(date: string) {
-		const newSchedule = schedules.find((schedule) => schedule.date === date);
-
-		if (newSchedule) {
-			setCurrentSchedule(newSchedule);
-		}
+		dispatch(changeSelectedDate(date));
 	}
 
-	function handleTimeClick(seance: ISeance) {
-		setSelectedSeance(seance);
+	function handleTimeClick(seance: IScheduleSeanse) {
+		dispatch(changeSelectedTime(seance));
 	}
 
 	return (
-		<div>
+		<section>
 			<h2 className="mb-6 text-2xl font-bold">Расписание</h2>
 			<ScheduleDays
-				value={currentSchedule.date}
+				value={selectedSchedule.date}
 				handleClick={handleDateClick}
 				schedules={schedules}
 			/>
-			<ScheduleAllTimes
-				handleTimeClick={handleTimeClick}
-				seances={currentSchedule.seances}
-				selectedSeance={selectedSeance}
-			/>
-		</div>
+			<div className="mb-6 mt-12">
+				{selectedSchedule.date && seancesOfDate && (
+					<ScheduleAllTimes
+						handleTimeClick={handleTimeClick}
+						seances={seancesOfDate}
+						selectedSchedule={selectedSchedule}
+					/>
+				)}
+			</div>
+		</section>
 	);
 };

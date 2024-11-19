@@ -1,7 +1,6 @@
 interface IFilmPerson {
 	id: string;
-	// enum ACTOR, DIRECTOR
-	professions: string;
+	professions: 'ACTOR' | 'DIRECTOR';
 	fullName: string;
 }
 
@@ -14,8 +13,7 @@ interface IFilm {
 	actors: IFilmPerson;
 	directors: IFilmPerson;
 	runtime: number;
-	// enum G, PG, PG13, R, NC17
-	ageRating: string;
+	ageRating: 'G' | 'PG' | 'PG13' | 'R' | 'NC17';
 	genres: string[];
 	userRatings: {
 		kinopoisk: string;

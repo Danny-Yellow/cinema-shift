@@ -3,42 +3,41 @@ import { ScheduleTimes } from './ScheduleTimes';
 
 interface IScheduleTimesProps {
 	seances: IScheduleSeanse[];
-	selectedSeance: {
-		hall: string;
-		time: string;
-	};
-	handleTimeClick: (seance: { hall: string; time: string }) => void;
+	selectedSchedule: ISelectedSchedule;
+	handleTimeClick: (seance: IScheduleSeanse) => void;
 }
 
 export const ScheduleAllTimes: FC<IScheduleTimesProps> = ({
 	seances,
-	selectedSeance,
+	selectedSchedule,
 	handleTimeClick,
 }) => {
 	const halls = [
 		{
 			name: 'Красный зал',
-			seances: seances.filter((seance) => seance.hall.name === 'Red'),
+			seances: seances.filter((seance) => seance.hall.name === HallName.Red),
 		},
 		{
 			name: 'Зеленый зал',
-			seances: seances.filter((seance) => seance.hall.name === 'Green'),
+			seances: seances.filter((seance) => seance.hall.name === HallName.Green),
 		},
 		{
 			name: 'Синий зал',
-			seances: seances.filter((seance) => seance.hall.name === 'Blue'),
+			seances: seances.filter((seance) => seance.hall.name === HallName.Blue),
 		},
 	];
 
 	return (
 		<>
-			{halls.map((hall) => (
-				<ScheduleTimes
-					hall={hall}
-					selectedSeance={selectedSeance}
-					handleTimeClick={handleTimeClick}
-				/>
-			))}
+			<div className="flex flex-col gap-6">
+				{halls.map((hall) => (
+					<ScheduleTimes
+						hall={hall}
+						selectedSchedule={selectedSchedule}
+						handleTimeClick={handleTimeClick}
+					/>
+				))}
+			</div>
 		</>
 	);
 };

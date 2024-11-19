@@ -9,11 +9,24 @@ interface ITicket {
 	phone: string;
 }
 
+interface IPlace {
+	price: number;
+	type: 'BLOCKED' | 'ECONOM' | 'COMFORT';
+}
+
+type TPlaces = IPlace[][];
+
+enum HallName {
+	Red = 'Красный',
+	Green = 'Зеленый',
+	Blue = 'Синий',
+}
+
 interface IScheduleSeanse {
 	time: string;
 	hall: {
-		name: string;
-		places: [[() => void]];
+		name: HallName;
+		places: TPlaces;
 	};
 	payedTickets: ITicket;
 }

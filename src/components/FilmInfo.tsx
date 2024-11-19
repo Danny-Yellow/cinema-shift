@@ -2,15 +2,15 @@ import { FC } from 'react';
 import { Rating } from './UI/Rating';
 import { calculateStars } from '@src/helpers/stars';
 
-interface IFilmInfo {
+interface IFilmInfoProps {
 	film: IFilm;
 }
 
-export const FilmInfo: FC<IFilmInfo> = ({ film }) => {
+export const FilmInfo: FC<IFilmInfoProps> = ({ film }) => {
 	const countOfStars = calculateStars(+film.userRatings.kinopoisk);
 
 	return (
-		<div className="flex gap-8">
+		<section className="flex gap-8">
 			<img src={film.img} alt={film.name} className="h-[450px] basis-[300px]" />
 			<div>
 				<h1 className="mb-1 text-[32px] font-bold text-black">{film.name}</h1>
@@ -21,6 +21,6 @@ export const FilmInfo: FC<IFilmInfo> = ({ film }) => {
 				</p>
 				<p className="text-neutral">{film.description}</p>
 			</div>
-		</div>
+		</section>
 	);
 };

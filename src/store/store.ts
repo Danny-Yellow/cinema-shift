@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
+import scheduleFormReducer from './features/schedule/scheduleForm.slice';
 import { api } from '@src/store/api/api';
 
 export const store = configureStore({
 	reducer: {
 		[api.reducerPath]: api.reducer,
+		scheduleForm: scheduleFormReducer,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware().concat(api.middleware),

@@ -23,8 +23,8 @@ export const Button: FC<IButtonProps> = ({
 				},
 				size: {
 					full: 'w-full',
-					medium: 'max-w-[328px]',
-					large: 'max-w-[432px]',
+					medium: 'w-[328px]',
+					large: 'w-[432px]',
 				},
 			},
 		},

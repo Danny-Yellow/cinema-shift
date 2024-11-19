@@ -1,8 +1,11 @@
 import { FilmInfo } from '@src/components/FilmInfo';
 import { FilmSchedule } from '@src/components/FilmSchedule';
 import { ArrowBack } from '@src/components/icons';
+import { SeatSelection } from '@src/components/SeatSelection';
 import { Link } from '@src/components/UI/Link';
 import { useGetFilmQuery, useGetScheduleQuery } from '@src/store/api/api';
+import { getSelectedSchedule } from '@src/store/features/schedule/selectors/selectedScehdule';
+import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 export const FilmPage = () => {
@@ -10,6 +13,8 @@ export const FilmPage = () => {
 
 	const filmQuery = useGetFilmQuery(id);
 	const scheduleQuery = useGetScheduleQuery(id);
+
+	const selectedSchedule = useSelector(getSelectedSchedule);
 
 	const navigate = useNavigate();
 
@@ -25,10 +30,18 @@ export const FilmPage = () => {
 						Назад
 					</Link>
 				</div>
-				<div className="mb-12">
-					<FilmInfo film={filmQuery.data.film} />
+				<FilmInfo film={filmQuery.data.film} />
+				<div className="my-12">
+					<FilmSchedule
+						schedules={scheduleQuery.data.schedules}
+						selectedSchedule={selectedSchedule}
+					/>
 				</div>
-				<FilmSchedule schedules={scheduleQuery.data.schedules} />
+				<div className="mb-36">
+					{selectedSchedule.seance && (
+						<SeatSelection schedule={selectedSchedule} />
+					)}
+				</div>
 			</>
 		);
 	}

@@ -14,6 +14,7 @@ export default {
 				light: '#CED2DA',
 				medium: '#97A1AF',
 				primary: '#9534D2',
+				'dark-primary': '#712D9C',
 				secondary: '#F3F4F6',
 			},
 			gridTemplateColumns: {

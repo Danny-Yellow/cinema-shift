@@ -6,29 +6,29 @@ interface ScheduleTimesProps {
 		name: string;
 		seances: IScheduleSeanse[];
 	};
-	selectedSeance: {
-		hall: string;
-		time: string;
-	};
-	handleTimeClick: (seance: { hall: string; time: string }) => void;
+	selectedSchedule: ISelectedSchedule;
+	handleTimeClick: (seance: IScheduleSeanse) => void;
 }
 
 export const ScheduleTimes: FC<ScheduleTimesProps> = ({
 	hall,
-	selectedSeance,
+	selectedSchedule,
 	handleTimeClick,
 }) => {
 	return (
-		<>
+		<div>
 			<p>{hall.name}</p>
 			<div className="mt-4 flex gap-2">
 				{hall.seances.map((seance) => {
+					const isActive =
+						selectedSchedule.seance?.hall.name === seance.hall.name &&
+						selectedSchedule.seance.time === seance.time;
+
 					return (
 						<SelectButton
-							value={seance.hall.name + seance.time}
-							activeValue={selectedSeance.hall + selectedSeance.time}
+							isActive={isActive}
 							onClick={() => {
-								handleTimeClick({ hall: seance.hall.name, time: seance.time });
+								handleTimeClick(seance);
 							}}
 						>
 							{seance.time}
@@ -36,6 +36,6 @@ export const ScheduleTimes: FC<ScheduleTimesProps> = ({
 					);
 				})}
 			</div>
-		</>
+		</div>
 	);
 };
