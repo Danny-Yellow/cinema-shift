@@ -4,7 +4,7 @@ interface ISelectedSchedule {
 }
 
 interface ISelectedSeat {
-	row: number;
 	col: number;
 	price: number;
+	row: number;
 }

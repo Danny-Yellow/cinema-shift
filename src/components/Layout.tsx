@@ -1,5 +1,5 @@
-import { Container } from '@src/components/UI/Container';
 import { TopNavigation } from '@src/components/TopNavigation';
+import { Container } from '@src/components/UI/Container';
 import { Outlet } from 'react-router-dom';
 
 export const Layout = () => {

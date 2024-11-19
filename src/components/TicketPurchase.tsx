@@ -1,13 +1,14 @@
-import { FC } from 'react';
+import type { IScheduleSeanse } from '@src/types';
+import type { FC } from 'react';
+import { HallName } from '@src/types';
 import { Button } from './UI/Button';
-import { HallName, IScheduleSeanse } from '@src/types';
 
 interface ITicketPurchaseProps {
+	selectedSeats: ISelectedSeat[];
 	schedule: {
 		date: string;
 		seance: IScheduleSeanse;
 	};
-	selectedSeats: ISelectedSeat[];
 }
 
 export const TicketPurchase: FC<ITicketPurchaseProps> = ({
@@ -17,7 +18,7 @@ export const TicketPurchase: FC<ITicketPurchaseProps> = ({
 	const groupedSeats = (() => {
 		const seatMap = new Map<number, number[]>();
 
-		selectedSeats.forEach(({ row, col }) => {
+		selectedSeats.forEach(({ col, row }) => {
 			if (!seatMap.has(row)) {
 				seatMap.set(row, []);
 			}
@@ -25,7 +26,7 @@ export const TicketPurchase: FC<ITicketPurchaseProps> = ({
 		});
 
 		return Array.from(seatMap.entries())
-			.map(([row, cols]) => ({ row, cols: cols.sort((a, b) => a - b) }))
+			.map(([row, cols]) => ({ cols: cols.sort((a, b) => a - b), row }))
 			.sort((a, b) => a.row - b.row);
 	})();
 
@@ -52,7 +53,7 @@ export const TicketPurchase: FC<ITicketPurchaseProps> = ({
 			</div>
 			<div>
 				<p className="text-xs text-gray">Места</p>
-				{groupedSeats.map(({ row, cols }) => (
+				{groupedSeats.map(({ cols, row }) => (
 					<p key={row} className="text-base">
 						{row} ряд - {cols.join(', ')}
 					</p>

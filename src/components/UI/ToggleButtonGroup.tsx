@@ -1,27 +1,28 @@
-import { cloneElement, FC, ReactElement, ReactNode } from 'react';
+import type { FC, ReactElement, ReactNode } from 'react';
+import { cloneElement } from 'react';
 
 interface IToggleButtonGroupProps {
 	value: string;
 	onClick: (newValue: string) => void;
 	children: ReactElement<{
-		value: string;
 		isActive: boolean;
 		onClick: (newValue: string) => void;
+		value: string;
 	}>[];
 }
 
 export const ToggleButtonGroup: FC<IToggleButtonGroupProps> = ({
-	value,
-	onClick,
 	children,
+	onClick,
+	value,
 }) => {
 	const buttonsGroup = children.reduce(
 		(acc: ReactNode[], button, index, array) => {
 			const isActive = button?.props.value === value;
 
 			const clonedButton = cloneElement(button, {
-				key: button.props.value,
 				isActive,
+				key: button.props.value,
 				onClick,
 			});
 			acc.push(clonedButton);

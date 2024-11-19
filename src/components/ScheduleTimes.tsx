@@ -1,20 +1,20 @@
-import { FC } from 'react';
+import type { IScheduleSeanse } from '@src/types';
+import type { FC } from 'react';
 import { SelectButton } from './UI/SelectButton';
-import { IScheduleSeanse } from '@src/types';
 
 interface ScheduleTimesProps {
+	selectedSchedule: ISelectedSchedule;
+	handleTimeClick: (seance: IScheduleSeanse) => void;
 	hall: {
 		name: string;
 		seances: IScheduleSeanse[];
 	};
-	selectedSchedule: ISelectedSchedule;
-	handleTimeClick: (seance: IScheduleSeanse) => void;
 }
 
 export const ScheduleTimes: FC<ScheduleTimesProps> = ({
 	hall,
-	selectedSchedule,
 	handleTimeClick,
+	selectedSchedule,
 }) => {
 	return (
 		<div>

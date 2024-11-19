@@ -1,6 +1,6 @@
-import { FC } from 'react';
+import type { IFilm } from '@src/types';
+import type { FC } from 'react';
 import { FilmItem } from '@src/components/FilmItem';
-import { IFilm } from '@src/types';
 
 interface IFilmListProps {
 	films: IFilm[];

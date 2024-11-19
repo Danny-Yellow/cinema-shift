@@ -1,10 +1,10 @@
 export const Entrance = () => {
 	return (
 		<svg
-			width="24"
+			fill="none"
 			height="25"
 			viewBox="0 0 24 25"
-			fill="none"
+			width="24"
 			xmlns="http://www.w3.org/2000/svg"
 		>
 			<path

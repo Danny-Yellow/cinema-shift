@@ -1,13 +1,13 @@
-import { FC } from 'react';
+import type { TPlaces } from '@src/types';
+import type { FC } from 'react';
 import { Seat } from './UI/Seat';
-import { TPlaces } from '@src/types';
 
 interface ISeatsProps {
 	places: TPlaces;
 	handleClick: (seat: ISelectedSeat) => void;
 }
 
-export const Seats: FC<ISeatsProps> = ({ places, handleClick }) => {
+export const Seats: FC<ISeatsProps> = ({ handleClick, places }) => {
 	const rowElements = [];
 
 	for (let i = 0; i < places.length; i++) {
@@ -16,11 +16,11 @@ export const Seats: FC<ISeatsProps> = ({ places, handleClick }) => {
 		for (let j = 0; j < places[i].length; j++) {
 			columnElements.push(
 				<Seat
-					isAvailable={places[i][j].type !== 'BLOCKED'}
 					handleClick={() => {
-						handleClick({ row: i + 1, col: j + 1, price: places[i][j].price });
+						handleClick({ col: j + 1, price: places[i][j].price, row: i + 1 });
 					}}
 					col={j + 1}
+					isAvailable={places[i][j].type !== 'BLOCKED'}
 				/>,
 			);
 		}

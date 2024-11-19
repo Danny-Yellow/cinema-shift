@@ -1,5 +1,5 @@
+import type { FC } from 'react';
 import { EmptyStar, Star } from '@src/components/icons/index';
-import { FC } from 'react';
 
 interface IRatingsProps {
 	defaultValue: number;

@@ -1,10 +1,10 @@
+import type { ISchedule } from '@src/types';
+import type { FC } from 'react';
 import { getMonth } from '@src/helpers/date/getMonth';
 import { getWeekDay } from '@src/helpers/date/getWeekDay';
-import { FC } from 'react';
-import { ToggleButtonGroup } from './UI/ToggleButtonGroup';
-import { ToggleButton } from './UI/ToggleButton';
 import { parseDate } from '@src/helpers/date/parseDate';
-import { ISchedule } from '@src/types';
+import { ToggleButton } from './UI/ToggleButton';
+import { ToggleButtonGroup } from './UI/ToggleButtonGroup';
 
 interface ScheduleDaysProps {
 	schedules: ISchedule[];
@@ -13,9 +13,9 @@ interface ScheduleDaysProps {
 }
 
 export const ScheduleDays: FC<ScheduleDaysProps> = ({
+	handleClick,
 	schedules,
 	value,
-	handleClick,
 }) => {
 	return (
 		<ToggleButtonGroup value={value} onClick={handleClick}>

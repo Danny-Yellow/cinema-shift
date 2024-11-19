@@ -1,9 +1,9 @@
-import { FC } from 'react';
-import { Rating } from '@src/components/UI/Rating';
+import type { IFilm } from '@src/types';
+import type { FC } from 'react';
 import { Button } from '@src/components/UI/Button';
-import { useNavigate } from 'react-router-dom';
+import { Rating } from '@src/components/UI/Rating';
 import { calculateStars } from '@src/helpers/stars';
-import { IFilm } from '@src/types';
+import { useNavigate } from 'react-router-dom';
 
 interface IFilmsItemProps {
 	film: IFilm;
@@ -21,8 +21,8 @@ export const FilmItem: FC<IFilmsItemProps> = ({ film }) => {
 	return (
 		<article className="w-[300px]">
 			<img
-				className="h-[360px] w-full rounded-lg object-cover"
 				alt={film.name}
+				className="h-[360px] w-full rounded-lg object-cover"
 				src={film.img}
 			/>
 			<h2 className="mt-4 truncate text-xl font-semibold">{film.name}</h2>

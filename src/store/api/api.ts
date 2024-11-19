@@ -1,15 +1,22 @@
+import type { IFilmResponse, IFilmsResponse, IScheduleResponse } from '@src/types';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { IFilmResponse, IFilmsResponse, IScheduleResponse } from '@src/types';
 
 const BASE_URL = 'http://localhost:3001';
 
 export const api = createApi({
-	reducerPath: 'filmsApi',
-	tagTypes: ['Films'],
 	baseQuery: fetchBaseQuery({
 		baseUrl: `${BASE_URL}/cinema/`,
 	}),
 	endpoints: (build) => ({
+		getFilm: build.query<IFilmResponse, string>({
+			query: (id) => `/film/${id}`,
+			transformResponse(res: IFilmResponse) {
+				const updatedImg = BASE_URL + res.film.img;
+				const updatedFilm = { ...res.film, img: updatedImg };
+
+				return { ...res, film: updatedFilm };
+			},
+		}),
 		getFilms: build.query<IFilmsResponse, void>({
 			query: () => '/today',
 			transformResponse(res: IFilmsResponse) {
@@ -20,19 +27,12 @@ export const api = createApi({
 				return { ...res, films: updatedFilms };
 			},
 		}),
-		getFilm: build.query<IFilmResponse, string>({
-			query: (id) => `/film/${id}`,
-			transformResponse(res: IFilmResponse) {
-				const updatedImg = BASE_URL + res.film.img;
-				const updatedFilm = { ...res.film, img: updatedImg };
-
-				return { ...res, film: updatedFilm };
-			},
-		}),
 		getSchedule: build.query<IScheduleResponse, string>({
 			query: (id) => `/film/${id}/schedule`,
 		}),
 	}),
+	reducerPath: 'filmsApi',
+	tagTypes: ['Films'],
 });
 
-export const { useGetFilmsQuery, useGetFilmQuery, useGetScheduleQuery } = api;
+export const { useGetFilmQuery, useGetFilmsQuery, useGetScheduleQuery } = api;

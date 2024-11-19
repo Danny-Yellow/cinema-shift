@@ -1,12 +1,12 @@
 export const Logo = () => {
 	return (
 		<svg
-			width="103"
+			className="hover:cursor-pointer"
+			fill="none"
 			height="40"
 			viewBox="0 0 103 40"
-			fill="none"
+			width="103"
 			xmlns="http://www.w3.org/2000/svg"
-			className="hover:cursor-pointer"
 		>
 			<g clipPath="url(#clip0_12576_271)">
 				<path
@@ -22,29 +22,29 @@ export const Logo = () => {
 					fill="#9534D2"
 				/>
 				<rect
-					x="54.5825"
-					y="33.0503"
-					width="6.42883"
+					fill="#9534D2"
 					height="4.28589"
 					rx="2.14294"
-					fill="#9534D2"
+					width="6.42883"
+					x="54.5825"
+					y="33.0503"
 				/>
 				<rect
-					x="41.9033"
-					y="1.97754"
-					width="8.03604"
+					fill="#9534D2"
 					height="4.64304"
 					rx="2.27732"
-					fill="#9534D2"
+					width="8.03604"
+					x="41.9033"
+					y="1.97754"
 				/>
 			</g>
 			<defs>
 				<clipPath id="clip0_12576_271">
 					<rect
-						width="102"
-						height="39.142"
 						fill="white"
+						height="39.142"
 						transform="translate(0.5 0.0410156)"
+						width="102"
 					/>
 				</clipPath>
 			</defs>

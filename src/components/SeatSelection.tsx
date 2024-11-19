@@ -1,11 +1,10 @@
-import { FC } from 'react';
+import type { IScheduleSeanse } from '@src/types';
+import type { FC } from 'react';
+import { selectSeat } from '@src/store/features/schedule/scheduleForm.slice';
+import { getSelectedSeats } from '@src/store/features/schedule/selectors/selectedSeats';
+import { useDispatch, useSelector } from 'react-redux';
 import { Seats } from './Seats';
 import { TicketPurchase } from './TicketPurchase';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { getSelectedSeats } from '@src/store/features/schedule/selectors/selectedSeats';
-import { selectSeat } from '@src/store/features/schedule/scheduleForm.slice';
-import { IScheduleSeanse } from '@src/types';
 
 interface ISeatSelectionProps {
 	schedule: {
@@ -32,8 +31,8 @@ export const SeatSelection: FC<ISeatSelectionProps> = ({ schedule }) => {
 					<div>
 						<p className="mb-6">Ряд</p>
 						<Seats
-							places={schedule.seance.hall.places}
 							handleClick={handleSeatClick}
+							places={schedule.seance.hall.places}
 						/>
 					</div>
 				</div>

@@ -1,17 +1,17 @@
 export interface ITicket {
-	filmId: string;
-	row: number;
 	column: number;
+	filmId: string;
+	phone: string;
+	row: number;
 	seance: {
 		date: string;
 		time: string;
 	};
-	phone: string;
 }
 
 export interface IPlace {
 	price: number;
-	type: 'BLOCKED' | 'ECONOM' | 'COMFORT';
+	type: 'BLOCKED' | 'COMFORT' | 'ECONOM';
 }
 
 export type TPlaces = IPlace[][];
@@ -23,12 +23,12 @@ export enum HallName {
 }
 
 export interface IScheduleSeanse {
+	payedTickets: ITicket;
 	time: string;
 	hall: {
 		name: HallName;
 		places: TPlaces;
 	};
-	payedTickets: ITicket;
 }
 
 export interface ISchedule {
@@ -37,7 +37,7 @@ export interface ISchedule {
 }
 
 export interface IScheduleResponse {
-	success: boolean;
 	reason?: string;
 	schedules: ISchedule[];
+	success: boolean;
 }

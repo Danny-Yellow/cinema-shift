@@ -1,31 +1,25 @@
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
-import globals from 'globals';
-import js from '@eslint/js';
-import reactHooks from 'eslint-plugin-react-hooks';
-import reactRefresh from 'eslint-plugin-react-refresh';
-import tseslint from 'typescript-eslint';
+import { eslint } from '@siberiacancode/eslint';
 
-export default tseslint.config(
-	eslintPluginPrettierRecommended,
-	{ ignores: ['dist'] },
+export default eslint(
 	{
-		extends: [js.configs.recommended, ...tseslint.configs.recommended],
-		files: ['**/*.{js,ts,tsx}'],
-		languageOptions: {
-			ecmaVersion: 2022,
-			globals: globals.browser,
-		},
-		plugins: {
-			'react-hooks': reactHooks,
-			'react-refresh': reactRefresh,
-		},
+		typescript: true,
+	},
+	{
 		rules: {
-			...reactHooks.configs.recommended.rules,
-			'react-refresh/only-export-components': [
-				'warn',
-				{ allowConstantExport: true },
+			'node/prefer-global/process': ['error', 'always'],
+			'perfectionist/sort-jsx-props': [
+				'error',
+				{
+					customGroups: {
+						callback: 'on*',
+						reserved: ['key', 'ref'],
+					},
+					groups: ['shorthand', 'reserved', 'multiline', 'unknown', 'callback'],
+					order: 'asc',
+					type: 'alphabetical',
+				},
 			],
-			'@typescript-eslint/no-unused-vars': 'off',
+			'siberiacancode-react/prop-types': 'off',
 		},
 	},
 );

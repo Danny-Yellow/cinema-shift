@@ -23,8 +23,8 @@ export const FilmPage = () => {
 			<>
 				<div className="mb-6">
 					<Link
-						startIcon={<ArrowBack />}
 						color="gray"
+						startIcon={<ArrowBack />}
 						onClick={() => navigate(-1)}
 					>
 						Назад

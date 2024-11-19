@@ -1,4 +1,4 @@
-import { Logo, User, Ticket, Entrance } from '@src/components/icons/index';
+import { Entrance, Logo, Ticket, User } from '@src/components/icons/index';
 import { Link } from '@src/components/UI/Link';
 
 export const TopNavigation = () => {

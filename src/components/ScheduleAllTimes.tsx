@@ -1,6 +1,7 @@
-import { FC } from 'react';
+import type { IScheduleSeanse } from '@src/types';
+import type { FC } from 'react';
+import { HallName } from '@src/types';
 import { ScheduleTimes } from './ScheduleTimes';
-import { HallName, IScheduleSeanse } from '@src/types';
 
 interface IScheduleTimesProps {
 	seances: IScheduleSeanse[];
@@ -14,9 +15,9 @@ interface IHall {
 }
 
 export const ScheduleAllTimes: FC<IScheduleTimesProps> = ({
+	handleTimeClick,
 	seances,
 	selectedSchedule,
-	handleTimeClick,
 }) => {
 	const halls: IHall[] = Object.entries(HallName).map(([key, value]) => ({
 		name: `${value} зал`,
@@ -29,8 +30,8 @@ export const ScheduleAllTimes: FC<IScheduleTimesProps> = ({
 				{halls.map((hall) => (
 					<ScheduleTimes
 						hall={hall}
-						selectedSchedule={selectedSchedule}
 						handleTimeClick={handleTimeClick}
+						selectedSchedule={selectedSchedule}
 					/>
 				))}
 			</div>

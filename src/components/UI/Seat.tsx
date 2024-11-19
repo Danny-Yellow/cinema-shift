@@ -1,13 +1,14 @@
+import type { FC} from 'react';
 import clsx from 'clsx';
-import { FC, useState } from 'react';
+import { useState } from 'react';
 
 interface ISeatProps {
-	isAvailable: boolean;
 	col: number;
+	isAvailable: boolean;
 	handleClick: () => void;
 }
 
-export const Seat: FC<ISeatProps> = ({ isAvailable, col, handleClick }) => {
+export const Seat: FC<ISeatProps> = ({ col, handleClick, isAvailable }) => {
 	const [isHover, setIsHover] = useState(false);
 
 	const availableStyles = 'bg-dark-primary group-hover:scale-[2.5]';
