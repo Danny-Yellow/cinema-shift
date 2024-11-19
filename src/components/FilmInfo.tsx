@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { Rating } from './UI/Rating';
 import { calculateStars } from '@src/helpers/stars';
+import { IFilm } from '@src/types';
 
 interface IFilmInfoProps {
 	film: IFilm;

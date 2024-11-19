@@ -1,10 +1,10 @@
-interface IFilmPerson {
+export interface IFilmPerson {
 	id: string;
 	professions: 'ACTOR' | 'DIRECTOR';
 	fullName: string;
 }
 
-interface IFilm {
+export interface IFilm {
 	id: string;
 	name: string;
 	originalName: string;
@@ -28,13 +28,13 @@ interface IFilm {
 	};
 }
 
-interface IFilmResponse {
+export interface IFilmResponse {
 	success: boolean;
 	reason?: string;
 	film: IFilm;
 }
 
-interface IFilmsResponse {
+export interface IFilmsResponse {
 	success: boolean;
 	reason?: string;
 	films: IFilm[];

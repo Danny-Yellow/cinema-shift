@@ -6,6 +6,7 @@ import {
 	changeSelectedDate,
 	changeSelectedTime,
 } from '@src/store/features/schedule/scheduleForm.slice';
+import { ISchedule, IScheduleSeanse } from '@src/types';
 
 interface IFilmScheduleProps {
 	schedules: ISchedule[];

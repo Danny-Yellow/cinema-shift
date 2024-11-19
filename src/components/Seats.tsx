@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Seat } from './UI/Seat';
+import { TPlaces } from '@src/types';
 
 interface ISeatsProps {
 	places: TPlaces;

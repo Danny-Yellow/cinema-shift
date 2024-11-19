@@ -4,6 +4,7 @@ import { FC } from 'react';
 import { ToggleButtonGroup } from './UI/ToggleButtonGroup';
 import { ToggleButton } from './UI/ToggleButton';
 import { parseDate } from '@src/helpers/date/parseDate';
+import { ISchedule } from '@src/types';
 
 interface ScheduleDaysProps {
 	schedules: ISchedule[];

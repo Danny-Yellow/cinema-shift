@@ -3,7 +3,7 @@ import { FC, ReactNode } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 
 interface ILinkBaseProps {
-	color: 'neutral' | 'gray';
+	color?: 'neutral' | 'gray';
 	startIcon?: ReactNode;
 	children: ReactNode;
 }

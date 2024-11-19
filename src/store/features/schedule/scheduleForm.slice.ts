@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IScheduleSeanse } from '@src/types';
 
 interface IScheduleForm {
 	selectedSchedule: ISelectedSchedule;

@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Button } from './UI/Button';
+import { HallName, IScheduleSeanse } from '@src/types';
 
 interface ITicketPurchaseProps {
 	schedule: {
@@ -13,7 +14,7 @@ export const TicketPurchase: FC<ITicketPurchaseProps> = ({
 	schedule,
 	selectedSeats,
 }) => {
-	const groupSeats = () => {
+	const groupedSeats = (() => {
 		const seatMap = new Map<number, number[]>();
 
 		selectedSeats.forEach(({ row, col }) => {
@@ -26,19 +27,22 @@ export const TicketPurchase: FC<ITicketPurchaseProps> = ({
 		return Array.from(seatMap.entries())
 			.map(([row, cols]) => ({ row, cols: cols.sort((a, b) => a - b) }))
 			.sort((a, b) => a.row - b.row);
-	};
-
-	const groupedSeats = groupSeats();
+	})();
 
 	const totalPrice = selectedSeats.reduce((acc, seat) => {
 		return (acc += seat.price);
 	}, 0);
 
+	const hallName = (() => {
+		const hallKey = schedule.seance.hall.name as string;
+		return HallName[hallKey as keyof typeof HallName];
+	})();
+
 	return (
 		<div className="flex flex-col gap-6">
 			<div>
 				<p className="text-xs text-gray">Зал</p>
-				<p className="text-base">{}</p>
+				<p className="text-base">{hallName}</p>
 			</div>
 			<div>
 				<p className="text-xs text-gray">Дата и время</p>

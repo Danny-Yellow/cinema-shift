@@ -8,23 +8,25 @@ interface ISeatProps {
 }
 
 export const Seat: FC<ISeatProps> = ({ isAvailable, col, handleClick }) => {
-	const [colIsShown, setColIsShown] = useState(false);
+	const [isHover, setIsHover] = useState(false);
 
-	const availableStyles =
-		'bg-dark-primary group-hover:scale-[2.5] hover:cursor-pointer';
+	const availableStyles = 'bg-dark-primary group-hover:scale-[2.5]';
 	const notAvailableStyles = 'bg-light';
-	const baseStyles = 'h-4 w-4 rounded-[4px]';
+	const baseStyles = 'h-4 w-4 rounded-[4px] transition';
+
+	const colIsVisible = isHover && isAvailable;
 
 	return (
 		<div
-			className="group relative flex items-center justify-center text-white"
+			className={clsx(
+				isAvailable && 'cursor-pointer',
+				'group relative flex items-center justify-center text-white',
+			)}
 			onClick={() => {
-				handleClick();
+				if (isAvailable) handleClick();
 			}}
-			onMouseEnter={() => {
-				setColIsShown(true);
-			}}
-			onMouseLeave={() => setColIsShown(false)}
+			onMouseEnter={() => setIsHover(true)}
+			onMouseLeave={() => setIsHover(false)}
 		>
 			<div
 				className={clsx(
@@ -32,9 +34,16 @@ export const Seat: FC<ISeatProps> = ({ isAvailable, col, handleClick }) => {
 					baseStyles,
 				)}
 			/>
-			<p className="absolute hover:cursor-pointer">
-				{colIsShown && isAvailable && col}
-			</p>
+			{isAvailable && (
+				<p
+					className={clsx(
+						colIsVisible ? 'opacity-100' : 'opacity-0',
+						'absolute transition',
+					)}
+				>
+					{col}
+				</p>
+			)}
 		</div>
 	);
 };

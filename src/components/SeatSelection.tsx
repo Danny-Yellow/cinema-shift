@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { getSelectedSeats } from '@src/store/features/schedule/selectors/selectedSeats';
 import { selectSeat } from '@src/store/features/schedule/scheduleForm.slice';
+import { IScheduleSeanse } from '@src/types';
 
 interface ISeatSelectionProps {
 	schedule: {

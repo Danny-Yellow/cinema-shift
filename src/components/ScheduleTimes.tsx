@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { SelectButton } from './UI/SelectButton';
+import { IScheduleSeanse } from '@src/types';
 
 interface ScheduleTimesProps {
 	hall: {

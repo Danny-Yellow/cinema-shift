@@ -1,4 +1,4 @@
-interface ITicket {
+export interface ITicket {
 	filmId: string;
 	row: number;
 	column: number;
@@ -9,20 +9,20 @@ interface ITicket {
 	phone: string;
 }
 
-interface IPlace {
+export interface IPlace {
 	price: number;
 	type: 'BLOCKED' | 'ECONOM' | 'COMFORT';
 }
 
-type TPlaces = IPlace[][];
+export type TPlaces = IPlace[][];
 
-enum HallName {
+export enum HallName {
 	Red = 'Красный',
 	Green = 'Зеленый',
 	Blue = 'Синий',
 }
 
-interface IScheduleSeanse {
+export interface IScheduleSeanse {
 	time: string;
 	hall: {
 		name: HallName;
@@ -31,12 +31,12 @@ interface IScheduleSeanse {
 	payedTickets: ITicket;
 }
 
-interface ISchedule {
+export interface ISchedule {
 	date: string;
 	seances: IScheduleSeanse[];
 }
 
-interface IScheduleResponse {
+export interface IScheduleResponse {
 	success: boolean;
 	reason?: string;
 	schedules: ISchedule[];

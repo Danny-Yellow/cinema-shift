@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { IFilmResponse, IFilmsResponse, IScheduleResponse } from '@src/types';
 
 const BASE_URL = 'http://localhost:3001';
 

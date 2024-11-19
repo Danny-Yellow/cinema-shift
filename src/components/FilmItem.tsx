@@ -3,6 +3,7 @@ import { Rating } from '@src/components/UI/Rating';
 import { Button } from '@src/components/UI/Button';
 import { useNavigate } from 'react-router-dom';
 import { calculateStars } from '@src/helpers/stars';
+import { IFilm } from '@src/types';
 
 interface IFilmsItemProps {
 	film: IFilm;
