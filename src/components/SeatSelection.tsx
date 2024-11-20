@@ -1,5 +1,6 @@
 import type { IScheduleSeanse } from '@src/types';
 import type { ComponentProps, FC } from 'react';
+import { openModal } from '@src/store/features/modal/modal.slice';
 import { selectSeat } from '@src/store/features/schedule/scheduleSelection.slice';
 import { getSelectedSeats } from '@src/store/features/schedule/selectors/selectedSeats';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,6 +25,10 @@ export const SeatSelection: FC<ISeatSelectionProps> = ({
 		dispatch(selectSeat(seat));
 	}
 
+	function handleBuyButtonClick() {
+		dispatch(openModal({ name: 'orderForm' }));
+	}
+
 	return (
 		<section className={className}>
 			<h2 className="mb-6 text-2xl font-bold text-black">Выбор места</h2>
@@ -40,9 +45,11 @@ export const SeatSelection: FC<ISeatSelectionProps> = ({
 					</div>
 				</div>
 				{!!selectedSeats.length && (
-					<div>
-						<TicketPurchase schedule={schedule} selectedSeats={selectedSeats} />
-					</div>
+					<TicketPurchase
+						schedule={schedule}
+						selectedSeats={selectedSeats}
+						onButtonClick={handleBuyButtonClick}
+					/>
 				)}
 			</div>
 		</section>

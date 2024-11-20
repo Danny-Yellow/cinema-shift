@@ -1,4 +1,5 @@
 export * from '@src/components/icons/ArrowBack';
+export * from '@src/components/icons/Cross';
 export * from '@src/components/icons/EmptyStar';
 export * from '@src/components/icons/Entrance';
 export * from '@src/components/icons/Logo';

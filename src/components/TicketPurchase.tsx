@@ -5,6 +5,7 @@ import { Button } from './UI/Button';
 
 interface ITicketPurchaseProps {
 	selectedSeats: ISelectedSeat[];
+	onButtonClick: () => void;
 	schedule: {
 		date: string;
 		seance: IScheduleSeanse;
@@ -12,6 +13,7 @@ interface ITicketPurchaseProps {
 }
 
 export const TicketPurchase: FC<ITicketPurchaseProps> = ({
+	onButtonClick,
 	schedule,
 	selectedSeats,
 }) => {
@@ -60,7 +62,13 @@ export const TicketPurchase: FC<ITicketPurchaseProps> = ({
 				))}
 			</div>
 			<strong className="text-xl font-semibold">Сумма: {totalPrice} ₽</strong>
-			<Button size="large" variant="contained" onClick={() => {}}>
+			<Button
+				size="large"
+				variant="contained"
+				onClick={() => {
+					onButtonClick();
+				}}
+			>
 				Купить
 			</Button>
 		</div>
