@@ -1,14 +1,20 @@
 import type { IFilm } from '@src/types';
-import type { FC } from 'react';
+import type { ComponentProps, FC } from 'react';
 import { FilmItem } from '@src/components/FilmItem';
+import clsx from 'clsx';
 
-interface IFilmListProps {
+interface IFilmListProps extends ComponentProps<'ul'> {
 	films: IFilm[];
 }
 
-export const FilmList: FC<IFilmListProps> = ({ films }) => {
+export const FilmList: FC<IFilmListProps> = ({ className, films }) => {
 	return (
-		<ul className="grid grid-cols-auto-fill-300 justify-center gap-x-8 gap-y-16">
+		<ul
+			className={clsx(
+				'grid grid-cols-auto-fill-300 justify-center gap-x-8 gap-y-16',
+				className,
+			)}
+		>
 			{films.map((film) => (
 				<li key={film.id}>
 					<FilmItem film={film} />

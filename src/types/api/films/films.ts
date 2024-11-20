@@ -4,9 +4,17 @@ export interface IFilmPerson {
 	professions: 'ACTOR' | 'DIRECTOR';
 }
 
+export enum AgeRaiting {
+	G = '0+',
+	PG = '10+',
+	PG13 = '13+',
+	R = '16+',
+	NC17 = '18+',
+}
+
 export interface IFilm {
 	actors: IFilmPerson;
-	ageRating: 'G' | 'NC17' | 'PG' | 'PG13' | 'R';
+	ageRating: AgeRaiting;
 	description: string;
 	directors: IFilmPerson;
 	genres: string[];

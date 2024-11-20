@@ -1,20 +1,32 @@
-import type { IFilm } from '@src/types';
-import type { FC } from 'react';
-import { calculateStars } from '@src/helpers/stars';
+import type { ComponentProps, FC } from 'react';
+import { calculateStars } from '@src/helpers/index';
+import { AgeRaiting, type IFilm } from '@src/types';
+import clsx from 'clsx';
 import { Rating } from './UI/Rating';
 
-interface IFilmInfoProps {
+interface IFilmInfoProps extends ComponentProps<'section'> {
 	film: IFilm;
 }
 
-export const FilmInfo: FC<IFilmInfoProps> = ({ film }) => {
+export const FilmInfo: FC<IFilmInfoProps> = ({ className, film }) => {
 	const countOfStars = calculateStars(+film.userRatings.kinopoisk);
 
+	const ageRaiting = (() => {
+		const ageRaitingKey = film.ageRating as string;
+		return AgeRaiting[ageRaitingKey as keyof typeof AgeRaiting];
+	})();
+
 	return (
-		<section className="flex gap-8">
-			<img alt={film.name} className="h-[450px] basis-[300px]" src={film.img} />
+		<section className={clsx('flex gap-8', className)}>
+			<img
+				alt={film.name}
+				className="w-[300px] shrink-0"
+				src={film.img}
+			/>
 			<div>
-				<h1 className="mb-1 text-[32px] font-bold text-black">{film.name}</h1>
+				<h1 className="mb-1 text-[32px] font-bold text-black">
+					{film.name} ({ageRaiting})
+				</h1>
 				<p className="mb-4 text-sm text-gray">{film.originalName}</p>
 				<Rating defaultValue={countOfStars} max={5} />
 				<p className="mb-4 mt-1 text-sm text-gray">

@@ -1,19 +1,20 @@
 import type { ISchedule, IScheduleSeanse } from '@src/types';
-import type { FC } from 'react';
+import type { ComponentProps, FC } from 'react';
 import {
 	changeSelectedDate,
 	changeSelectedTime,
-} from '@src/store/features/schedule/scheduleForm.slice';
+} from '@src/store/features/schedule/scheduleSelection.slice';
 import { useDispatch } from 'react-redux';
 import { ScheduleAllTimes } from './ScheduleAllTimes';
 import { ScheduleDays } from './ScheduleDays';
 
-interface IFilmScheduleProps {
+interface IFilmScheduleProps extends ComponentProps<'div'> {
 	schedules: ISchedule[];
 	selectedSchedule: ISelectedSchedule;
 }
 
 export const FilmSchedule: FC<IFilmScheduleProps> = ({
+	className,
 	schedules,
 	selectedSchedule,
 }) => {
@@ -32,7 +33,7 @@ export const FilmSchedule: FC<IFilmScheduleProps> = ({
 	}
 
 	return (
-		<section>
+		<section className={className}>
 			<h2 className="mb-6 text-2xl font-bold">Расписание</h2>
 			<ScheduleDays
 				handleClick={handleDateClick}

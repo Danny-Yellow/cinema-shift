@@ -1,14 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { api } from '@src/store/api/api';
-import scheduleFormReducer from './features/schedule/scheduleForm.slice';
+import { rootReducer } from './reducers';
 
 export const store = configureStore({
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware().concat(api.middleware),
-	reducer: {
-		[api.reducerPath]: api.reducer,
-		scheduleForm: scheduleFormReducer,
-	},
+	reducer: rootReducer,
 });
 
 export type AppStore = typeof store;

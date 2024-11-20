@@ -2,31 +2,24 @@ import { Layout } from '@src/components/Layout';
 import { FilmPage } from '@src/pages/FilmPage';
 import { PosterPage } from '@src/pages/PosterPage';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { ROUTES } from '../constants/routes';
 
 const isAuth = false;
 
 const publicRoutes = [
 	{
-		element: <Navigate to="/poster" />,
+		element: <Navigate to={'/poster'} />,
 		path: '/',
 	},
 	{
 		children: [
 			{
-				element: (
-					<div className="mt-12">
-						<PosterPage />
-					</div>
-				),
-				path: '/poster',
+				element: <PosterPage className="mt-12" />,
+				path: ROUTES.POSTER,
 			},
 			{
-				element: (
-					<div className="mt-6">
-						<FilmPage />
-					</div>
-				),
-				path: '/film/:id',
+				element: <FilmPage className="mt-6" />,
+				path: ROUTES.FILM_ID,
 			},
 		],
 		element: <Layout />,

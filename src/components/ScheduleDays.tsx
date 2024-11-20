@@ -1,8 +1,6 @@
 import type { ISchedule } from '@src/types';
 import type { FC } from 'react';
-import { getMonth } from '@src/helpers/date/getMonth';
-import { getWeekDay } from '@src/helpers/date/getWeekDay';
-import { parseDate } from '@src/helpers/date/parseDate';
+import { getMonth, getWeekDay, parseDate } from '@src/helpers/index';
 import { ToggleButton } from './UI/ToggleButton';
 import { ToggleButtonGroup } from './UI/ToggleButtonGroup';
 

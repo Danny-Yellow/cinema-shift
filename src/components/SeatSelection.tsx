@@ -1,19 +1,22 @@
 import type { IScheduleSeanse } from '@src/types';
-import type { FC } from 'react';
-import { selectSeat } from '@src/store/features/schedule/scheduleForm.slice';
+import type { ComponentProps, FC } from 'react';
+import { selectSeat } from '@src/store/features/schedule/scheduleSelection.slice';
 import { getSelectedSeats } from '@src/store/features/schedule/selectors/selectedSeats';
 import { useDispatch, useSelector } from 'react-redux';
 import { Seats } from './Seats';
 import { TicketPurchase } from './TicketPurchase';
 
-interface ISeatSelectionProps {
+interface ISeatSelectionProps extends ComponentProps<'section'> {
 	schedule: {
 		date: string;
 		seance: IScheduleSeanse;
 	};
 }
 
-export const SeatSelection: FC<ISeatSelectionProps> = ({ schedule }) => {
+export const SeatSelection: FC<ISeatSelectionProps> = ({
+	className,
+	schedule,
+}) => {
 	const dispatch = useDispatch();
 	const selectedSeats = useSelector(getSelectedSeats);
 
@@ -22,7 +25,7 @@ export const SeatSelection: FC<ISeatSelectionProps> = ({ schedule }) => {
 	}
 
 	return (
-		<section>
+		<section className={className}>
 			<h2 className="mb-6 text-2xl font-bold text-black">Выбор места</h2>
 			<div className="flex flex-wrap items-center gap-20">
 				<div className="flex flex-col items-center">

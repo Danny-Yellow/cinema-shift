@@ -1,18 +1,19 @@
-import type { FC, ReactNode } from 'react';
+import type { ComponentProps, FC } from 'react';
 import { cva } from 'class-variance-authority';
 
-interface IButtonProps {
-	children: ReactNode;
+interface IButtonProps extends ComponentProps<'button'> {
 	size: 'full' | 'large' | 'medium';
 	variant: 'contained' | 'outlined';
-	onClick: () => void;
 }
 
 export const Button: FC<IButtonProps> = ({
 	children,
 	onClick,
-	...variants
+	size,
+	variant,
 }) => {
+	const variants = { size, variant };
+
 	const styles = cva<TVariants<typeof variants>>(
 		'flex h-14 items-center justify-center rounded-2xl',
 		{
