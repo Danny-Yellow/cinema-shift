@@ -12,13 +12,16 @@ export const ModalContent: FC<IModalContent> = ({
 	onCloseButtonClick,
 }) => {
 	return (
-		<div className="rounded-3xl bg-white">
+		<div
+			className="rounded-3xl bg-white"
+			onClick={(event) => event.stopPropagation()}
+		>
 			<header className="flex justify-end px-6 pt-5">
 				<IconButton onClick={onCloseButtonClick}>
 					<Cross />
 				</IconButton>
 			</header>
-			<div className="px-[72px]">{children}</div>
+			<div className="px-[72px] pb-[72px]">{children}</div>
 		</div>
 	);
 };
