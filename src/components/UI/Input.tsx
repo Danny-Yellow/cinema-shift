@@ -1,11 +1,26 @@
 import type { ComponentProps, FC } from 'react';
+import clsx from 'clsx';
 
-export const Input: FC<ComponentProps<'input'>> = ({ onChange, ...props }) => {
+interface IInputProps extends ComponentProps<'input'> {
+	hasError: boolean;
+}
+
+export const Input: FC<IInputProps> = ({
+	hasError,
+	name,
+	onChange,
+	value,
+	...props
+}) => {
 	return (
 		<input
 			type="text"
 			{...props}
-			className="w-[400px] rounded-lg border-[1px] border-light p-3"
+			className={clsx(
+				hasError ? 'border-red-500' : 'border-light',
+				'w-[400px] rounded-lg border-[1px] p-3',
+			)}
+			value={value}
 			onChange={onChange}
 		/>
 	);

@@ -15,8 +15,8 @@ export const ModalManager = () => {
 
 	if (modal.name) {
 		return (
-			<ModalBackground onClick={handleCloseModal}>
-				<ModalContent onCloseButtonClick={handleCloseModal}>
+			<ModalBackground onClick={handleCloseModal} >
+				<ModalContent onCloseButtonClick={handleCloseModal} >
 					<OrderForm className="mt-6" />
 				</ModalContent>
 			</ModalBackground>

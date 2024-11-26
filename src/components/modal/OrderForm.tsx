@@ -1,39 +1,84 @@
-import type { ComponentProps, FC } from 'react';
-import { changeInputValue } from '@src/store/features/orderForm/orderForm.slice';
+import type { ComponentProps, FC, MouseEvent } from 'react';
+import {
+	changeInputValue,
+	submit,
+} from '@src/store/features/orderForm/orderForm.slice';
 import { getOrderFormFields } from '@src/store/features/orderForm/selectors/getOrderFormFields';
 import clsx from 'clsx';
-import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '../UI/Button';
 import { TextField } from '../UI/TextField';
+
+interface IField {
+	isRequired: boolean;
+	label: string;
+	name: TFormName;
+	placeholder: string;
+}
+
+const fields: IField[] = [
+	{
+		isRequired: true,
+		label: 'Имя*',
+		name: 'firstname',
+		placeholder: 'Введите имя',
+	},
+	{
+		isRequired: true,
+		label: 'Фамилия*',
+		name: 'lastname',
+		placeholder: 'Введите фамилию',
+	},
+	{
+		isRequired: false,
+		label: 'Отчество',
+		name: 'middlename',
+		placeholder: 'Введите отчество',
+	},
+	{
+		isRequired: true,
+		label: 'Телефон*',
+		name: 'phone',
+		placeholder: 'Введите номер телефона',
+	},
+	{
+		isRequired: false,
+		label: 'Почта',
+		name: 'email',
+		placeholder: 'Введите адрес почты',
+	},
+	{
+		isRequired: false,
+		label: 'Город',
+		name: 'city',
+		placeholder: 'Введите город',
+	},
+];
 
 export const OrderForm: FC<ComponentProps<'form'>> = ({
 	className,
 	...props
 }) => {
-	const fields = useSelector(getOrderFormFields);
+	const fieldValue = useSelector(getOrderFormFields);
 	const dispatch = useDispatch();
-	const { formState, handleSubmit, register } = useForm();
 
-	console.log(formState);
+	function handleButtonClick(event: MouseEvent<HTMLButtonElement>) {
+		event.preventDefault();
+		dispatch(submit());
+	}
 
 	return (
-		<form
-			className={clsx('flex flex-col gap-6', className)}
-			{...props}
-			onSubmit={handleSubmit((data) => {
-				console.log(data);
-			})}
-		>
+		<form className={clsx('flex flex-col gap-6', className)} {...props}>
 			<h2 className="mb-6 text-2xl font-bold text-black">
 				Введите ваши данные
 			</h2>
+
 			{fields.map((field) => (
 				<TextField
+					error={fieldValue[field.name].errorMessage}
 					label={field.label}
 					placeholder={field.placeholder}
-					{...(register(field.name),
-					{ required: field.isRequired, value: field.value })}
+					value={fieldValue[field.name].value}
 					onChange={(event) => {
 						dispatch(
 							changeInputValue({
@@ -44,7 +89,12 @@ export const OrderForm: FC<ComponentProps<'form'>> = ({
 					}}
 				/>
 			))}
-			<Button size="full" type="submit" variant="contained">
+			<Button
+				size="full"
+				type="submit"
+				variant="contained"
+				onClick={handleButtonClick}
+			>
 				Продолжить
 			</Button>
 		</form>

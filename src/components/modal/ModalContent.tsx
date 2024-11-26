@@ -1,10 +1,10 @@
-import type { FC, ReactNode } from 'react';
+import type { FC, MouseEvent, ReactNode } from 'react';
 import { Cross } from '../icons';
 import { IconButton } from '../UI/IconButton';
 
 interface IModalContent {
 	children: ReactNode;
-	onCloseButtonClick: () => void;
+	onCloseButtonClick: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
 export const ModalContent: FC<IModalContent> = ({
@@ -14,10 +14,12 @@ export const ModalContent: FC<IModalContent> = ({
 	return (
 		<div
 			className="rounded-3xl bg-white"
-			onClick={(event) => event.stopPropagation()}
+			onClick={(event) => {
+				event.stopPropagation();
+			}}
 		>
 			<header className="flex justify-end px-6 pt-5">
-				<IconButton onClick={onCloseButtonClick}>
+				<IconButton onClick={(event) => onCloseButtonClick(event)}>
 					<Cross />
 				</IconButton>
 			</header>

@@ -19,6 +19,7 @@ export default eslint(
 					type: 'alphabetical',
 				},
 			],
+			'regexp/no-obscure-range': 'off',
 			'siberiacancode-react/prop-types': 'off',
 		},
 	},

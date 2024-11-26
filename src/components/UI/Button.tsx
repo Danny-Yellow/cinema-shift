@@ -32,7 +32,7 @@ export const Button: FC<IButtonProps> = ({
 	);
 
 	return (
-		<button className={styles(variants)} onClick={onClick}>
+		<button className={styles(variants)} onClick={(event) => onClick?.(event)}>
 			{children}
 		</button>
 	);

@@ -1,51 +1,34 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
+import { validationMap } from '@src/helpers/validation/validation';
 
 const initialState: IOrderForm = {
-	fields: [
-		{
-			isRequired: true,
-			label: 'Имя*',
-			name: 'firstname',
-			placeholder: 'Введите имя',
+	field: {
+		city: {
+			errorMessage: '',
 			value: '',
 		},
-		{
-			isRequired: true,
-			label: 'Фамилия*',
-			name: 'lastname',
-			placeholder: 'Введите фамилию',
+		email: {
+			errorMessage: '',
 			value: '',
 		},
-		{
-			isRequired: false,
-			label: 'Отчество',
-			name: 'middlename',
-			placeholder: 'Введите отчество',
+		firstname: {
+			errorMessage: '',
 			value: '',
 		},
-		{
-			isRequired: true,
-			label: 'Телефон*',
-			name: 'phone',
-			placeholder: 'Введите номер телефона',
+		lastname: {
+			errorMessage: '',
 			value: '',
 		},
-		{
-			isRequired: false,
-			label: 'Почта',
-			name: 'email',
-			placeholder: 'Введите адрес почты',
+		middlename: {
+			errorMessage: '',
 			value: '',
 		},
-		{
-			isRequired: false,
-			label: 'Город',
-			name: 'city',
-			placeholder: 'Введите город',
+		phone: {
+			errorMessage: '',
 			value: '',
 		},
-	],
+	},
 };
 
 const orderFormSlice = createSlice({
@@ -54,16 +37,23 @@ const orderFormSlice = createSlice({
 	reducers: {
 		changeInputValue: (
 			state,
-			action: PayloadAction<{ name: string; value: string }>,
+			action: PayloadAction<{ name: TFormName; value: string }>,
 		) => {
-			const indexOfField = state.fields.findIndex(
-				(field) => field.name === action.payload.name,
-			);
-			state.fields[indexOfField].value = action.payload.value;
+			const { name, value } = action.payload;
+			state.field[name].value = value;
+		},
+		submit: (state) => {
+			Object.keys(state.field).forEach((key) => {
+				const fieldName = key as TFormName;
+				const fieldValue = state.field[fieldName].value;
+				const validationError = validationMap[fieldName](fieldValue);
+
+				state.field[fieldName].errorMessage = validationError;
+			});
 		},
 	},
 });
 
-export const { changeInputValue } = orderFormSlice.actions;
+export const { changeInputValue, submit } = orderFormSlice.actions;
 
 export default orderFormSlice.reducer;

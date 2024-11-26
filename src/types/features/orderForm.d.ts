@@ -1,11 +1,12 @@
 interface IField {
-	isRequired: boolean;
-	label: string;
-	name: string;
-	placeholder: string;
+	errorMessage: string;
 	value: string;
 }
 
+type TFormName = 'city' | 'email' | 'firstname' | 'lastname' | 'middlename' | 'phone'
+
+type TFormValues = Record<TFormName, IField>
+
 interface IOrderForm {
-	fields: IField[];
+	field: TFormValues;
 }
