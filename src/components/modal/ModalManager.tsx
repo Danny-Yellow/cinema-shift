@@ -1,0 +1,25 @@
+import { closeModal } from '@src/store/features/modal/modal.slice';
+import { getModal } from '@src/store/features/modal/selectors/getModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { ModalBackground } from './ModalBackground';
+import { ModalContent } from './ModalContent';
+import { OrderForm } from './OrderForm';
+
+export const ModalManager = () => {
+	const modal = useSelector(getModal);
+	const dispatch = useDispatch();
+
+	function handleCloseModal() {
+		dispatch(closeModal());
+	}
+
+	if (modal.name) {
+		return (
+			<ModalBackground onClick={handleCloseModal} >
+				<ModalContent onCloseButtonClick={handleCloseModal} >
+					<OrderForm className="mt-6" />
+				</ModalContent>
+			</ModalBackground>
+		);
+	}
+};

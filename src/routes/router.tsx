@@ -1,22 +1,33 @@
-import { createBrowserRouter } from 'react-router-dom';
-import { ReactNode } from 'react';
-import App from '@src/App';
+import { Layout } from '@src/components/Layout';
+import { FilmPage } from '@src/pages/FilmPage';
+import { PosterPage } from '@src/pages/PosterPage';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { ROUTES } from '../constants/routes';
 
 const isAuth = false;
 
-interface IRoute {
-	path: string;
-	element: ReactNode;
-}
-
-const publicRoutes: IRoute[] = [
+const publicRoutes = [
 	{
+		element: <Navigate to={'/poster'} />,
 		path: '/',
-		element: <App />,
+	},
+	{
+		children: [
+			{
+				element: <PosterPage className="mt-12" />,
+				path: ROUTES.POSTER,
+			},
+			{
+				element: <FilmPage className="mt-6" />,
+				path: ROUTES.FILM_ID,
+			},
+		],
+		element: <Layout />,
+		path: '/',
 	},
 ];
 
-const privateRoutes: IRoute[] = [];
+const privateRoutes: Array<object> = [];
 
 const routes = isAuth ? privateRoutes : publicRoutes;
 

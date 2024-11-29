@@ -1,0 +1,59 @@
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import { personalDataValidationMap } from '@src/helpers/validation/personalDataValidation';
+
+const initialState: IPersonalDataForm = {
+	field: {
+		city: {
+			errorMessage: '',
+			value: '',
+		},
+		email: {
+			errorMessage: '',
+			value: '',
+		},
+		firstname: {
+			errorMessage: '',
+			value: '',
+		},
+		lastname: {
+			errorMessage: '',
+			value: '',
+		},
+		middlename: {
+			errorMessage: '',
+			value: '',
+		},
+		phone: {
+			errorMessage: '',
+			value: '',
+		},
+	},
+};
+
+const personalDataFormSlice = createSlice({
+	initialState,
+	name: 'personalDataForm',
+	reducers: {
+		changeInputValue: (
+			state,
+			action: PayloadAction<{ name: TPersonalDataFieldName; value: string }>,
+		) => {
+			const { name, value } = action.payload;
+			state.field[name].value = value;
+		},
+		submit: (state) => {
+			Object.keys(state.field).forEach((key) => {
+				const fieldName = key as TPersonalDataFieldName;
+				const fieldValue = state.field[fieldName].value;
+				const validationError = personalDataValidationMap[fieldName](fieldValue);
+
+				state.field[fieldName].errorMessage = validationError;
+			});
+		},
+	},
+});
+
+export const { changeInputValue, submit } = personalDataFormSlice.actions;
+
+export default personalDataFormSlice.reducer;
