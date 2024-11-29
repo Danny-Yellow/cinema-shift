@@ -41,6 +41,10 @@ export const validEmail = (email: string): string => {
 	const EMAIL_REGEXP =
 		/^(?:[^<>()[\].,;:\s@"]+(?:\.[^<>()[\].,;:\s@"]+)*|".+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,}$/u;
 
+	if (!email) {
+		return ''
+	}
+
 	if (!EMAIL_REGEXP.test(email)) {
 		return 'Некорректный формат';
 	}
@@ -106,7 +110,7 @@ export const validMiddlename = (middlename: string): string => {
 	return '';
 };
 
-export const validationMap: Record<TFormName, (_: string) => string> = {
+export const personalDataValidationMap: Record<TPersonalDataFieldName, (_: string) => string> = {
 	city: validCity,
 	email: validEmail,
 	firstname: validFirstname,

@@ -1,8 +1,8 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
-import { validationMap } from '@src/helpers/validation/validation';
+import { personalDataValidationMap } from '@src/helpers/validation/personalDataValidation';
 
-const initialState: IOrderForm = {
+const initialState: IPersonalDataForm = {
 	field: {
 		city: {
 			errorMessage: '',
@@ -31,22 +31,22 @@ const initialState: IOrderForm = {
 	},
 };
 
-const orderFormSlice = createSlice({
+const personalDataFormSlice = createSlice({
 	initialState,
-	name: 'modal',
+	name: 'personalDataForm',
 	reducers: {
 		changeInputValue: (
 			state,
-			action: PayloadAction<{ name: TFormName; value: string }>,
+			action: PayloadAction<{ name: TPersonalDataFieldName; value: string }>,
 		) => {
 			const { name, value } = action.payload;
 			state.field[name].value = value;
 		},
 		submit: (state) => {
 			Object.keys(state.field).forEach((key) => {
-				const fieldName = key as TFormName;
+				const fieldName = key as TPersonalDataFieldName;
 				const fieldValue = state.field[fieldName].value;
-				const validationError = validationMap[fieldName](fieldValue);
+				const validationError = personalDataValidationMap[fieldName](fieldValue);
 
 				state.field[fieldName].errorMessage = validationError;
 			});
@@ -54,6 +54,6 @@ const orderFormSlice = createSlice({
 	},
 });
 
-export const { changeInputValue, submit } = orderFormSlice.actions;
+export const { changeInputValue, submit } = personalDataFormSlice.actions;
 
-export default orderFormSlice.reducer;
+export default personalDataFormSlice.reducer;

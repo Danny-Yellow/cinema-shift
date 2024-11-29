@@ -2,8 +2,8 @@ import type { ComponentProps, FC, MouseEvent } from 'react';
 import {
 	changeInputValue,
 	submit,
-} from '@src/store/features/orderForm/orderForm.slice';
-import { getOrderFormFields } from '@src/store/features/orderForm/selectors/getOrderFormFields';
+} from '@src/store/features/personalDataForm/personalDataForm.slice';
+import { getPersonalDataFormField } from '@src/store/features/personalDataForm/selectors/getOrderFormFields';
 import clsx from 'clsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '../UI/Button';
@@ -12,7 +12,7 @@ import { TextField } from '../UI/TextField';
 interface IField {
 	isRequired: boolean;
 	label: string;
-	name: TFormName;
+	name: TPersonalDataFieldName;
 	placeholder: string;
 }
 
@@ -49,7 +49,7 @@ const fields: IField[] = [
 	},
 	{
 		isRequired: false,
-		label: 'Город',
+		label: 'Город*',
 		name: 'city',
 		placeholder: 'Введите город',
 	},
@@ -59,7 +59,7 @@ export const OrderForm: FC<ComponentProps<'form'>> = ({
 	className,
 	...props
 }) => {
-	const fieldValue = useSelector(getOrderFormFields);
+	const fieldValue = useSelector(getPersonalDataFormField);
 	const dispatch = useDispatch();
 
 	function handleButtonClick(event: MouseEvent<HTMLButtonElement>) {
