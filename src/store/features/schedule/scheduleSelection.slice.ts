@@ -1,5 +1,5 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { IScheduleSeanse } from '@src/types';
+import type { IScheduleSeanse, ISelectedSchedule, ISelectedSeat } from '@src/types';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface IScheduleForm {
@@ -28,6 +28,10 @@ export const scheduleFormSlice = createSlice({
 			state.selectedSchedule.seance = action.payload;
 		},
 
+		reset: (state) => {
+			Object.assign(state, initialState);
+		},
+
 		selectSeat: (state, action: PayloadAction<ISelectedSeat>) => {
 			const { col, row } = action.payload;
 
@@ -45,7 +49,7 @@ export const scheduleFormSlice = createSlice({
 	},
 });
 
-export const { changeSelectedDate, changeSelectedTime, selectSeat } =
+export const { changeSelectedDate, changeSelectedTime, reset, selectSeat } =
 	scheduleFormSlice.actions;
 
 export default scheduleFormSlice.reducer;

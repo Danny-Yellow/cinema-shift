@@ -1,4 +1,4 @@
-import type { ISchedule, IScheduleSeanse } from '@src/types';
+import type { ISchedule, IScheduleSeanse, ISelectedSchedule } from '@src/types';
 import type { ComponentProps, FC } from 'react';
 import {
 	changeSelectedDate,
@@ -34,7 +34,7 @@ export const FilmSchedule: FC<IFilmScheduleProps> = ({
 
 	return (
 		<section className={className}>
-			<h2 className="mb-6 text-2xl title">Расписание</h2>
+			<h2 className="title mb-6 text-2xl">Расписание</h2>
 			<ScheduleDays
 				handleClick={handleDateClick}
 				schedules={schedules}

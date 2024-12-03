@@ -24,7 +24,7 @@ export const DebitCard: FC<IDebitCardProps> = ({ onChange, values }) => {
 				/>
 				<TextField
 					label="CVV*"
-					placeholder="0000"
+					placeholder="000"
 					value={values.cvv}
 					onChange={(event) => onChange('cvv', event.target.value)}
 				/>

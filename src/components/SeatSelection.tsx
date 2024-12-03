@@ -1,4 +1,4 @@
-import type { IScheduleSeanse } from '@src/types';
+import type { IScheduleSeanse, ISelectedSeat } from '@src/types';
 import type { ComponentProps, FC } from 'react';
 import { openModal } from '@src/store/features/modal/modal.slice';
 import { selectSeat } from '@src/store/features/schedule/scheduleSelection.slice';

@@ -4,14 +4,6 @@ import { personalDataValidationMap } from '@src/helpers/validation/personalDataV
 
 const initialState: IPersonalDataForm = {
 	field: {
-		city: {
-			errorMessage: '',
-			value: '',
-		},
-		email: {
-			errorMessage: '',
-			value: '',
-		},
 		firstname: {
 			errorMessage: '',
 			value: '',
@@ -42,6 +34,9 @@ const personalDataFormSlice = createSlice({
 			const { name, value } = action.payload;
 			state.field[name].value = value;
 		},
+		reset: (state) => {
+			Object.assign(state, initialState);
+		},
 		submit: (state) => {
 			Object.keys(state.field).forEach((key) => {
 				const fieldName = key as TPersonalDataFieldName;
@@ -55,6 +50,7 @@ const personalDataFormSlice = createSlice({
 	},
 });
 
-export const { changeInputValue, submit } = personalDataFormSlice.actions;
+export const { changeInputValue, reset, submit } =
+	personalDataFormSlice.actions;
 
 export default personalDataFormSlice.reducer;

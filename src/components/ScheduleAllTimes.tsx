@@ -1,4 +1,4 @@
-import type { IScheduleSeanse } from '@src/types';
+import type { IScheduleSeanse, ISelectedSchedule } from '@src/types';
 import type { FC } from 'react';
 import { HallName } from '@src/types';
 import { ScheduleTimes } from './ScheduleTimes';

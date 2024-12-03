@@ -1,6 +1,7 @@
 import { ROUTES } from '@src/constants/routes';
 import {
 	changeInputValue,
+	reset,
 	submit,
 } from '@src/store/features/personalDataForm/personalDataForm.slice';
 import { getPersonalDataFormField } from '@src/store/features/personalDataForm/selectors/getPersonalDataFormFields';
@@ -50,18 +51,6 @@ const fields: IField[] = [
 		name: 'phone',
 		placeholder: 'Введите номер телефона',
 	},
-	{
-		isRequired: false,
-		label: 'Почта',
-		name: 'email',
-		placeholder: 'Введите адрес почты',
-	},
-	{
-		isRequired: false,
-		label: 'Город*',
-		name: 'city',
-		placeholder: 'Введите город',
-	},
 ];
 
 export const PersonalDataForm: FC<ComponentProps<'form'>> = ({
@@ -81,6 +70,10 @@ export const PersonalDataForm: FC<ComponentProps<'form'>> = ({
 		dispatch(submit());
 		setFormSubmitted(true)
 	}
+
+	useEffect(() => {
+		dispatch(reset())
+	}, [])
 
 	useEffect(() => {
 		if (formSubmitted && !hasError) {

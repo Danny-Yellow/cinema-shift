@@ -111,8 +111,6 @@ export const validMiddlename = (middlename: string): string => {
 };
 
 export const personalDataValidationMap: Record<TPersonalDataFieldName, (_: string) => string> = {
-	city: validCity,
-	email: validEmail,
 	firstname: validFirstname,
 	lastname: validLastname,
 	middlename: validMiddlename,

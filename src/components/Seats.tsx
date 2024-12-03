@@ -1,4 +1,4 @@
-import type { TPlaces } from '@src/types';
+import type { ISelectedSeat, TPlaces } from '@src/types';
 import type { FC } from 'react';
 import { Seat } from './UI/Seat';
 

@@ -4,8 +4,6 @@ interface IFieldValue {
 }
 
 type TPersonalDataFieldName =
-	| 'city'
-	| 'email'
 	| 'firstname'
 	| 'lastname'
 	| 'middlename'

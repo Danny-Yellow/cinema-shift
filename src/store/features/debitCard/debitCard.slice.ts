@@ -2,19 +2,16 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
 const MAX_LENGTHS_MAP = {
-	cvv: 4,
+	cvv: 3,
 	expireDate: 4,
-	pan: 8
-
-}
+	pan: 8,
+};
 
 const initialState: IDebitCard = {
 	cvv: '',
 	expireDate: '',
 	pan: '',
 };
-
-
 
 const debitCardSlice = createSlice({
 	initialState,
@@ -29,9 +26,12 @@ const debitCardSlice = createSlice({
 				state[name] = value;
 			}
 		},
+		reset: (state) => {
+			Object.assign(state, initialState);
+		},
 	},
 });
 
-export const { changeDebitCardValue } = debitCardSlice.actions;
+export const { changeDebitCardValue, reset } = debitCardSlice.actions;
 
 export default debitCardSlice.reducer;
