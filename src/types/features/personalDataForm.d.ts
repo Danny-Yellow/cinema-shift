@@ -3,9 +3,15 @@ interface IFieldValue {
 	value: string;
 }
 
-type TPersonalDataFieldName = 'city' | 'email' | 'firstname' | 'lastname' | 'middlename' | 'phone'
+type TPersonalDataFieldName =
+	| 'city'
+	| 'email'
+	| 'firstname'
+	| 'lastname'
+	| 'middlename'
+	| 'phone';
 
-type TPersonalDataField = Record<TPersonalDataFieldName, IFieldValue>
+type TPersonalDataField = Record<TPersonalDataFieldName, IFieldValue>;
 
 interface IPersonalDataForm {
 	field: TPersonalDataField;

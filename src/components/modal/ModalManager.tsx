@@ -3,7 +3,7 @@ import { getModal } from '@src/store/features/modal/selectors/getModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { ModalBackground } from './ModalBackground';
 import { ModalContent } from './ModalContent';
-import { OrderForm } from './OrderForm';
+import { PersonalDataForm } from './PersonalDataForm';
 
 export const ModalManager = () => {
 	const modal = useSelector(getModal);
@@ -17,7 +17,7 @@ export const ModalManager = () => {
 		return (
 			<ModalBackground onClick={handleCloseModal} >
 				<ModalContent onCloseButtonClick={handleCloseModal} >
-					<OrderForm className="mt-6" />
+					<PersonalDataForm className="mt-6" />
 				</ModalContent>
 			</ModalBackground>
 		);

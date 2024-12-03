@@ -46,7 +46,8 @@ const personalDataFormSlice = createSlice({
 			Object.keys(state.field).forEach((key) => {
 				const fieldName = key as TPersonalDataFieldName;
 				const fieldValue = state.field[fieldName].value;
-				const validationError = personalDataValidationMap[fieldName](fieldValue);
+				const validationError =
+					personalDataValidationMap[fieldName](fieldValue);
 
 				state.field[fieldName].errorMessage = validationError;
 			});

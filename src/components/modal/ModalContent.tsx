@@ -13,7 +13,7 @@ export const ModalContent: FC<IModalContent> = ({
 }) => {
 	return (
 		<div
-			className="rounded-3xl bg-white"
+			className="rounded-3xl bg-white w-[544px]"
 			onClick={(event) => {
 				event.stopPropagation();
 			}}

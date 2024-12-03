@@ -34,7 +34,7 @@ export const FilmSchedule: FC<IFilmScheduleProps> = ({
 
 	return (
 		<section className={className}>
-			<h2 className="mb-6 text-2xl font-bold">Расписание</h2>
+			<h2 className="mb-6 text-2xl title">Расписание</h2>
 			<ScheduleDays
 				handleClick={handleDateClick}
 				schedules={schedules}

@@ -1,4 +1,5 @@
 import { Layout } from '@src/components/Layout';
+import { DebitCardPage } from '@src/pages/DebitCardPage';
 import { FilmPage } from '@src/pages/FilmPage';
 import { PosterPage } from '@src/pages/PosterPage';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
@@ -8,7 +9,7 @@ const isAuth = false;
 
 const publicRoutes = [
 	{
-		element: <Navigate to={'/poster'} />,
+		element: <Navigate to={ROUTES.POSTER} />,
 		path: '/',
 	},
 	{
@@ -21,9 +22,14 @@ const publicRoutes = [
 				element: <FilmPage className="mt-6" />,
 				path: ROUTES.FILM_ID,
 			},
+			{
+				element: <DebitCardPage />,
+				path: ROUTES.DEBIT_CARD
+			}
 		],
 		element: <Layout />,
 		path: '/',
+		
 	},
 ];
 

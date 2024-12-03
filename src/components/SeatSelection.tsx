@@ -31,7 +31,7 @@ export const SeatSelection: FC<ISeatSelectionProps> = ({
 
 	return (
 		<section className={className}>
-			<h2 className="mb-6 text-2xl font-bold text-black">Выбор места</h2>
+			<h2 className="mb-6 text-2xl title">Выбор места</h2>
 			<div className="flex flex-wrap items-center gap-20">
 				<div className="flex flex-col items-center">
 					<span>Экран</span>
