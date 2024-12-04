@@ -1,13 +1,19 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { IScheduleSeanse, ISelectedSchedule, ISelectedSeat } from '@src/types';
+import type {
+	IScheduleSeanse,
+	ISelectedSchedule,
+	ISelectedSeat,
+} from '@src/types';
 import { createSlice } from '@reduxjs/toolkit';
 
 interface IScheduleForm {
+	filmId: string;
 	selectedSchedule: ISelectedSchedule;
 	selectedSeats: ISelectedSeat[];
 }
 
 const initialState: IScheduleForm = {
+	filmId: '',
 	selectedSchedule: {
 		date: '',
 		seance: null,
@@ -46,10 +52,14 @@ export const scheduleFormSlice = createSlice({
 				state.selectedSeats.push(action.payload);
 			}
 		},
+
+		setFilmId: (state, action: PayloadAction<string>) => {
+			state.filmId = action.payload
+		}
 	},
 });
 
-export const { changeSelectedDate, changeSelectedTime, reset, selectSeat } =
+export const { changeSelectedDate, changeSelectedTime, reset, selectSeat, setFilmId } =
 	scheduleFormSlice.actions;
 
 export default scheduleFormSlice.reducer;

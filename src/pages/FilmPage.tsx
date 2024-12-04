@@ -5,7 +5,7 @@ import { SeatSelection } from '@src/components/SeatSelection';
 import { Link } from '@src/components/UI/Link';
 import { useGetFilmQuery, useGetScheduleQuery } from '@src/store/api/api';
 import { closeModal } from '@src/store/features/modal/modal.slice';
-import { reset } from '@src/store/features/personalDataForm/personalDataForm.slice';
+import { reset, setFilmId } from '@src/store/features/schedule/scheduleSelection.slice';
 import { getSelectedSchedule } from '@src/store/features/schedule/selectors/selectedScehdule';
 import { type ComponentProps, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,6 +29,12 @@ export const FilmPage = (props: ComponentProps<'main'>) => {
 			dispatch(closeModal());
 		};
 	}, []);
+
+	useEffect(() => {
+		if (filmQuery.data?.film) {
+			dispatch(setFilmId(filmQuery.data?.film.id));
+		}
+	}, [filmQuery]);
 
 	if (filmQuery.isSuccess && scheduleQuery.isSuccess) {
 		return (

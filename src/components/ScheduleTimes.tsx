@@ -26,6 +26,7 @@ export const ScheduleTimes: FC<ScheduleTimesProps> = ({
 
 				return (
 					<SelectButton
+						key={seance.time}
 						isActive={isActive}
 						onClick={() => {
 							handleTimeClick(seance);

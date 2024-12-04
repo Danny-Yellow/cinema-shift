@@ -89,6 +89,7 @@ export const PersonalDataForm: FC<ComponentProps<'form'>> = ({
 
 			{fields.map((field) => (
 				<TextField
+					key={field.name}
 					error={fieldValue[field.name].errorMessage}
 					label={field.label}
 					placeholder={field.placeholder}

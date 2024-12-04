@@ -26,7 +26,7 @@ export const ScheduleDays: FC<ScheduleDaysProps> = ({
 				const month = getMonth(date);
 
 				return (
-					<ToggleButton value={schedule.date}>
+					<ToggleButton key={schedule.date} value={schedule.date}>
 						{weekDay}, {day} {month}
 					</ToggleButton>
 				);

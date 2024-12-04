@@ -16,6 +16,7 @@ export const Seats: FC<ISeatsProps> = ({ handleClick, places }) => {
 		for (let j = 0; j < places[i].length; j++) {
 			columnElements.push(
 				<Seat
+					key={`${i}${j}`}
 					handleClick={() => {
 						handleClick({ col: j + 1, price: places[i][j].price, row: i + 1 });
 					}}
