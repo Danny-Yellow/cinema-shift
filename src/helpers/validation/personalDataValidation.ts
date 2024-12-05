@@ -1,3 +1,5 @@
+import type { TPersonalDataFieldName } from "@src/types";
+
 export const validPhone = (phone: string): string => {
 	if (!phone) {
 		return 'Поле является обязательным';
@@ -111,8 +113,6 @@ export const validMiddlename = (middlename: string): string => {
 };
 
 export const personalDataValidationMap: Record<TPersonalDataFieldName, (_: string) => string> = {
-	city: validCity,
-	email: validEmail,
 	firstname: validFirstname,
 	lastname: validLastname,
 	middlename: validMiddlename,

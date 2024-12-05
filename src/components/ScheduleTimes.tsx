@@ -1,4 +1,4 @@
-import type { IScheduleSeanse } from '@src/types';
+import type { IScheduleSeanse, ISelectedSchedule } from '@src/types';
 import type { FC } from 'react';
 import { SelectButton } from './UI/SelectButton';
 
@@ -26,6 +26,7 @@ export const ScheduleTimes: FC<ScheduleTimesProps> = ({
 
 				return (
 					<SelectButton
+						key={seance.time}
 						isActive={isActive}
 						onClick={() => {
 							handleTimeClick(seance);

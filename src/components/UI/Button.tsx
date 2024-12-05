@@ -1,5 +1,6 @@
 import type { ComponentProps, FC } from 'react';
 import { cva } from 'class-variance-authority';
+import clsx from 'clsx';
 
 interface IButtonProps extends ComponentProps<'button'> {
 	size: 'full' | 'large' | 'medium';
@@ -8,6 +9,7 @@ interface IButtonProps extends ComponentProps<'button'> {
 
 export const Button: FC<IButtonProps> = ({
 	children,
+	className,
 	onClick,
 	size,
 	variant,
@@ -32,7 +34,10 @@ export const Button: FC<IButtonProps> = ({
 	);
 
 	return (
-		<button className={styles(variants)} onClick={(event) => onClick?.(event)}>
+		<button
+			className={clsx(styles(variants), className)}
+			onClick={(event) => onClick?.(event)}
+		>
 			{children}
 		</button>
 	);

@@ -1,17 +1,10 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
+import type { IPersonalDataForm, TPersonalDataFieldName } from '@src/types';
 import { createSlice } from '@reduxjs/toolkit';
 import { personalDataValidationMap } from '@src/helpers/validation/personalDataValidation';
 
 const initialState: IPersonalDataForm = {
 	field: {
-		city: {
-			errorMessage: '',
-			value: '',
-		},
-		email: {
-			errorMessage: '',
-			value: '',
-		},
 		firstname: {
 			errorMessage: '',
 			value: '',
@@ -42,11 +35,15 @@ const personalDataFormSlice = createSlice({
 			const { name, value } = action.payload;
 			state.field[name].value = value;
 		},
+		reset: (state) => {
+			Object.assign(state, initialState);
+		},
 		submit: (state) => {
 			Object.keys(state.field).forEach((key) => {
 				const fieldName = key as TPersonalDataFieldName;
 				const fieldValue = state.field[fieldName].value;
-				const validationError = personalDataValidationMap[fieldName](fieldValue);
+				const validationError =
+					personalDataValidationMap[fieldName](fieldValue);
 
 				state.field[fieldName].errorMessage = validationError;
 			});
@@ -54,6 +51,7 @@ const personalDataFormSlice = createSlice({
 	},
 });
 
-export const { changeInputValue, submit } = personalDataFormSlice.actions;
+export const { changeInputValue, reset, submit } =
+	personalDataFormSlice.actions;
 
 export default personalDataFormSlice.reducer;

@@ -1,4 +1,4 @@
-import type { IScheduleSeanse } from '@src/types';
+import type { IScheduleSeanse, ISelectedSchedule } from '@src/types';
 import type { FC } from 'react';
 import { HallName } from '@src/types';
 import { ScheduleTimes } from './ScheduleTimes';
@@ -29,6 +29,7 @@ export const ScheduleAllTimes: FC<IScheduleTimesProps> = ({
 			<div className="flex flex-col gap-6">
 				{halls.map((hall) => (
 					<ScheduleTimes
+					key={hall.name}
 						hall={hall}
 						handleTimeClick={handleTimeClick}
 						selectedSchedule={selectedSchedule}

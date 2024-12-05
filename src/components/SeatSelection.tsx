@@ -1,4 +1,4 @@
-import type { IScheduleSeanse } from '@src/types';
+import type { IScheduleSeanse, ISelectedSeat } from '@src/types';
 import type { ComponentProps, FC } from 'react';
 import { openModal } from '@src/store/features/modal/modal.slice';
 import { selectSeat } from '@src/store/features/schedule/scheduleSelection.slice';
@@ -26,12 +26,12 @@ export const SeatSelection: FC<ISeatSelectionProps> = ({
 	}
 
 	function handleBuyButtonClick() {
-		dispatch(openModal({ name: 'orderForm' }));
+		dispatch(openModal({ name: 'personalDataForm' }));
 	}
 
 	return (
 		<section className={className}>
-			<h2 className="mb-6 text-2xl font-bold text-black">Выбор места</h2>
+			<h2 className="title mb-6 text-2xl">Выбор места</h2>
 			<div className="flex flex-wrap items-center gap-20">
 				<div className="flex flex-col items-center">
 					<span>Экран</span>

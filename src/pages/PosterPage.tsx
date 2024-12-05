@@ -8,7 +8,7 @@ export const PosterPage = (props: ComponentProps<'main'>) => {
 	if (isSuccess) {
 		return (
 			<main {...props}>
-				<h1 className="mb-4 text-2xl font-bold text-black">Афиша</h1>
+				<h1 className="title mb-4 text-2xl">Афиша</h1>
 				<FilmList className="mb-20" films={data.films} />
 			</main>
 		);

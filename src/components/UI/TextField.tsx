@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { Input } from './Input';
 
 interface ITextField extends ComponentProps<'input'> {
-	error: string;
+	error?: string;
 	label: string;
 	value: string;
 }

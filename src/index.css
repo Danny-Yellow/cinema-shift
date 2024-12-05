@@ -7,3 +7,10 @@
         font-family: "Inter", serif;
     }
 }
+
+@layer components {
+    .title {
+        @apply font-bold text-black
+
+    }
+}

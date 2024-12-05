@@ -1,7 +1,11 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
+import type { TModal } from '@src/types/features/modal';
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState: IModal = {
+type ModalState = TModal | { data: null; name: '' };
+
+const initialState: ModalState = {
+	data: null,
 	name: '',
 };
 
@@ -10,10 +14,11 @@ const modalSlice = createSlice({
 	name: 'modal',
 	reducers: {
 		closeModal: (state) => {
-			state.name = '';
+			Object.assign(state, initialState);
 		},
-		openModal: (state, action: PayloadAction<IModal>) => {
-			state.name = action.payload.name;
+
+		openModal: (state, action: PayloadAction<TModal>) => {
+			Object.assign(state, action.payload);
 		},
 	},
 });

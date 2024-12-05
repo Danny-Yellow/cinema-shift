@@ -24,7 +24,7 @@ export const FilmInfo: FC<IFilmInfoProps> = ({ className, film }) => {
 				src={film.img}
 			/>
 			<div>
-				<h1 className="mb-1 text-[32px] font-bold text-black">
+				<h1 className="mb-1 text-[32px] title">
 					{film.name} ({ageRaiting})
 				</h1>
 				<p className="mb-4 text-sm text-gray">{film.originalName}</p>

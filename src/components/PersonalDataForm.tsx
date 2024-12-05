@@ -1,13 +1,24 @@
-import type { ComponentProps, FC, MouseEvent } from 'react';
+import type { TPersonalDataFieldName } from '@src/types';
+import { ROUTES } from '@src/constants/routes';
 import {
 	changeInputValue,
+	reset,
 	submit,
 } from '@src/store/features/personalDataForm/personalDataForm.slice';
-import { getPersonalDataFormField } from '@src/store/features/personalDataForm/selectors/getOrderFormFields';
+import { getPersonalDataFormField } from '@src/store/features/personalDataForm/selectors/getPersonalDataFormFields';
+import { hasErrorPersonalDataForm } from '@src/store/features/personalDataForm/selectors/hasErrorPersonalDataForm';
 import clsx from 'clsx';
+import {
+	type ComponentProps,
+	type FC,
+	type MouseEvent,
+	useEffect,
+	useState,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button } from '../UI/Button';
-import { TextField } from '../UI/TextField';
+import { useNavigate } from 'react-router-dom';
+import { Button } from './UI/Button';
+import { TextField } from './UI/TextField';
 
 interface IField {
 	isRequired: boolean;
@@ -41,31 +52,35 @@ const fields: IField[] = [
 		name: 'phone',
 		placeholder: 'Введите номер телефона',
 	},
-	{
-		isRequired: false,
-		label: 'Почта',
-		name: 'email',
-		placeholder: 'Введите адрес почты',
-	},
-	{
-		isRequired: false,
-		label: 'Город*',
-		name: 'city',
-		placeholder: 'Введите город',
-	},
 ];
 
-export const OrderForm: FC<ComponentProps<'form'>> = ({
+export const PersonalDataForm: FC<ComponentProps<'form'>> = ({
 	className,
 	...props
 }) => {
+	const [formSubmitted, setFormSubmitted] = useState(false);
+
 	const fieldValue = useSelector(getPersonalDataFormField);
+	const hasError = useSelector(hasErrorPersonalDataForm);
+
 	const dispatch = useDispatch();
+	const navigate = useNavigate(); 
 
 	function handleButtonClick(event: MouseEvent<HTMLButtonElement>) {
 		event.preventDefault();
 		dispatch(submit());
+		setFormSubmitted(true)
 	}
+
+	useEffect(() => {
+		dispatch(reset())
+	}, [])
+
+	useEffect(() => {
+		if (formSubmitted && !hasError) {
+			navigate(ROUTES.DEBIT_CARD);
+		}
+	}, [formSubmitted, hasError]);
 
 	return (
 		<form className={clsx('flex flex-col gap-6', className)} {...props}>
@@ -75,6 +90,7 @@ export const OrderForm: FC<ComponentProps<'form'>> = ({
 
 			{fields.map((field) => (
 				<TextField
+					key={field.name}
 					error={fieldValue[field.name].errorMessage}
 					label={field.label}
 					placeholder={field.placeholder}

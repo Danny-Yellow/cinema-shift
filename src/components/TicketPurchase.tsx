@@ -1,5 +1,6 @@
-import type { IScheduleSeanse } from '@src/types';
+import type { IScheduleSeanse, ISelectedSeat } from '@src/types';
 import type { FC } from 'react';
+import { groupSeats } from '@src/helpers/groupSeats';
 import { HallName } from '@src/types';
 import { Button } from './UI/Button';
 
@@ -17,20 +18,7 @@ export const TicketPurchase: FC<ITicketPurchaseProps> = ({
 	schedule,
 	selectedSeats,
 }) => {
-	const groupedSeats = (() => {
-		const seatMap = new Map<number, number[]>();
-
-		selectedSeats.forEach(({ col, row }) => {
-			if (!seatMap.has(row)) {
-				seatMap.set(row, []);
-			}
-			seatMap.get(row)!.push(col);
-		});
-
-		return Array.from(seatMap.entries())
-			.map(([row, cols]) => ({ cols: cols.sort((a, b) => a - b), row }))
-			.sort((a, b) => a.row - b.row);
-	})();
+	const groupedSeats = groupSeats(selectedSeats);
 
 	const totalPrice = selectedSeats.reduce((acc, seat) => {
 		return (acc += seat.price);
