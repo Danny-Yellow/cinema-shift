@@ -5,7 +5,10 @@ import { SeatSelection } from '@src/components/SeatSelection';
 import { Link } from '@src/components/UI/Link';
 import { useGetFilmQuery, useGetScheduleQuery } from '@src/store/api/api';
 import { closeModal } from '@src/store/features/modal/modal.slice';
-import { reset, setFilmId } from '@src/store/features/schedule/scheduleSelection.slice';
+import {
+	reset,
+	setFilmId,
+} from '@src/store/features/schedule/scheduleSelection.slice';
 import { getSelectedSchedule } from '@src/store/features/schedule/selectors/selectedScehdule';
 import { type ComponentProps, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -36,6 +39,15 @@ export const FilmPage = (props: ComponentProps<'main'>) => {
 		}
 	}, [filmQuery]);
 
+	const scheduleSeatSelection = (() => {
+		if (selectedSchedule.seance) {
+			return {
+				date: selectedSchedule.date,
+				seance: selectedSchedule.seance,
+			};
+		}
+	})();
+
 	if (filmQuery.isSuccess && scheduleQuery.isSuccess) {
 		return (
 			<main {...props}>
@@ -52,8 +64,8 @@ export const FilmPage = (props: ComponentProps<'main'>) => {
 					schedules={scheduleQuery.data.schedules}
 					selectedSchedule={selectedSchedule}
 				/>
-				{selectedSchedule.seance && (
-					<SeatSelection className="mb-36" schedule={selectedSchedule} />
+				{scheduleSeatSelection && (
+					<SeatSelection className="mb-36" schedule={scheduleSeatSelection} />
 				)}
 			</main>
 		);

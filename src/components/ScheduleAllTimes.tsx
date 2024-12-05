@@ -29,7 +29,7 @@ export const ScheduleAllTimes: FC<IScheduleTimesProps> = ({
 			<div className="flex flex-col gap-6">
 				{halls.map((hall) => (
 					<ScheduleTimes
-						key={hall.name}
+					key={hall.name}
 						hall={hall}
 						handleTimeClick={handleTimeClick}
 						selectedSchedule={selectedSchedule}

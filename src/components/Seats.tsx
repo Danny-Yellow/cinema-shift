@@ -18,7 +18,7 @@ export const Seats: FC<ISeatsProps> = ({ handleClick, places }) => {
 				<Seat
 					key={`${i}${j}`}
 					handleClick={() => {
-						handleClick({ col: j + 1, price: places[i][j].price, row: i + 1 });
+						handleClick({ column: j + 1, price: places[i][j].price, row: i + 1 });
 					}}
 					col={j + 1}
 					isAvailable={places[i][j].type !== 'BLOCKED'}
@@ -27,7 +27,7 @@ export const Seats: FC<ISeatsProps> = ({ handleClick, places }) => {
 		}
 
 		rowElements.push(
-			<div className="flex items-center justify-center gap-6">
+			<div key={i} className="flex items-center justify-center gap-6">
 				<span>{i + 1}</span>
 				{columnElements}
 			</div>,

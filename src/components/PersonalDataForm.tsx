@@ -1,3 +1,4 @@
+import type { TPersonalDataFieldName } from '@src/types';
 import { ROUTES } from '@src/constants/routes';
 import {
 	changeInputValue,
@@ -16,8 +17,8 @@ import {
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Button } from '../UI/Button';
-import { TextField } from '../UI/TextField';
+import { Button } from './UI/Button';
+import { TextField } from './UI/TextField';
 
 interface IField {
 	isRequired: boolean;

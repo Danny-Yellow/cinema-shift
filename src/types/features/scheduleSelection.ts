@@ -6,7 +6,7 @@ export interface ISelectedSchedule {
 }
 
 export interface ISelectedSeat {
-	col: number;
+	column: number;
 	price: number;
 	row: number;
 }

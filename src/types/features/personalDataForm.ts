@@ -3,7 +3,7 @@ interface IFieldValue {
 	value: string;
 }
 
-type TPersonalDataFieldName =
+export type TPersonalDataFieldName =
 	| 'firstname'
 	| 'lastname'
 	| 'middlename'
@@ -11,6 +11,6 @@ type TPersonalDataFieldName =
 
 type TPersonalDataField = Record<TPersonalDataFieldName, IFieldValue>;
 
-interface IPersonalDataForm {
+export interface IPersonalDataForm {
 	field: TPersonalDataField;
 }

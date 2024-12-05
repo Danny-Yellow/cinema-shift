@@ -1,4 +1,5 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
+import type { IPersonalDataForm, TPersonalDataFieldName } from '@src/types';
 import { createSlice } from '@reduxjs/toolkit';
 import { personalDataValidationMap } from '@src/helpers/validation/personalDataValidation';
 

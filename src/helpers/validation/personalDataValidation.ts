@@ -1,3 +1,5 @@
+import type { TPersonalDataFieldName } from "@src/types";
+
 export const validPhone = (phone: string): string => {
 	if (!phone) {
 		return 'Поле является обязательным';

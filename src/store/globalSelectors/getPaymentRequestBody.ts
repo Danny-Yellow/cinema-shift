@@ -10,7 +10,7 @@ export const getPaymentRequest = createSelector(
   [selectDebitCard, selectPersonalDataForm, selectScheduleSelection],
   (debitCard, personalDataForm, scheduleSelection): IPaymentRequest => {
     const tickets = scheduleSelection.selectedSeats.map((ticket) => ({
-      column: ticket.col,
+      column: ticket.column,
       row: ticket.row,
     }));
 

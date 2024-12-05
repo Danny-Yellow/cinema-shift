@@ -3,12 +3,13 @@ import { Button } from '@src/components/UI/Button';
 import { usePaymentMutation } from '@src/store/api/api';
 import { changeDebitCardValue } from '@src/store/features/debitCard/debitCard.slice';
 import { getDebitCard } from '@src/store/features/debitCard/selectors/getDebitCard';
+import { openModal } from '@src/store/features/modal/modal.slice';
 import { getPaymentRequest } from '@src/store/globalSelectors/getPaymentRequestBody';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 export const DebitCardPage = () => {
-	const [payment, { isSuccess }] = usePaymentMutation();
+	const [payment, { data, isSuccess }] = usePaymentMutation();
 
 	const dispatch = useDispatch();
 
@@ -24,7 +25,9 @@ export const DebitCardPage = () => {
 	}
 
 	useEffect(() => {
-		// Показать модалку
+		if (data?.order) {
+			dispatch(openModal({ data: data.order, name: 'successPayment' }));
+		}
 	}, [isSuccess]);
 
 	return (

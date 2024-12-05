@@ -1,6 +1,12 @@
-type TModalName = 'orderForm';
+import type { IPaymentResponse } from "../api/payment/payment";
 
-interface IModal {
-	name: '' | TModalName;
-	params?: object;
+interface IPersonalDataForm {
+	name: 'personalDataForm';
 }
+
+interface ISuccessPayment {
+	data: IPaymentResponse['order'];
+	name: 'successPayment';
+}
+
+type TModal = IPersonalDataForm | ISuccessPayment;

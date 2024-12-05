@@ -39,11 +39,11 @@ export const scheduleFormSlice = createSlice({
 		},
 
 		selectSeat: (state, action: PayloadAction<ISelectedSeat>) => {
-			const { col, row } = action.payload;
+			const { column, row } = action.payload;
 
-			const seatKey = `${col} ${row}`;
+			const seatKey = `${column} ${row}`;
 			const seatIndex = state.selectedSeats.findIndex(
-				(seat) => `${seat.col} ${seat.row}` === seatKey,
+				(seat) => `${seat.column} ${seat.row}` === seatKey,
 			);
 
 			if (seatIndex !== -1) {
@@ -54,12 +54,17 @@ export const scheduleFormSlice = createSlice({
 		},
 
 		setFilmId: (state, action: PayloadAction<string>) => {
-			state.filmId = action.payload
-		}
+			state.filmId = action.payload;
+		},
 	},
 });
 
-export const { changeSelectedDate, changeSelectedTime, reset, selectSeat, setFilmId } =
-	scheduleFormSlice.actions;
+export const {
+	changeSelectedDate,
+	changeSelectedTime,
+	reset,
+	selectSeat,
+	setFilmId,
+} = scheduleFormSlice.actions;
 
 export default scheduleFormSlice.reducer;

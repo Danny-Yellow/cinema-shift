@@ -1,9 +1,11 @@
 import type { FC, ReactNode } from 'react';
 import { cva } from 'class-variance-authority';
+import clsx from 'clsx';
 import { Link as RouterLink } from 'react-router-dom';
 
 interface ILinkBaseProps {
 	children: ReactNode;
+	className?: string;
 	color?: 'gray' | 'neutral';
 	startIcon?: ReactNode;
 }
@@ -22,6 +24,7 @@ type TLinkProps = TLinkWithOnClick | TLinkWithTo;
 
 export const Link: FC<TLinkProps> = ({
 	children,
+	className,
 	color = 'neutral',
 	onClick,
 	startIcon,
@@ -29,21 +32,18 @@ export const Link: FC<TLinkProps> = ({
 }) => {
 	const variants = { color };
 
-	const styles = cva<TVariants<typeof variants>>(
-		'flex items-center gap-4 hover:underline',
-		{
-			variants: {
-				color: {
-					gray: 'text-gray',
-					neutral: 'text-neutral',
-				},
+	const styles = cva<TVariants<typeof variants>>('flex items-center gap-4', {
+		variants: {
+			color: {
+				gray: 'text-gray',
+				neutral: 'text-neutral',
 			},
 		},
-	);
+	});
 
 	return (
 		<RouterLink
-			className={styles(variants)}
+			className={clsx(styles(variants), className)}
 			to={to || ''}
 			onClick={onClick}
 		>
