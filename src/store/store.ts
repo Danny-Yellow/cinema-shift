@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { api } from '@src/store/api/api';
+import { cinemaApi } from '@src/store/api/cinemaApi';
+import { authApi } from './api/authApi';
 import { rootReducer } from './reducers';
 
 export const store = configureStore({
 	middleware: (getDefaultMiddleware) =>
-		getDefaultMiddleware().concat(api.middleware),
+		getDefaultMiddleware().concat(cinemaApi.middleware, authApi.middleware),
 	reducer: rootReducer,
 });
 
