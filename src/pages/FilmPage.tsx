@@ -3,7 +3,7 @@ import { FilmSchedule } from '@src/components/FilmSchedule';
 import { ArrowBack } from '@src/components/icons';
 import { SeatSelection } from '@src/components/SeatSelection';
 import { Link } from '@src/components/UI/Link';
-import { useGetFilmQuery, useGetScheduleQuery } from '@src/store/api/api';
+import { useGetFilmQuery, useGetScheduleQuery } from '@src/store/api/cinemaApi';
 import { closeModal } from '@src/store/features/modal/modal.slice';
 import {
 	reset,

@@ -1,6 +1,6 @@
 import { DebitCard } from '@src/components/DebitCard';
 import { Button } from '@src/components/UI/Button';
-import { usePaymentMutation } from '@src/store/api/api';
+import { usePaymentMutation } from '@src/store/api/cinemaApi';
 import { changeDebitCardValue } from '@src/store/features/debitCard/debitCard.slice';
 import { getDebitCard } from '@src/store/features/debitCard/selectors/getDebitCard';
 import { openModal } from '@src/store/features/modal/modal.slice';

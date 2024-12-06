@@ -6,10 +6,9 @@ import type {
 	IScheduleResponse,
 } from '@src/types';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { BASE_URL } from '@src/constants/url';
 
-const BASE_URL = 'http://localhost:3001';
-
-export const api = createApi({
+export const cinemaApi = createApi({
 	baseQuery: fetchBaseQuery({
 		baseUrl: `${BASE_URL}/cinema/`,
 	}),
@@ -56,4 +55,4 @@ export const {
 	useGetFilmsQuery,
 	useGetScheduleQuery,
 	usePaymentMutation,
-} = api;
+} = cinemaApi;

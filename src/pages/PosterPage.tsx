@@ -1,6 +1,6 @@
 import type { ComponentProps } from 'react';
 import { FilmList } from '@src/components/FilmList';
-import { useGetFilmsQuery } from '@src/store/api/api';
+import { useGetFilmsQuery } from '@src/store/api/cinemaApi';
 
 export const PosterPage = (props: ComponentProps<'main'>) => {
 	const { data, isSuccess } = useGetFilmsQuery();

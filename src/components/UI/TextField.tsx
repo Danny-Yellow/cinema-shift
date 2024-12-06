@@ -4,11 +4,12 @@ import { Input } from './Input';
 
 interface ITextField extends ComponentProps<'input'> {
 	error?: string;
-	label: string;
+	label?: string;
 	value: string;
 }
 
 export const TextField: FC<ITextField> = ({
+	className,
 	error,
 	label,
 	onChange,
@@ -18,9 +19,15 @@ export const TextField: FC<ITextField> = ({
 	const hasError = Boolean(error);
 
 	return (
-		<div>
-			<p className="mb-[6px] text-sm">{label}</p>
-			<Input onChange={onChange} {...props} hasError={hasError} name={label} value={value}/>
+		<div className={className}>
+			{label && <p className="mb-[6px] text-sm">{label}</p>}
+			<Input
+				onChange={onChange}
+				{...props}
+				hasError={hasError}
+				name={label}
+				value={value}
+			/>
 			{!!error && <p className={clsx(hasError && 'text-red-500')}>{error}</p>}
 		</div>
 	);
