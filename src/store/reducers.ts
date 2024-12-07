@@ -1,6 +1,7 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import { authApi } from './api/authApi';
 import { cinemaApi } from './api/cinemaApi';
+import { usersApi } from './api/usersApit';
 import debitCardReducer from './features/debitCard/debitCard.slice';
 import modalReducer from './features/modal/modal.slice';
 import personalDataFormReducer from './features/personalDataForm/personalDataForm.slice';
@@ -15,4 +16,5 @@ export const rootReducer = combineReducers({
 	personalDataForm: personalDataFormReducer,
 	scheduleSelection: scheduleSelectionReducer,
 	signinForm: signinFormReducer,
+	[usersApi.reducerPath]: usersApi.reducer,
 });
