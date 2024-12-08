@@ -16,3 +16,16 @@ export interface ISigninResponse {
 		phone: string;
 	};
 }
+
+export interface ISessionResponse {
+	reason: string;
+	success: boolean;
+	user: {
+		city: string;
+		email: string;
+		firstname: string;
+		lastname: string;
+		middlename: string;
+		phone: string;
+	};
+}
