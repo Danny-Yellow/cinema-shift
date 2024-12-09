@@ -26,9 +26,11 @@ const debitCardSlice = createSlice({
 				state[name] = value;
 			}
 		},
-		reset: (state) => {
-			Object.assign(state, initialState);
-		},
+		reset: () => ({
+			cvv: '',
+			expireDate: '',
+			pan: '',
+		}),
 	},
 });
 

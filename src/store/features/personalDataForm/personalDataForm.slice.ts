@@ -35,9 +35,26 @@ const personalDataFormSlice = createSlice({
 			const { name, value } = action.payload;
 			state.field[name].value = value;
 		},
-		reset: (state) => {
-			Object.assign(state, initialState);
-		},
+		reset: () => ({
+			field: {
+				firstname: {
+					errorMessage: '',
+					value: '',
+				},
+				lastname: {
+					errorMessage: '',
+					value: '',
+				},
+				middlename: {
+					errorMessage: '',
+					value: '',
+				},
+				phone: {
+					errorMessage: '',
+					value: '',
+				},
+			},
+		}),
 		submit: (state) => {
 			Object.keys(state.field).forEach((key) => {
 				const fieldName = key as TPersonalDataFieldName;

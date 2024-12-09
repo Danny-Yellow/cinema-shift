@@ -34,9 +34,14 @@ export const scheduleFormSlice = createSlice({
 			state.selectedSchedule.seance = action.payload;
 		},
 
-		reset: (state) => {
-			Object.assign(state, initialState);
-		},
+		reset: () => ({
+			filmId: '',
+			selectedSchedule: {
+				date: '',
+				seance: null,
+			},
+			selectedSeats: [],
+		}),
 
 		selectSeat: (state, action: PayloadAction<ISelectedSeat>) => {
 			const { column, row } = action.payload;

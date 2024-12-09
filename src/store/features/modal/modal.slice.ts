@@ -2,23 +2,21 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import type { TModal } from '@src/types/features/modal';
 import { createSlice } from '@reduxjs/toolkit';
 
-type ModalState = TModal | { data: null; name: '' };
+type TModalState = TModal | { data: null; name: '' };
 
-const initialState: ModalState = {
+const initialState: TModalState = {
 	data: null,
 	name: '',
 };
 
 const modalSlice = createSlice({
-	initialState,
+	initialState: initialState as TModalState,
 	name: 'modal',
 	reducers: {
-		closeModal: (state) => {
-			Object.assign(state, initialState);
-		},
-
+		closeModal: () => initialState,
 		openModal: (state, action: PayloadAction<TModal>) => {
-			Object.assign(state, action.payload);
+			state.name = 'personalDataForm';
+			state.data = action.payload.data ?? null;
 		},
 	},
 });
