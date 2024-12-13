@@ -1,11 +1,17 @@
 import { Entrance, Logo, Ticket, User } from '@src/components/icons/index';
 import { Link } from '@src/components/UI/Link';
 import { ROUTES } from '@src/constants/routes';
+import { useLogout } from '@src/hooks/useLogout';
 import { getUserSession } from '@src/store/features/userSession/selectors/getUserSession';
 import { useSelector } from 'react-redux';
 
 export const TopNavigation = () => {
 	const userSession = useSelector(getUserSession);
+	const logout = useLogout();
+
+	function handleLogoutClick() {
+		logout();
+	}
 
 	// Декомпозировать
 
@@ -25,7 +31,7 @@ export const TopNavigation = () => {
 						</Link>
 					</div>
 					<div>
-						<Link startIcon={<Entrance />} to={ROUTES.SIGNIN}>
+						<Link startIcon={<Entrance />} onClick={handleLogoutClick}>
 							Выйти
 						</Link>
 					</div>

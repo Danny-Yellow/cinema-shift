@@ -1,9 +1,9 @@
 import type { ISigninFields } from '@src/types';
 import { SigninForm } from '@src/components/SigninForm';
 import { ROUTES } from '@src/constants/routes';
+import { useSignin } from '@src/hooks/useSignin';
 import { useTimer } from '@src/hooks/useTimer';
 import { useCreateOtpMutation } from '@src/store/api/authApi';
-import { useSigninMutation } from '@src/store/api/usersApit';
 import { getSigninForm } from '@src/store/features/signinForm/selectors/getSigninForm';
 import {
 	changeInputValue,
@@ -20,8 +20,7 @@ export const SigninPage = () => {
 	const form = useSelector(getSigninForm);
 
 	const [createOtp, { data: otpData }] = useCreateOtpMutation();
-	const [signin, { data: siginData, isSuccess: isSuccessSignin }] =
-		useSigninMutation();
+	const { isSuccess: isSigninSuccess, signin } = useSignin();
 
 	const navigate = useNavigate();
 
@@ -42,8 +41,11 @@ export const SigninPage = () => {
 		dispatch(sendCode());
 	}
 
-	function handleSigninClick() {
-		signin({ code: +form.fields.code.value, phone: form.fields.phone.value });
+	async function handleSigninClick() {
+		signin({
+			code: +form.fields.code.value,
+			phone: form.fields.phone.value,
+		});
 	}
 
 	function handleRepeatOtpClick() {
@@ -55,11 +57,8 @@ export const SigninPage = () => {
 	}, [form.codeIsSent]);
 
 	useEffect(() => {
-		if (isSuccessSignin) {
-			window.localStorage.setItem('Authorization', siginData.token);
-			navigate(ROUTES.POSTER);
-		}
-	}, [isSuccessSignin]);
+		if (isSigninSuccess) navigate(ROUTES.POSTER);
+	}, [isSigninSuccess]);
 
 	return (
 		<div className="mt-12">

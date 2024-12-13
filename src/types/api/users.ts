@@ -8,11 +8,11 @@ export interface ISigninResponse {
 	success: boolean;
 	token: string;
 	user: {
-		city?: string;
-		email?: string;
-		firstname?: string;
-		lastname?: string;
-		middlename?: string;
+		city: string;
+		email: string;
+		firstname: string;
+		lastname: string;
+		middlename: string;
 		phone: string;
 	};
 }
