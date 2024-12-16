@@ -2,6 +2,7 @@ import { Layout } from '@src/components/Layout';
 import { DebitCardPage } from '@src/pages/DebitCardPage';
 import { FilmPage } from '@src/pages/FilmPage';
 import { PosterPage } from '@src/pages/PosterPage';
+import { ProfilePage } from '@src/pages/ProfilePage';
 import { SigninPage } from '@src/pages/SigninPage';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { ROUTES } from '../constants/routes';
@@ -31,6 +32,10 @@ const publicRoutes = [
 				element: <SigninPage />,
 				path: ROUTES.SIGNIN,
 			},
+			{
+				element: <ProfilePage />,
+				path: ROUTES.PROFILE
+			}
 		],
 		element: <Layout />,
 		path: '/',

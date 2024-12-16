@@ -1,7 +1,4 @@
-import { ROUTES } from '@src/constants/routes';
-import {
-	submit,
-} from '@src/store/features/personalDataForm/personalDataForm.slice';
+import { submit } from '@src/store/features/personalDataForm/personalDataForm.slice';
 import { hasErrorPersonalDataForm } from '@src/store/features/personalDataForm/selectors/hasErrorPersonalDataForm';
 import clsx from 'clsx';
 import {
@@ -12,20 +9,15 @@ import {
 	useState,
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { PersonalDataFields } from './PersonalDataFields';
 import { Button } from './UI/Button';
 
-export const PersonalDataForm: FC<ComponentProps<'form'>> = ({
-	className,
-	...props
-}) => {
+export const ProfileForm: FC<ComponentProps<'form'>> = ({ className }) => {
 	const [formSubmitted, setFormSubmitted] = useState(false);
 
 	const hasError = useSelector(hasErrorPersonalDataForm);
 
 	const dispatch = useDispatch();
-	const navigate = useNavigate();
 
 	function handleButtonClick(event: MouseEvent<HTMLButtonElement>) {
 		event.preventDefault();
@@ -35,22 +27,25 @@ export const PersonalDataForm: FC<ComponentProps<'form'>> = ({
 
 	useEffect(() => {
 		if (formSubmitted && !hasError) {
-			navigate(ROUTES.DEBIT_CARD);
+			console.log('успешно');
 		}
 	}, [formSubmitted, hasError]);
 
 	return (
-		<form className={clsx('flex flex-col gap-6', className)} {...props}>
-			<h2 className="text-2xl font-bold text-black">Введите ваши данные</h2>
+		<form className={clsx('flex flex-col gap-6', className)}>
+			<h2 className="text-2xl font-bold text-black">Профиль</h2>
 			<PersonalDataFields />
 			<Button
-				size="full"
+				size="medium"
 				type="submit"
 				variant="contained"
 				onClick={handleButtonClick}
 			>
-				Продолжить
+				Обновить данные
 			</Button>
+			{formSubmitted && !hasError && (
+				<p className="text-primary">Данные сохранены</p>
+			)}
 		</form>
 	);
 };

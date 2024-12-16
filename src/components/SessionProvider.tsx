@@ -18,5 +18,5 @@ export const SessionProvider: FC<ISessionProviderProps> = ({ children }) => {
 		}
 	}, [data]);
 
-	return <div>{children}</div>;
+	return <>{children}</>;
 };
