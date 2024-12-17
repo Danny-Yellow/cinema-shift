@@ -15,7 +15,7 @@ const modalSlice = createSlice({
 	reducers: {
 		closeModal: () => initialState,
 		openModal: (state, action: PayloadAction<TModal>) => {
-			state.name = 'personalDataForm';
+			state.name = action.payload.name;
 			state.data = action.payload.data ?? null;
 		},
 	},
