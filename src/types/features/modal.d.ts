@@ -1,6 +1,7 @@
-import type { IPaymentResponse } from "../api/payment/payment";
+import type { IPaymentResponse } from '../api/payment/payment';
 
 interface IPersonalDataForm {
+	data?: never;
 	name: 'personalDataForm';
 }
 

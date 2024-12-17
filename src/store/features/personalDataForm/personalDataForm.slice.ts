@@ -1,5 +1,9 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { IPersonalDataForm, TPersonalDataFieldName } from '@src/types';
+import type {
+	IPersonalDataForm,
+	IUserResponse,
+	TPersonalDataFieldName,
+} from '@src/types';
 import { createSlice } from '@reduxjs/toolkit';
 import { personalDataValidationMap } from '@src/helpers/validation/personalDataValidation';
 
@@ -35,8 +39,36 @@ const personalDataFormSlice = createSlice({
 			const { name, value } = action.payload;
 			state.field[name].value = value;
 		},
-		reset: (state) => {
-			Object.assign(state, initialState);
+		reset: () => ({
+			field: {
+				firstname: {
+					errorMessage: '',
+					value: '',
+				},
+				lastname: {
+					errorMessage: '',
+					value: '',
+				},
+				middlename: {
+					errorMessage: '',
+					value: '',
+				},
+				phone: {
+					errorMessage: '',
+					value: '',
+				},
+			},
+		}),
+		setInitialInputValues: (
+			state,
+			action: PayloadAction<IUserResponse['user']>,
+		) => {
+			Object.keys(state.field).forEach((key) => {
+				const fieldName = key as TPersonalDataFieldName;
+
+				if (action.payload[fieldName])
+					state.field[fieldName].value = action.payload[fieldName];
+			});
 		},
 		submit: (state) => {
 			Object.keys(state.field).forEach((key) => {
@@ -51,7 +83,7 @@ const personalDataFormSlice = createSlice({
 	},
 });
 
-export const { changeInputValue, reset, submit } =
+export const { changeInputValue, reset, setInitialInputValues, submit } =
 	personalDataFormSlice.actions;
 
 export default personalDataFormSlice.reducer;

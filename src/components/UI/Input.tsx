@@ -19,7 +19,7 @@ export const Input: FC<IInputProps> = ({
 			{...props}
 			className={clsx(
 				hasError ? 'border-red-500' : 'border-light',
-				'w-full rounded-lg border-[1px] p-3',
+				'w-full rounded-lg border-[1px] p-3 disabled:cursor-not-allowed disabled:bg-zinc-200',
 				className,
 			)}
 			value={value}

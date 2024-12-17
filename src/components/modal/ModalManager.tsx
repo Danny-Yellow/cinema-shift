@@ -8,7 +8,7 @@ import { ModalContent } from './ModalContent';
 
 export const ModalManager = () => {
 	const modal = useSelector(getModal);
-	const dispatch = useDispatch();	
+	const dispatch = useDispatch();
 
 	const MODAL_MAP = {
 		personalDataForm: <PersonalDataForm className="mt-6" />,
