@@ -1,7 +1,10 @@
 import { DebitCard } from '@src/components/DebitCard';
 import { Button } from '@src/components/UI/Button';
 import { usePaymentMutation } from '@src/store/api/cinemaApi';
-import { changeDebitCardValue } from '@src/store/features/debitCard/debitCard.slice';
+import {
+	changeDebitCardValue,
+	reset,
+} from '@src/store/features/debitCard/debitCard.slice';
 import { getDebitCard } from '@src/store/features/debitCard/selectors/getDebitCard';
 import { openModal } from '@src/store/features/modal/modal.slice';
 import { getPaymentRequest } from '@src/store/globalSelectors/getPaymentRequestBody';
@@ -29,6 +32,10 @@ export const DebitCardPage = () => {
 			dispatch(openModal({ data: data.order, name: 'successPayment' }));
 		}
 	}, [isSuccess]);
+
+	useEffect(() => {
+		reset();
+	}, []);
 
 	return (
 		<>
