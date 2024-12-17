@@ -3,21 +3,7 @@ export interface ISigninRequest {
 	phone: string;
 }
 
-export interface ISigninResponse {
-	reason: string;
-	success: boolean;
-	token: string;
-	user: {
-		city: string;
-		email: string;
-		firstname: string;
-		lastname: string;
-		middlename: string;
-		phone: string;
-	};
-}
-
-export interface ISessionResponse {
+export interface IUserResponse {
 	reason: string;
 	success: boolean;
 	user: {
@@ -27,5 +13,20 @@ export interface ISessionResponse {
 		lastname?: string;
 		middlename?: string;
 		phone: string;
+	};
+}
+
+export interface ISigninResponse extends IUserResponse {
+	token: string;
+}
+
+export interface IUpdateProfileRequest {
+	phone: string;
+	profile: {
+		// city: string;
+		// email: string;
+		firstname: string;
+		lastname: string;
+		middlename: string;
 	};
 }

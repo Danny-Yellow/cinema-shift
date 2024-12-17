@@ -1,4 +1,6 @@
+import { useUpdateProfileMutation } from '@src/store/api/usersApi';
 import { submit } from '@src/store/features/personalDataForm/personalDataForm.slice';
+import { getPersonalDataFormField } from '@src/store/features/personalDataForm/selectors/getPersonalDataFormFields';
 import { hasErrorPersonalDataForm } from '@src/store/features/personalDataForm/selectors/hasErrorPersonalDataForm';
 import clsx from 'clsx';
 import {
@@ -15,7 +17,10 @@ import { Button } from './UI/Button';
 export const ProfileForm: FC<ComponentProps<'form'>> = ({ className }) => {
 	const [formSubmitted, setFormSubmitted] = useState(false);
 
+	const [updateProfile] = useUpdateProfileMutation();
+
 	const hasError = useSelector(hasErrorPersonalDataForm);
+	const inputValues = useSelector(getPersonalDataFormField);
 
 	const dispatch = useDispatch();
 
@@ -27,7 +32,14 @@ export const ProfileForm: FC<ComponentProps<'form'>> = ({ className }) => {
 
 	useEffect(() => {
 		if (formSubmitted && !hasError) {
-			console.log('успешно');
+			updateProfile({
+				phone: inputValues.phone.value,
+				profile: {
+					firstname: inputValues.firstname.value,
+					lastname: inputValues.lastname.value,
+					middlename: inputValues.middlename.value,
+				},
+			});
 		}
 	}, [formSubmitted, hasError]);
 

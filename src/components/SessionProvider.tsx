@@ -1,4 +1,4 @@
-import { useGetSessionQuery } from '@src/store/api/usersApit';
+import { useGetSessionQuery } from '@src/store/api/usersApi';
 import { setUserSession } from '@src/store/features/userSession/userSession.slice';
 import { type FC, type ReactNode, useEffect } from 'react';
 import { useDispatch } from 'react-redux';

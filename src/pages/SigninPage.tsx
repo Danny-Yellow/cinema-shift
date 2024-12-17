@@ -1,9 +1,9 @@
 import type { ISigninFields } from '@src/types';
 import { SigninForm } from '@src/components/SigninForm';
 import { ROUTES } from '@src/constants/routes';
-import { useSignin } from '@src/hooks/useSignin';
 import { useTimer } from '@src/hooks/useTimer';
 import { useCreateOtpMutation } from '@src/store/api/authApi';
+import { useSigninMutation } from '@src/store/api/usersApi';
 import { getSigninForm } from '@src/store/features/signinForm/selectors/getSigninForm';
 import {
 	changeInputValue,
@@ -19,8 +19,8 @@ export const SigninPage = () => {
 
 	const form = useSelector(getSigninForm);
 
+	const [signin, { data: siginData }] = useSigninMutation();
 	const [createOtp, { data: otpData }] = useCreateOtpMutation();
-	const { isSuccess: isSigninSuccess, signin } = useSignin();
 
 	const navigate = useNavigate();
 
@@ -41,7 +41,7 @@ export const SigninPage = () => {
 		dispatch(sendCode());
 	}
 
-	async function handleSigninClick() {
+	function handleSigninClick() {
 		signin({
 			code: +form.fields.code.value,
 			phone: form.fields.phone.value,
@@ -57,8 +57,8 @@ export const SigninPage = () => {
 	}, [form.codeIsSent]);
 
 	useEffect(() => {
-		if (isSigninSuccess) navigate(ROUTES.POSTER);
-	}, [isSigninSuccess]);
+		if (siginData?.success) navigate(ROUTES.POSTER);
+	}, [siginData?.success]);
 
 	return (
 		<div className="mt-12">

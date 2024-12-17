@@ -1,7 +1,8 @@
 import type {
-	ISessionResponse,
 	ISigninRequest,
 	ISigninResponse,
+	IUpdateProfileRequest,
+	IUserResponse,
 } from '@src/types';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BASE_URL } from '@src/constants/url';
@@ -19,20 +20,42 @@ export const usersApi = createApi({
 		},
 	}),
 	endpoints: (build) => ({
-		getSession: build.query<ISessionResponse, void>({
+		getSession: build.query<IUserResponse, void>({
+			providesTags: ['User'],
 			query: () => '/session',
 		}),
 
 		signin: build.mutation<ISigninResponse, ISigninRequest>({
+			invalidatesTags: ['User'],
 			query: (body) => ({
 				body,
 				headers: {},
 				method: 'POST',
 				url: '/signin',
 			}),
+			transformResponse: (response: ISigninResponse) => {
+				if (response.token) {
+					window.localStorage.setItem('Authorization', response.token);
+				}
+
+				return response;
+			},
+		}),
+		updateProfile: build.mutation<IUserResponse, IUpdateProfileRequest>({
+			invalidatesTags: ['User'],
+			query: (body) => ({
+				body,
+				method: 'PATCH',
+				url: '/profile',
+			}),
 		}),
 	}),
 	reducerPath: 'usersApi',
+	tagTypes: ['User'],
 });
 
-export const { useGetSessionQuery, useSigninMutation } = usersApi;
+export const {
+	useGetSessionQuery,
+	useSigninMutation,
+	useUpdateProfileMutation,
+} = usersApi;

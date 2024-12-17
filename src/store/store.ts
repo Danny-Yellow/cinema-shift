@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { cinemaApi } from '@src/store/api/cinemaApi';
 import { authApi } from './api/authApi';
-import { usersApi } from './api/usersApit';
+import { usersApi } from './api/usersApi';
 import { rootReducer } from './reducers';
 
 export const store = configureStore({
