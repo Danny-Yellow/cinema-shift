@@ -1,32 +1,39 @@
 import type { IField } from '@src/types';
-import { reset } from '@src/store/features/debitCard/debitCard.slice';
-import { changeInputValue } from '@src/store/features/personalDataForm/personalDataForm.slice';
+import {
+	changeInputValue,
+	setInitialInputValues,
+} from '@src/store/features/personalDataForm/personalDataForm.slice';
 import { getPersonalDataFormField } from '@src/store/features/personalDataForm/selectors/getPersonalDataFormFields';
 
+import { getUserSession } from '@src/store/features/userSession/selectors/getUserSession';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { TextField } from './UI/TextField';
 
 const fields: IField[] = [
 	{
+		isDisabled: false,
 		isRequired: true,
 		label: 'Имя*',
 		name: 'firstname',
 		placeholder: 'Введите имя',
 	},
 	{
+		isDisabled: false,
 		isRequired: true,
 		label: 'Фамилия*',
 		name: 'lastname',
 		placeholder: 'Введите фамилию',
 	},
 	{
+		isDisabled: false,
 		isRequired: false,
 		label: 'Отчество',
 		name: 'middlename',
 		placeholder: 'Введите отчество',
 	},
 	{
+		isDisabled: true,
 		isRequired: true,
 		label: 'Телефон*',
 		name: 'phone',
@@ -36,10 +43,11 @@ const fields: IField[] = [
 
 export const PersonalDataFields = () => {
 	const dispatch = useDispatch();
+	const session = useSelector(getUserSession);
 	const fieldValue = useSelector(getPersonalDataFormField);
 
 	useEffect(() => {
-		dispatch(reset());
+		dispatch(setInitialInputValues(session.user));
 	}, []);
 
 	return (
@@ -47,6 +55,7 @@ export const PersonalDataFields = () => {
 			{fields.map((field) => (
 				<TextField
 					key={field.name}
+					disabled={field.isDisabled}
 					error={fieldValue[field.name].errorMessage}
 					label={field.label}
 					placeholder={field.placeholder}

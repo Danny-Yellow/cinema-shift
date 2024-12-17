@@ -3,8 +3,6 @@ import type { IUserResponse } from '@src/types';
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState: IUserResponse['user'] = {
-	city: '',
-	email: '',
 	firstname: '',
 	lastname: '',
 	middlename: '',

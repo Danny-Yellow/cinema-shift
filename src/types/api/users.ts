@@ -7,8 +7,6 @@ export interface IUserResponse {
 	reason: string;
 	success: boolean;
 	user: {
-		city?: string;
-		email?: string;
 		firstname?: string;
 		lastname?: string;
 		middlename?: string;
@@ -23,8 +21,6 @@ export interface ISigninResponse extends IUserResponse {
 export interface IUpdateProfileRequest {
 	phone: string;
 	profile: {
-		// city: string;
-		// email: string;
 		firstname: string;
 		lastname: string;
 		middlename: string;
