@@ -1,3 +1,4 @@
+import type { IPaymentResponse } from '@src/types';
 import { DebitCard } from '@src/components/DebitCard';
 import { Button } from '@src/components/UI/Button';
 import { usePaymentMutation } from '@src/store/api/cinemaApi';
@@ -6,13 +7,13 @@ import {
 	reset,
 } from '@src/store/features/debitCard/debitCard.slice';
 import { getDebitCard } from '@src/store/features/debitCard/selectors/getDebitCard';
-import { openModal } from '@src/store/features/modal/modal.slice';
+import { closeModal, openModal } from '@src/store/features/modal/modal.slice';
 import { getPaymentRequest } from '@src/store/globalSelectors/getPaymentRequestBody';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 export const DebitCardPage = () => {
-	const [payment, { data, isSuccess }] = usePaymentMutation();
+	const [payment, { data, error, isSuccess }] = usePaymentMutation();
 
 	const dispatch = useDispatch();
 
@@ -28,14 +29,24 @@ export const DebitCardPage = () => {
 	}
 
 	useEffect(() => {
-		if (data?.order) {
-			dispatch(openModal({ data: data.order, name: 'successPayment' }));
+		return () => {
+			dispatch(closeModal());
+		};
+	}, []);
+
+	useEffect(() => {
+		if (data?.success) {
+			dispatch(openModal({ data, name: 'payment' }));
 		}
 	}, [isSuccess]);
 
 	useEffect(() => {
-		reset();
-	}, []);
+		if (error && 'data' in error) {
+			const errorData = error.data as IPaymentResponse;
+			dispatch(openModal({ data: errorData, name: 'payment' }));
+		}
+	}, [error]);
+
 
 	return (
 		<>
