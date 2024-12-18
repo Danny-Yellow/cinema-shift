@@ -10,15 +10,13 @@ const initialState: TModalState = {
 };
 
 const modalSlice = createSlice({
-	initialState,
+	initialState: initialState as TModalState,
 	name: 'modal',
 	reducers: {
-		closeModal: (state) => {
-			Object.assign(state, initialState);
-		},
-
+		closeModal: () => initialState,
 		openModal: (state, action: PayloadAction<TModal>) => {
-			Object.assign(state, action.payload);
+			state.name = action.payload.name;
+			state.data = action.payload.data ?? null;
 		},
 	},
 });

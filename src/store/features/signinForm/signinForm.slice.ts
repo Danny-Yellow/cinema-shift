@@ -29,6 +29,14 @@ const signinFormSlice = createSlice({
 			if (/^\d*$/.test(value)) {
 				state.fields[name].value = value;
 			}
+
+			if (name === 'phone') {
+				state.codeIsSent = false;
+				state.fields.code = {
+					error: '',
+					value: '',
+				};
+			}
 		},
 
 		deleteError: (state, action: PayloadAction<keyof ISigninFields>) => {
