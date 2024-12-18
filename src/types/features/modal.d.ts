@@ -1,12 +1,12 @@
-import type { IPaymentResponse } from "../api/payment/payment";
+import type { IPaymentResponse } from '../api/payment/payment';
 
 interface IPersonalDataForm {
 	name: 'personalDataForm';
 }
 
-interface ISuccessPayment {
-	data: IPaymentResponse['order'];
-	name: 'successPayment';
+interface IPayment {
+	data: IPaymentResponse;
+	name: 'payment';
 }
 
-type TModal = IPersonalDataForm | ISuccessPayment;
+type TModal = IPayment | IPersonalDataForm;

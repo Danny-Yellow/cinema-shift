@@ -2,9 +2,9 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import type { TModal } from '@src/types/features/modal';
 import { createSlice } from '@reduxjs/toolkit';
 
-type ModalState = TModal | { data: null; name: '' };
+type TModalState = TModal | { data: null; name: '' };
 
-const initialState: ModalState = {
+const initialState: TModalState = {
 	data: null,
 	name: '',
 };
