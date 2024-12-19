@@ -27,7 +27,7 @@ export const Button: FC<IButtonProps> = ({
 				},
 				variant: {
 					contained: 'text-white bg-primary',
-					outlined: 'border-[1px] text-neutral',
+					outlined: 'border-[1px] border-light text-neutral',
 				},
 			},
 		},
@@ -35,7 +35,7 @@ export const Button: FC<IButtonProps> = ({
 
 	return (
 		<button
-			className={clsx(styles(variants), className)}
+			className={clsx(styles(variants), className, 'font-semibold')}
 			onClick={(event) => onClick?.(event)}
 		>
 			{children}

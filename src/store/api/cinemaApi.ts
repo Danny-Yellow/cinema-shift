@@ -1,6 +1,7 @@
 import type {
 	IFilmResponse,
 	IFilmsResponse,
+	IOrderResponse,
 	IPaymentRequest,
 	IPaymentResponse,
 	IScheduleResponse,
@@ -34,11 +35,21 @@ export const cinemaApi = createApi({
 			},
 		}),
 
+		getOrders: build.query<IOrderResponse, void>({
+			providesTags: ['Orders'],
+			query: () => ({
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('Authorization')}`,
+				},
+				url: `/orders`,
+			}),
+		}),
+
 		getSchedule: build.query<IScheduleResponse, string>({
 			query: (id) => `/film/${id}/schedule`,
 		}),
-
 		payment: build.mutation<IPaymentResponse, IPaymentRequest>({
+			invalidatesTags: ['Orders'],
 			query: (body) => ({
 				body,
 				method: 'POST',
@@ -47,12 +58,13 @@ export const cinemaApi = createApi({
 		}),
 	}),
 	reducerPath: 'filmsApi',
-	tagTypes: ['Films'],
+	tagTypes: ['Films', 'Orders'],
 });
 
 export const {
 	useGetFilmQuery,
 	useGetFilmsQuery,
+	useGetOrdersQuery,
 	useGetScheduleQuery,
 	usePaymentMutation,
 } = cinemaApi;

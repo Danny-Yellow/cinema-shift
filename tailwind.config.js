@@ -11,8 +11,10 @@ export default {
 				light: '#CED2DA',
 				medium: '#97A1AF',
 				neutral: '#344051',
+				positive: '#4ECF53',
 				primary: '#9534D2',
 				secondary: '#F3F4F6',
+				succes: '#ECF9F2',
 			},
 			gridTemplateColumns: {
 				'auto-fill-300': 'repeat(auto-fill, 300px)',
