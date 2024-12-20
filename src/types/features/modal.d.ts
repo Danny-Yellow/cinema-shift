@@ -10,4 +10,9 @@ interface IPayment {
 	name: 'payment';
 }
 
-type TModal = IPayment | IPersonalDataForm;
+interface ITicketRefund {
+	data?: never;
+	name: 'ticketRefund';
+}
+
+type TModal = IPayment | IPersonalDataForm | ITicketRefund;

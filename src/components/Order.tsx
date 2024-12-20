@@ -7,9 +7,10 @@ import { SuccessOrderStatus } from './UI/SuccessOrderStatus';
 
 interface IOrderProps {
 	order: ICinemaOrder;
+	onButtonClick: () => void;
 }
 
-export const Order: FC<IOrderProps> = ({ order }) => {
+export const Order: FC<IOrderProps> = ({ onButtonClick, order }) => {
 	const { data } = useGetFilmQuery(order.tickets[0].filmId);
 
 	const groupedSeats = groupSeats(order.tickets);
@@ -26,7 +27,7 @@ export const Order: FC<IOrderProps> = ({ order }) => {
 					const colMessage = cols.length > 1 ? 'места' : 'место';
 
 					return (
-						<p className="text-neutral">
+						<p key={`${cols}${row}`} className="text-neutral">
 							{row} ряд - {cols.join(', ')} {colMessage}
 						</p>
 					);
@@ -36,7 +37,12 @@ export const Order: FC<IOrderProps> = ({ order }) => {
 				<SuccessOrderStatus />
 				<p className="text-medium">Код билета {order.orderNumber}</p>
 			</div>
-			<Button className="text-base" size="full" variant="outlined">
+			<Button
+				className="text-base"
+				size="full"
+				variant="outlined"
+				onClick={onButtonClick}
+			>
 				Вернуть билет
 			</Button>
 		</article>
