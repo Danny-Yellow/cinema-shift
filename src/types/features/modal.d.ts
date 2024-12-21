@@ -1,3 +1,4 @@
+import type { ICancelOrderRequest } from '../api/order';
 import type { IPaymentResponse } from '../api/payment/payment';
 
 interface IPersonalDataForm {
@@ -11,7 +12,7 @@ interface IPayment {
 }
 
 interface ITicketRefund {
-	data?: never;
+	data: ICancelOrderRequest;
 	name: 'ticketRefund';
 }
 

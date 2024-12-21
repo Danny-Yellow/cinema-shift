@@ -1,4 +1,6 @@
 import type {
+	ICancelOrderRequest,
+	ICancelOrderResponse,
 	IFilmResponse,
 	IFilmsResponse,
 	IOrderResponse,
@@ -14,6 +16,17 @@ export const cinemaApi = createApi({
 		baseUrl: `${BASE_URL}/cinema/`,
 	}),
 	endpoints: (build) => ({
+		cancelOrder: build.mutation<ICancelOrderResponse, ICancelOrderRequest>({
+			query: (body) => ({
+				body,
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('Authorization')}`,
+				},
+				method: 'PUT',
+				url: '/orders/cancel',
+			}),
+		}),
+
 		getFilm: build.query<IFilmResponse, string>({
 			query: (id) => `/film/${id}`,
 			transformResponse(res: IFilmResponse) {
@@ -44,7 +57,6 @@ export const cinemaApi = createApi({
 				url: `/orders`,
 			}),
 		}),
-
 		getSchedule: build.query<IScheduleResponse, string>({
 			query: (id) => `/film/${id}/schedule`,
 		}),
@@ -62,6 +74,7 @@ export const cinemaApi = createApi({
 });
 
 export const {
+	useCancelOrderMutation,
 	useGetFilmQuery,
 	useGetFilmsQuery,
 	useGetOrdersQuery,

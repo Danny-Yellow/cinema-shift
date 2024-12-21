@@ -1,12 +1,22 @@
+import type { FC } from 'react';
+import { useCancelOrderMutation } from '@src/store/api/cinemaApi';
 import { closeModal } from '@src/store/features/modal/modal.slice';
 import { useDispatch } from 'react-redux';
 import { Question } from './icons';
 import { Button } from './UI/Button';
 
-export const TicketRefund = () => {
+interface ITicketRefundProps {
+	orderId: string;
+}
+
+export const TicketRefund: FC<ITicketRefundProps> = ({ orderId }) => {
+	const [cancel] = useCancelOrderMutation();
+
 	const dispatch = useDispatch();
 
-	function handleReturnButtonClick() {}
+	function handleReturnButtonClick() {
+		cancel({ orderId });
+	}
 
 	function handleCancelButtonClick() {
 		dispatch(closeModal());

@@ -4,7 +4,7 @@ import { Order } from './Order';
 
 interface IOrderListProps {
 	orders: ICinemaOrder[];
-	onReturnTicketClick: () => void;
+	onReturnTicketClick: (orderId: string) => void;
 }
 
 export const OrderList: FC<IOrderListProps> = ({
@@ -15,7 +15,10 @@ export const OrderList: FC<IOrderListProps> = ({
 		<ul className="flex flex-col gap-6">
 			{orders.map((order) => (
 				<li key={order.orderNumber}>
-					<Order order={order} onButtonClick={onReturnTicketClick} />
+					<Order
+						order={order}
+						onButtonClick={() => onReturnTicketClick(order._id)}
+					/>
 				</li>
 			))}
 		</ul>

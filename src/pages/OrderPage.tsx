@@ -12,8 +12,8 @@ export const OrderPage = () => {
 		dispatch(closeModal());
 	}, []);
 
-	function handleReturnTicketClick() {
-		dispatch(openModal({ name: 'ticketRefund' }));
+	function handleReturnTicketClick(orderId: string) {
+		dispatch(openModal({ data: { orderId }, name: 'ticketRefund' }));
 	}
 
 	if (isSuccess) {

@@ -17,9 +17,12 @@ export const ModalManager = () => {
 	const dispatch = useDispatch();
 
 	const MODAL_MAP: TModalMap = {
-		payment: modal.data ? <Payment data={modal.data} /> : null,
+		payment: modal.name === 'payment' ? <Payment data={modal.data} /> : null,
 		personalDataForm: <PersonalDataForm className="mt-6" />,
-		ticketRefund: <TicketRefund />,
+		ticketRefund:
+			modal.name === 'ticketRefund' ? (
+				<TicketRefund orderId={modal.data.orderId} />
+			) : null,
 	};
 
 	function handleCloseModal() {
