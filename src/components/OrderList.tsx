@@ -12,16 +12,9 @@ export const OrderList: FC<IOrderListProps> = ({
 	onReturnTicketClick,
 	orders,
 }) => {
-	const sortedOrders = [...orders].sort((prevOrder, order) => {
-		const orderDate = new Date(order.created).getTime();
-		const prevOrderDate = new Date(prevOrder.created).getTime();
-
-		return orderDate - prevOrderDate;
-	});
-
 	return (
 		<ul className="flex flex-col gap-6">
-			{sortedOrders.map((order) => (
+			{orders.map((order) => (
 				<li key={order.orderNumber}>
 					{order.status === 'PAYED' && (
 						<PayedOrder

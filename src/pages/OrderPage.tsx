@@ -17,11 +17,18 @@ export const OrderPage = () => {
 	}
 
 	if (isSuccess) {
+		const sortedOrders = [...data.orders].sort((prevOrder, order) => {
+			const orderDate = new Date(order.created).getTime();
+			const prevOrderDate = new Date(prevOrder.created).getTime();
+
+			return orderDate - prevOrderDate;
+		});
+
 		return (
 			<div className="mt-12">
 				<h1 className="title mb-4 text-2xl">Билеты</h1>
 				<OrderList
-					orders={data?.orders}
+					orders={sortedOrders}
 					onReturnTicketClick={handleReturnTicketClick}
 				/>
 			</div>

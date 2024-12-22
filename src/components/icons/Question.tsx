@@ -24,8 +24,8 @@ export const Question = () => {
 					y1="12"
 					y2="68"
 				>
-					<stop stop-color="#B3ADFA" />
-					<stop offset="1" stop-color="#8548E8" />
+					<stop stopColor="#B3ADFA" />
+					<stop offset="1" stopColor="#8548E8" />
 				</linearGradient>
 			</defs>
 		</svg>
