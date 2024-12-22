@@ -16,6 +16,7 @@ export const TicketRefund: FC<ITicketRefundProps> = ({ orderId }) => {
 
 	function handleReturnButtonClick() {
 		cancel({ orderId });
+		dispatch(closeModal());
 	}
 
 	function handleCancelButtonClick() {

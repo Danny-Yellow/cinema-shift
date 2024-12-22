@@ -9,6 +9,7 @@ export enum StatusOrder {
 
 export interface ICinemaOrder {
 	_id: string;
+	created: string;
 	filmName: string;
 	orderNumber: number;
 	phone: string;

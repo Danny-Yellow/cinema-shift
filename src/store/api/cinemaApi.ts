@@ -17,6 +17,7 @@ export const cinemaApi = createApi({
 	}),
 	endpoints: (build) => ({
 		cancelOrder: build.mutation<ICancelOrderResponse, ICancelOrderRequest>({
+			invalidatesTags: ['Orders'],
 			query: (body) => ({
 				body,
 				headers: {

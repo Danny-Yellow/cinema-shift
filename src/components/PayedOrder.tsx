@@ -10,7 +10,7 @@ interface IOrderProps {
 	onButtonClick: () => void;
 }
 
-export const Order: FC<IOrderProps> = ({ onButtonClick, order }) => {
+export const PayedOrder: FC<IOrderProps> = ({ onButtonClick, order }) => {
 	const { data } = useGetFilmQuery(order.tickets[0].filmId);
 
 	const groupedSeats = groupSeats(order.tickets);
