@@ -9,7 +9,7 @@ export const Label: FC<ILabelProps> = ({ children, name }) => {
 	return (
 		<label>
 			<p className="mb-[2px] text-xs text-gray">{name}</p>
-			<p>{children}</p>
+			{children}
 		</label>
 	);
 };

@@ -1,3 +1,4 @@
+import type { ICancelOrderRequest } from '../api/order';
 import type { IPaymentResponse } from '../api/payment/payment';
 
 interface IPersonalDataForm {
@@ -10,4 +11,9 @@ interface IPayment {
 	name: 'payment';
 }
 
-type TModal = IPayment | IPersonalDataForm;
+interface ITicketRefund {
+	data: ICancelOrderRequest;
+	name: 'ticketRefund';
+}
+
+type TModal = IPayment | IPersonalDataForm | ITicketRefund;

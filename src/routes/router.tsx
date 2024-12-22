@@ -1,6 +1,7 @@
 import { Layout } from '@src/components/Layout';
 import { DebitCardPage } from '@src/pages/DebitCardPage';
 import { FilmPage } from '@src/pages/FilmPage';
+import { OrderPage } from '@src/pages/OrderPage';
 import { PosterPage } from '@src/pages/PosterPage';
 import { ProfilePage } from '@src/pages/ProfilePage';
 import { SigninPage } from '@src/pages/SigninPage';
@@ -34,8 +35,12 @@ const publicRoutes = [
 			},
 			{
 				element: <ProfilePage />,
-				path: ROUTES.PROFILE
-			}
+				path: ROUTES.PROFILE,
+			},
+			{
+				element: <OrderPage />,
+				path: ROUTES.TICKETS,
+			},
 		],
 		element: <Layout />,
 		path: '/',

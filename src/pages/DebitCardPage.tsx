@@ -29,6 +29,8 @@ export const DebitCardPage = () => {
 	}
 
 	useEffect(() => {
+		dispatch(reset());
+
 		return () => {
 			dispatch(closeModal());
 		};
@@ -46,7 +48,6 @@ export const DebitCardPage = () => {
 			dispatch(openModal({ data: errorData, name: 'payment' }));
 		}
 	}, [error]);
-
 
 	return (
 		<>

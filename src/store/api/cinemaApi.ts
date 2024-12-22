@@ -1,6 +1,9 @@
 import type {
+	ICancelOrderRequest,
+	ICancelOrderResponse,
 	IFilmResponse,
 	IFilmsResponse,
+	IOrderResponse,
 	IPaymentRequest,
 	IPaymentResponse,
 	IScheduleResponse,
@@ -13,6 +16,18 @@ export const cinemaApi = createApi({
 		baseUrl: `${BASE_URL}/cinema/`,
 	}),
 	endpoints: (build) => ({
+		cancelOrder: build.mutation<ICancelOrderResponse, ICancelOrderRequest>({
+			invalidatesTags: ['Orders'],
+			query: (body) => ({
+				body,
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('Authorization')}`,
+				},
+				method: 'PUT',
+				url: '/orders/cancel',
+			}),
+		}),
+
 		getFilm: build.query<IFilmResponse, string>({
 			query: (id) => `/film/${id}`,
 			transformResponse(res: IFilmResponse) {
@@ -34,11 +49,20 @@ export const cinemaApi = createApi({
 			},
 		}),
 
+		getOrders: build.query<IOrderResponse, void>({
+			providesTags: ['Orders'],
+			query: () => ({
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('Authorization')}`,
+				},
+				url: `/orders`,
+			}),
+		}),
 		getSchedule: build.query<IScheduleResponse, string>({
 			query: (id) => `/film/${id}/schedule`,
 		}),
-
 		payment: build.mutation<IPaymentResponse, IPaymentRequest>({
+			invalidatesTags: ['Orders'],
 			query: (body) => ({
 				body,
 				method: 'POST',
@@ -47,12 +71,14 @@ export const cinemaApi = createApi({
 		}),
 	}),
 	reducerPath: 'filmsApi',
-	tagTypes: ['Films'],
+	tagTypes: ['Films', 'Orders'],
 });
 
 export const {
+	useCancelOrderMutation,
 	useGetFilmQuery,
 	useGetFilmsQuery,
+	useGetOrdersQuery,
 	useGetScheduleQuery,
 	usePaymentMutation,
 } = cinemaApi;
