@@ -65,7 +65,10 @@ export const FilmPage = (props: ComponentProps<'main'>) => {
 					selectedSchedule={selectedSchedule}
 				/>
 				{scheduleSeatSelection && (
-					<SeatSelection className="mb-36" schedule={scheduleSeatSelection} />
+					<SeatSelection
+						className="mb-36"
+						schedule={scheduleSeatSelection}
+					/>
 				)}
 			</main>
 		);
