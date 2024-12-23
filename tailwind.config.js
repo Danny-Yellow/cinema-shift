@@ -18,6 +18,7 @@ export default {
 				primary: '#9534D2',
 				secondary: '#F3F4F6',
 				succes: '#ECF9F2',
+				yellow: '#FDD442',
 			},
 			gridTemplateColumns: {
 				'auto-fill-300': 'repeat(auto-fill, 300px)',

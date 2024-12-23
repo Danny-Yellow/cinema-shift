@@ -1,5 +1,4 @@
 import type { ComponentProps, FC } from 'react';
-import { calculateStars } from '@src/helpers/index';
 import { upperCaseFirst } from '@src/helpers/upperCaseFirst';
 import { AgeRaiting, type IFilm } from '@src/types';
 import clsx from 'clsx';
@@ -11,8 +10,6 @@ interface IFilmInfoProps extends ComponentProps<'section'> {
 }
 
 export const FilmInfo: FC<IFilmInfoProps> = ({ className, film }) => {
-	const countOfStars = calculateStars(+film.userRatings.kinopoisk);
-
 	const ageRaiting = (() => {
 		const ageRaitingKey = film.ageRating as string;
 		return AgeRaiting[ageRaitingKey as keyof typeof AgeRaiting];
@@ -38,7 +35,7 @@ export const FilmInfo: FC<IFilmInfoProps> = ({ className, film }) => {
 					{film.name} ({ageRaiting})
 				</h1>
 				<p className="mb-4 text-sm text-gray">{film.originalName}</p>
-				<Rating defaultValue={countOfStars} max={5} />
+				<Rating countOfStars={5} rating={+film.userRatings.kinopoisk / 2} />
 				<p className="mb-4 mt-1 text-sm text-gray">
 					Kinopoisk - {film.userRatings.kinopoisk}
 				</p>

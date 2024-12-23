@@ -2,7 +2,6 @@ import type { IFilm } from '@src/types';
 import type { FC } from 'react';
 import { Button } from '@src/components/UI/Button';
 import { Rating } from '@src/components/UI/Rating';
-import { calculateStars } from '@src/helpers/stars';
 import { upperCaseFirst } from '@src/helpers/upperCaseFirst';
 import { useNavigate } from 'react-router-dom';
 import { FilmCover } from './FilmCover';
@@ -13,8 +12,6 @@ interface IFilmsItemProps {
 
 export const FilmItem: FC<IFilmsItemProps> = ({ film }) => {
 	const navigate = useNavigate();
-
-	const countOfStars = calculateStars(+film.userRatings.kinopoisk);
 
 	function handleClickButton() {
 		navigate(`/film/${film.id}`);
@@ -42,7 +39,7 @@ export const FilmItem: FC<IFilmsItemProps> = ({ film }) => {
 			<p className="mb-4 mt-1 truncate font-normal text-gray">
 				{film.originalName}
 			</p>
-			<Rating defaultValue={countOfStars} max={5} />
+			<Rating countOfStars={5} rating={+film.userRatings.kinopoisk / 2} />
 			<p className="mb-4 mt-1 font-normal text-gray">
 				Kinopoisk - {film.userRatings.kinopoisk}
 			</p>
