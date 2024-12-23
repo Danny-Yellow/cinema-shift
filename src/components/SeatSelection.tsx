@@ -1,11 +1,12 @@
 import type { IScheduleSeanse, ISelectedSeat } from '@src/types';
-import type { ComponentProps, FC } from 'react';
 import { openModal } from '@src/store/features/modal/modal.slice';
 import { selectSeat } from '@src/store/features/schedule/scheduleSelection.slice';
 import { getSelectedSeats } from '@src/store/features/schedule/selectors/selectedSeats';
+import { type ComponentProps, type FC, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Seats } from './Seats';
 import { TicketPurchase } from './TicketPurchase';
+import { Tooltip } from './UI/Tooltip';
 
 interface ISeatSelectionProps extends ComponentProps<'section'> {
 	schedule: {
@@ -18,6 +19,13 @@ export const SeatSelection: FC<ISeatSelectionProps> = ({
 	className,
 	schedule,
 }) => {
+	const [tooltipParams, setTooltipParams] = useState({
+		coordinates: { x: 0, y: 0 },
+		isVisible: false,
+		price: 0,
+		seat: { column: 0, row: 0 },
+	});
+
 	const dispatch = useDispatch();
 	const selectedSeats = useSelector(getSelectedSeats);
 
@@ -29,8 +37,37 @@ export const SeatSelection: FC<ISeatSelectionProps> = ({
 		dispatch(openModal({ name: 'personalDataForm' }));
 	}
 
+	function handleMouseEnterSeat(
+		coordinates: { x: number; y: number },
+		seat: { column: number; row: number },
+		price: number,
+	) {
+		setTooltipParams({
+			coordinates,
+			isVisible: true,
+			price,
+			seat,
+		});
+	}
+
+	function handleMouseLeaveSeat() {
+		setTooltipParams({
+			coordinates: { x: 0, y: 0 },
+			isVisible: false,
+			price: 0,
+			seat: { column: 0, row: 0 },
+		});
+	}
+
 	return (
 		<section className={className}>
+			<Tooltip
+				isVisible={tooltipParams.isVisible}
+				position={tooltipParams.coordinates}
+				title={`${tooltipParams.price} ₽`}
+			>
+				{tooltipParams.seat.row} ряд, {tooltipParams.seat.column} место
+			</Tooltip>
 			<h2 className="title mb-6 text-2xl">Выбор места</h2>
 			<div className="flex flex-wrap items-center gap-20">
 				<div className="flex flex-col items-center">
@@ -39,8 +76,10 @@ export const SeatSelection: FC<ISeatSelectionProps> = ({
 					<div>
 						<p className="mb-6">Ряд</p>
 						<Seats
-							handleClick={handleSeatClick}
 							places={schedule.seance.hall.places}
+							onClick={handleSeatClick}
+							onMouseEnter={handleMouseEnterSeat}
+							onMouseLeave={handleMouseLeaveSeat}
 						/>
 					</div>
 				</div>

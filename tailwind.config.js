@@ -4,6 +4,9 @@ export default {
 	plugins: [],
 	theme: {
 		extend: {
+			boxShadow: {
+				tooltip: '0 0 15px 0 rgba(0, 0, 0, 0.3)',
+			},
 			colors: {
 				black: '#141C24',
 				'dark-primary': '#712D9C',

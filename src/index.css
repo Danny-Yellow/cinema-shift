@@ -13,4 +13,19 @@
         @apply font-bold text-black
 
     }
+
+    .tooltip-triangle::after {
+        border-width: 8px 8px 0px 8px;
+        border-color: white transparent transparent transparent;
+        position: absolute;
+        display: block;
+        width: 0px;
+        z-index: 10;
+        content: "";
+        bottom: -8px;
+        left: 44px;
+    }   
+
+    /* shadow */
+    
 }
