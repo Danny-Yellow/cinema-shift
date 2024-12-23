@@ -24,7 +24,7 @@ export interface IFilm {
 	originalName: string;
 	releaseDate: string;
 	runtime: number;
-	country?: {
+	country: {
 		code: string;
 		code2: string;
 		id: string;
