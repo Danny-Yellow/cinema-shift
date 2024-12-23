@@ -3,7 +3,9 @@ import type { FC } from 'react';
 import { Button } from '@src/components/UI/Button';
 import { Rating } from '@src/components/UI/Rating';
 import { calculateStars } from '@src/helpers/stars';
+import { upperCaseFirst } from '@src/helpers/upperCaseFirst';
 import { useNavigate } from 'react-router-dom';
+import { FilmCover } from './FilmCover';
 
 interface IFilmsItemProps {
 	film: IFilm;
@@ -18,13 +20,24 @@ export const FilmItem: FC<IFilmsItemProps> = ({ film }) => {
 		navigate(`/film/${film.id}`);
 	}
 
+	const releaseYear = film.releaseDate.match(/\d{4}$/)?.[0] ?? null;
+
 	return (
 		<article className="w-[300px]">
-			<img
-				alt={film.name}
-				className="h-[360px] w-full rounded-lg object-cover"
-				src={film.img}
-			/>
+			<FilmCover
+				info={{
+					country: film.country.name,
+					genre: upperCaseFirst(film.genres[0]),
+					releaseYear,
+				}}
+			>
+				<img
+					alt={film.name}
+					className="h-[360px] w-full rounded-lg object-cover"
+					src={film.img}
+				/>
+			</FilmCover>
+
 			<h2 className="mt-4 truncate text-xl font-semibold">{film.name}</h2>
 			<p className="mb-4 mt-1 truncate font-normal text-gray">
 				{film.originalName}
