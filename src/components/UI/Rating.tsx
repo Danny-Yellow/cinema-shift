@@ -1,21 +1,26 @@
 import type { FC } from 'react';
-import { EmptyStar, Star } from '@src/components/icons/index';
 
 interface IRatingsProps {
-	defaultValue: number;
-	max: number;
+	countOfStars: number;
+	rating: number;
 }
 
-export const Rating: FC<IRatingsProps> = ({ defaultValue, max }) => {
-	const Stars = [];
+export const Rating: FC<IRatingsProps> = ({ countOfStars, rating }) => {
+	const stars = Array.from({ length: countOfStars }, (_, index) => {
+		const rate = Math.min(Math.max((rating - index) * 100, 0), 100);
 
-	for (let i = 0; i < max; i++) {
-		if (i < +defaultValue) {
-			Stars.push(<Star key={i} />);
-		} else {
-			Stars.push(<EmptyStar key={i} />);
-		}
-	}
+		return (
+			<div
+				key={index}
+				className="star"
+			>
+				<div
+					className="bg-yellow absolute left-0 top-0 h-full"
+					style={{ width: `${rate}%` }}
+				/>
+			</div>
+		);
+	});
 
-	return <div className="flex">{Stars}</div>;
+	return <div className="flex items-center gap-1">{stars}</div>;
 };
