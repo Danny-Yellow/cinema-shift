@@ -18,11 +18,11 @@ const publicRoutes = [
 	{
 		children: [
 			{
-				element: <PosterPage className="mt-12" />,
+				element: <PosterPage  />,
 				path: ROUTES.POSTER,
 			},
 			{
-				element: <FilmPage className="mt-6" />,
+				element: <FilmPage  />,
 				path: ROUTES.FILM_ID,
 			},
 			{

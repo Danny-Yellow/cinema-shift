@@ -27,13 +27,9 @@ export const FilmItem: FC<IFilmsItemProps> = ({ film }) => {
 					genre: upperCaseFirst(film.genres[0]),
 					releaseYear,
 				}}
-			>
-				<img
-					alt={film.name}
-					className="h-[360px] w-full rounded-lg object-cover"
-					src={film.img}
-				/>
-			</FilmCover>
+				className=""
+				img={{ alt: film.name, src: film.img }}
+			/>
 
 			<h2 className="mt-4 truncate text-xl font-semibold">{film.name}</h2>
 			<p className="mb-4 mt-1 truncate font-normal text-gray">
