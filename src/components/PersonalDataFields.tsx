@@ -55,7 +55,7 @@ export const PersonalDataFields = () => {
 			{fields.map((field) => (
 				<TextField
 					key={field.name}
-					disabled={field.isDisabled}
+					disabled={field.isDisabled && session.isAuth}
 					error={fieldValue[field.name].errorMessage}
 					label={field.label}
 					placeholder={field.placeholder}
