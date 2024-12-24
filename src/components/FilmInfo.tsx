@@ -26,8 +26,8 @@ export const FilmInfo: FC<IFilmInfoProps> = ({ className, film }) => {
 					releaseYear,
 				}}
 				className="w-[300px] shrink-0"
+				img={{alt: film.name, src: film.img}}
 			>
-				<img alt={film.name} src={film.img} />
 			</FilmCover>
 
 			<div>

@@ -17,7 +17,7 @@ export const Button: FC<IButtonProps> = ({
 	const variants = { size, variant };
 
 	const styles = cva<TVariants<typeof variants>>(
-		'flex h-14 items-center justify-center rounded-2xl',
+		'flex h-14 items-center justify-center rounded-2xl font-semibold',
 		{
 			variants: {
 				size: {
@@ -35,7 +35,7 @@ export const Button: FC<IButtonProps> = ({
 
 	return (
 		<button
-			className={clsx(styles(variants), className, 'font-semibold')}
+			className={clsx(styles(variants), className)}
 			onClick={(event) => onClick?.(event)}
 		>
 			{children}

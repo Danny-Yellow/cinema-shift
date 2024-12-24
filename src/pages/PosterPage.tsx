@@ -1,16 +1,15 @@
-import type { ComponentProps } from 'react';
 import { FilmList } from '@src/components/FilmList';
+import { FilmListSkeleton } from '@src/components/FilmListSkeleton';
 import { useGetFilmsQuery } from '@src/store/api/cinemaApi';
 
-export const PosterPage = (props: ComponentProps<'main'>) => {
-	const { data, isSuccess } = useGetFilmsQuery();
+export const PosterPage = () => {
+	const { data, isLoading, isSuccess } = useGetFilmsQuery();
 
-	if (isSuccess) {
-		return (
-			<main {...props}>
-				<h1 className="title mb-4 text-2xl">Афиша</h1>
-				<FilmList className="mb-20" films={data.films} />
-			</main>
-		);
-	}
+	return (
+		<div className="mb-20 mt-12">
+			<h1 className="title mb-4 text-2xl">Афиша</h1>
+			{isSuccess && <FilmList films={data.films} />}
+			{isLoading && <FilmListSkeleton count={6} />}
+		</div>
+	);
 };

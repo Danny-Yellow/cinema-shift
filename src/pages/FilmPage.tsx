@@ -1,4 +1,5 @@
 import { FilmInfo } from '@src/components/FilmInfo';
+import { FilmInfoSkeleton } from '@src/components/FilmPageSkeleton';
 import { FilmSchedule } from '@src/components/FilmSchedule';
 import { ArrowBack } from '@src/components/icons';
 import { SeatSelection } from '@src/components/SeatSelection';
@@ -10,11 +11,11 @@ import {
 	setFilmId,
 } from '@src/store/features/schedule/scheduleSelection.slice';
 import { getSelectedSchedule } from '@src/store/features/schedule/selectors/selectedScehdule';
-import { type ComponentProps, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
-export const FilmPage = (props: ComponentProps<'main'>) => {
+export const FilmPage = () => {
 	const { id } = useParams() as { id: string };
 
 	const filmQuery = useGetFilmQuery(id);
@@ -48,9 +49,16 @@ export const FilmPage = (props: ComponentProps<'main'>) => {
 		}
 	})();
 
+	if (filmQuery.isLoading || scheduleQuery.isLoading)
+		return (
+			<div className="mt-[72px]">
+				<FilmInfoSkeleton />
+			</div>
+		);
+
 	if (filmQuery.isSuccess && scheduleQuery.isSuccess) {
 		return (
-			<main {...props}>
+			<div className="mt-6">
 				<Link
 					color="gray"
 					startIcon={<ArrowBack />}
@@ -65,12 +73,9 @@ export const FilmPage = (props: ComponentProps<'main'>) => {
 					selectedSchedule={selectedSchedule}
 				/>
 				{scheduleSeatSelection && (
-					<SeatSelection
-						className="mb-36"
-						schedule={scheduleSeatSelection}
-					/>
+					<SeatSelection className="mb-36" schedule={scheduleSeatSelection} />
 				)}
-			</main>
+			</div>
 		);
 	}
 };
