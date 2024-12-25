@@ -5,11 +5,11 @@ import type {
 	IUpdateProfileRequest,
 } from '@src/types';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { BASE_URL } from '@src/constants/url';
+import { API_URL } from '@src/constants/url';
 
 export const usersApi = createApi({
 	baseQuery: fetchBaseQuery({
-		baseUrl: `${BASE_URL}/users`,
+		baseUrl: `${API_URL}/users`,
 		prepareHeaders: (headers) => {
 			const token = window.localStorage.getItem('Authorization');
 			if (token) {

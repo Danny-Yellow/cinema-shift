@@ -9,11 +9,11 @@ import type {
 	IScheduleResponse,
 } from '@src/types';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { BASE_URL } from '@src/constants/url';
+import { API_URL } from '@src/constants/url';
 
 export const cinemaApi = createApi({
 	baseQuery: fetchBaseQuery({
-		baseUrl: `${BASE_URL}/cinema/`,
+		baseUrl: `${API_URL}/cinema/`,
 	}),
 	endpoints: (build) => ({
 		cancelOrder: build.mutation<ICancelOrderResponse, ICancelOrderRequest>({
@@ -31,7 +31,7 @@ export const cinemaApi = createApi({
 		getFilm: build.query<IFilmResponse, string>({
 			query: (id) => `/film/${id}`,
 			transformResponse(res: IFilmResponse) {
-				const updatedImg = BASE_URL + res.film.img;
+				const updatedImg = API_URL + res.film.img;
 				const updatedFilm = { ...res.film, img: updatedImg };
 
 				return { ...res, film: updatedFilm };
@@ -43,7 +43,7 @@ export const cinemaApi = createApi({
 			transformResponse(res: IFilmsResponse) {
 				const updatedFilms = res.films.map((film) => ({
 					...film,
-					img: BASE_URL + film.img,
+					img: API_URL + film.img,
 				}));
 				return { ...res, films: updatedFilms };
 			},
