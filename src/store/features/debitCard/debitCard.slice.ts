@@ -1,4 +1,5 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
+import type { IDebitCard } from '@src/types';
 import { createSlice } from '@reduxjs/toolkit';
 
 const MAX_LENGTHS_MAP = {

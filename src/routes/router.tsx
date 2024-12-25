@@ -1,8 +1,8 @@
-import { Layout } from '@src/components/Layout';
+import { Layout } from '@src/components/layout/Layout';
 import { DebitCardPage } from '@src/pages/DebitCardPage';
-import { FilmPage } from '@src/pages/FilmPage';
-import { OrderPage } from '@src/pages/OrderPage';
-import { PosterPage } from '@src/pages/PosterPage';
+import { FilmPage } from '@src/pages/FilmPage/FilmPage';
+import { OrderPage } from '@src/pages/OrderPage/OrderPage';
+import { PosterPage } from '@src/pages/PosterPage/PosterPage';
 import { ProfilePage } from '@src/pages/ProfilePage';
 import { SigninPage } from '@src/pages/SigninPage';
 import { createBrowserRouter, Navigate } from 'react-router-dom';

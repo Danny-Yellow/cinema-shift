@@ -1,8 +1,8 @@
-import type { ISigninFields } from '@src/types';
+import type { TSigninFieldName } from '@src/types';
 import { validOtp, validPhone } from './validation';
 
 export const signinValidationMap: Record<
-	keyof ISigninFields,
+	TSigninFieldName,
 	(data: string) => string
 > = {
 	code: validOtp,

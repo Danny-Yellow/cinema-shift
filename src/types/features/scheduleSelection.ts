@@ -1,4 +1,4 @@
-import type { IScheduleSeanse } from '../api/schedule/schedule';
+import type { IScheduleSeanse } from '../api/schedule';
 
 export interface ISelectedSchedule {
 	date: string;

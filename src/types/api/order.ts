@@ -1,11 +1,6 @@
-import type { ITicket } from './schedule/schedule';
+import type { ITicket } from './schedule';
 
 export type TStatusOrder = 'CANCELED' | 'PAYED';
-
-export enum StatusOrder {
-	PAYED = 'Оплачено',
-	CANCELED = 'Отменено',
-}
 
 export interface ICinemaOrder {
 	_id: string;
@@ -13,7 +8,7 @@ export interface ICinemaOrder {
 	filmName: string;
 	orderNumber: number;
 	phone: string;
-	status: 'CANCELED' | 'PAYED';
+	status: TStatusOrder;
 	tickets: ITicket[];
 }
 

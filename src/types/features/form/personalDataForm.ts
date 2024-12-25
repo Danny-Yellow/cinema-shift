@@ -1,7 +1,4 @@
-interface IFieldValue {
-	errorMessage: string;
-	value: string;
-}
+import type { IFieldValue } from './field';
 
 export type TPersonalDataFieldName =
 	| 'firstname'

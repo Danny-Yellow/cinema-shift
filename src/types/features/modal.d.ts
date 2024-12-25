@@ -1,5 +1,5 @@
 import type { ICancelOrderRequest } from '../api/order';
-import type { IPaymentResponse } from '../api/payment/payment';
+import type { IPaymentResponse } from '../api/payment';
 
 interface IPersonalDataForm {
 	data?: never;

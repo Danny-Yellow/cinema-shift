@@ -1,8 +1,8 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { IUserResponse } from '@src/types';
+import type { ISessionResponse } from '@src/types';
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState: IUserResponse['user'] = {
+const initialState: ISessionResponse['user'] = {
 	firstname: '',
 	lastname: '',
 	middlename: '',
@@ -14,7 +14,7 @@ const userSessionSlice = createSlice({
 	name: 'userSession',
 	reducers: {
 		clearUserSession: () => initialState,
-		setUserSession: (_, action: PayloadAction<IUserResponse['user']>) =>
+		setUserSession: (_, action: PayloadAction<ISessionResponse['user']>) =>
 			action.payload,
 	},
 });

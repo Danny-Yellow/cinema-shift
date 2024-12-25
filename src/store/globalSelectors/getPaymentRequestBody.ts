@@ -1,4 +1,4 @@
-import type { IPaymentRequest } from '@src/types/api/payment/payment';
+import type { IPaymentRequest } from '@src/types/api/payment';
 import { createSelector } from 'reselect';
 import type { RootState } from '../store';
 

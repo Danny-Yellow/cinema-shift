@@ -1,7 +1,7 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type {
 	IPersonalDataForm,
-	IUserResponse,
+	ISessionResponse,
 	TPersonalDataFieldName,
 } from '@src/types';
 import { createSlice } from '@reduxjs/toolkit';
@@ -61,7 +61,7 @@ const personalDataFormSlice = createSlice({
 		}),
 		setInitialInputValues: (
 			state,
-			action: PayloadAction<IUserResponse['user']>,
+			action: PayloadAction<ISessionResponse['user']>,
 		) => {
 			Object.keys(state.field).forEach((key) => {
 				const fieldName = key as TPersonalDataFieldName;

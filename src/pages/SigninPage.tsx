@@ -1,5 +1,5 @@
-import type { ISigninFields } from '@src/types';
-import { SigninForm } from '@src/components/SigninForm';
+import type { TSigninFieldName } from '@src/types';
+import { SigninForm } from '@src/components/pages/signinForm/SigninForm';
 import { ROUTES } from '@src/constants/routes';
 import { useTimer } from '@src/hooks/useTimer';
 import { useCreateOtpMutation } from '@src/store/api/authApi';
@@ -29,11 +29,11 @@ export const SigninPage = () => {
 		success: otpData?.success,
 	});
 
-	function handleChangeInputs(name: keyof ISigninFields, value: string) {
+	function handleChangeInputs(name: TSigninFieldName, value: string) {
 		dispatch(changeInputValue({ name, value }));
 	}
 
-	function handleInputsFocus(name: keyof ISigninFields) {
+	function handleInputsFocus(name: TSigninFieldName) {
 		dispatch(deleteError(name));
 	}
 

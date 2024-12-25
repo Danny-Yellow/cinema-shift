@@ -1,5 +1,5 @@
-import type { IPaymentResponse } from '@src/types';
-import { DebitCard } from '@src/components/DebitCard';
+import type { IDebitCard, IPaymentResponse } from '@src/types';
+import { DebitCard } from '@src/components/pages/DebitCard';
 import { Button } from '@src/components/UI/Button';
 import { usePaymentMutation } from '@src/store/api/cinemaApi';
 import {

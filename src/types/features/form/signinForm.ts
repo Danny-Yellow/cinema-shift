@@ -1,15 +1,10 @@
-export interface ISigninFields {
-	code: {
-		error: string;
-		value: string;
-	};
-	phone: {
-		error: string;
-		value: string;
-	};
-}
+import type { IFieldValue } from './field';
+
+export type TSigninFieldName = 'code' | 'phone';
+
+export type TSigninFields = Record<TSigninFieldName, IFieldValue>;
 
 export interface ISigninForm {
 	codeIsSent: boolean;
-	fields: ISigninFields;
+	fields: TSigninFields;
 }

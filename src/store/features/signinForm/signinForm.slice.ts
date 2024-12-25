@@ -1,5 +1,5 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { ISigninFields, ISigninForm } from '@src/types';
+import type { ISigninForm, TSigninFieldName } from '@src/types';
 import { createSlice } from '@reduxjs/toolkit';
 import { validPhone } from '@src/helpers/validation/validation';
 
@@ -7,11 +7,11 @@ const initialState: ISigninForm = {
 	codeIsSent: false,
 	fields: {
 		code: {
-			error: '',
+			errorMessage: '',
 			value: '',
 		},
 		phone: {
-			error: '',
+			errorMessage: '',
 			value: '',
 		},
 	},
@@ -23,7 +23,7 @@ const signinFormSlice = createSlice({
 	reducers: {
 		changeInputValue: (
 			state,
-			action: PayloadAction<{ name: keyof ISigninFields; value: string }>,
+			action: PayloadAction<{ name: TSigninFieldName; value: string }>,
 		) => {
 			const { name, value } = action.payload;
 			if (/^\d*$/.test(value)) {
@@ -33,21 +33,21 @@ const signinFormSlice = createSlice({
 			if (name === 'phone') {
 				state.codeIsSent = false;
 				state.fields.code = {
-					error: '',
+					errorMessage: '',
 					value: '',
 				};
 			}
 		},
 
-		deleteError: (state, action: PayloadAction<keyof ISigninFields>) => {
-			state.fields[action.payload].error = '';
+		deleteError: (state, action: PayloadAction<TSigninFieldName>) => {
+			state.fields[action.payload].errorMessage = '';
 		},
 
 		sendCode: (state) => {
 			const error = validPhone(state.fields.phone.value);
 
 			if (error.length) {
-				state.fields.phone.error = error;
+				state.fields.phone.errorMessage = error;
 			} else {
 				state.codeIsSent = true; // Вероятно должно считаться в селекторе
 			}
