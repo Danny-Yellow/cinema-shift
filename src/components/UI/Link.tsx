@@ -7,6 +7,7 @@ interface ILinkBaseProps {
 	children: ReactNode;
 	className?: string;
 	color?: 'gray' | 'neutral';
+	isActive?: boolean;
 	startIcon?: ReactNode;
 }
 
@@ -26,24 +27,28 @@ export const Link: FC<TLinkProps> = ({
 	children,
 	className,
 	color = 'neutral',
+	isActive,
 	onClick,
 	startIcon,
 	to,
 }) => {
 	const variants = { color };
 
-	const styles = cva<TVariants<typeof variants>>('flex items-center gap-4', {
-		variants: {
-			color: {
-				gray: 'text-gray',
-				neutral: 'text-neutral',
+	const styles = cva<TVariants<typeof variants>>(
+		'flex items-center gap-4 hover:text-primary transition-all',
+		{
+			variants: {
+				color: {
+					gray: 'text-gray',
+					neutral: 'text-neutral',
+				},
 			},
 		},
-	});
+	);
 
 	return (
 		<RouterLink
-			className={clsx(styles(variants), className)}
+			className={clsx(styles(variants), isActive && 'text-primary', className)}
 			to={to || ''}
 			onClick={onClick}
 		>

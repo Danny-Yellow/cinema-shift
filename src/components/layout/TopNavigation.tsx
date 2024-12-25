@@ -4,10 +4,12 @@ import { ROUTES } from '@src/constants/routes';
 import { useLogout } from '@src/hooks/useLogout';
 import { getUserSession } from '@src/store/features/userSession/selectors/getUserSession';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 export const TopNavigation = () => {
 	const userSession = useSelector(getUserSession);
 	const logout = useLogout();
+	const { pathname } = useLocation();
 
 	function handleLogoutClick() {
 		logout();
@@ -23,10 +25,18 @@ export const TopNavigation = () => {
 						<Link to="/poster">
 							<Logo />
 						</Link>
-						<Link startIcon={<User />} to={ROUTES.PROFILE}>
+						<Link
+							isActive={pathname === ROUTES.PROFILE}
+							startIcon={<User />}
+							to={ROUTES.PROFILE}
+						>
 							Профиль
 						</Link>
-						<Link startIcon={<Ticket />} to={ROUTES.TICKETS}>
+						<Link
+							isActive={pathname === ROUTES.TICKETS}
+							startIcon={<Ticket />}
+							to={ROUTES.TICKETS}
+						>
 							Билеты
 						</Link>
 					</div>
@@ -41,7 +51,11 @@ export const TopNavigation = () => {
 					<Link to="/poster">
 						<Logo />
 					</Link>
-					<Link startIcon={<Entrance />} to={ROUTES.SIGNIN}>
+					<Link
+						isActive={pathname === ROUTES.SIGNIN}
+						startIcon={<Entrance />}
+						to={ROUTES.SIGNIN}
+					>
 						Войти
 					</Link>
 				</>
