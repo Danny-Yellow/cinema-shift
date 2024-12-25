@@ -1,5 +1,6 @@
 import { Layout } from '@src/components/layout/Layout';
 import { DebitCardPage } from '@src/pages/DebitCardPage';
+import { ErrorPage } from '@src/pages/ErrorPage';
 import { FilmPage } from '@src/pages/FilmPage/FilmPage';
 import { OrderPage } from '@src/pages/OrderPage/OrderPage';
 import { PosterPage } from '@src/pages/PosterPage/PosterPage';
@@ -12,37 +13,43 @@ const isAuth = false;
 
 const publicRoutes = [
 	{
-		element: <Navigate to={ROUTES.POSTER} />,
-		path: '/',
-	},
-	{
 		children: [
 			{
-				element: <PosterPage  />,
-				path: ROUTES.POSTER,
-			},
-			{
-				element: <FilmPage  />,
-				path: ROUTES.FILM_ID,
-			},
-			{
-				element: <DebitCardPage />,
-				path: ROUTES.DEBIT_CARD,
-			},
-			{
-				element: <SigninPage />,
-				path: ROUTES.SIGNIN,
-			},
-			{
-				element: <ProfilePage />,
-				path: ROUTES.PROFILE,
-			},
-			{
-				element: <OrderPage />,
-				path: ROUTES.TICKETS,
-			},
+				children: [
+					{
+						element: <PosterPage />,
+						path: ROUTES.POSTER,
+					},
+					{
+						element: <FilmPage />,
+						path: ROUTES.FILM_ID,
+					},
+					{
+						element: <DebitCardPage />,
+						path: ROUTES.DEBIT_CARD,
+					},
+					{
+						element: <SigninPage />,
+						path: ROUTES.SIGNIN,
+					},
+					{
+						element: <ProfilePage />,
+						path: ROUTES.PROFILE,
+					},
+					{
+						element: <OrderPage />,
+						path: ROUTES.TICKETS,
+					},
+					{
+						element: <Navigate to={ROUTES.POSTER} />,
+						index: true,
+					},
+				],
+				errorElement: <ErrorPage />,
+			}
 		],
 		element: <Layout />,
+		errorElement: <ErrorPage />,
 		path: '/',
 	},
 ];
