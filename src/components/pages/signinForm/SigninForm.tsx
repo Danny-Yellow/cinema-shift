@@ -30,7 +30,12 @@ export const SigninForm: FC<ISigninFormProps> = ({
 }) => (
 	<form className="max-w-[464px]">
 		<div className="mb-6 flex items-center gap-8 text-medium">
-			<IconButton onClick={onBackButtonClick}>
+			<IconButton
+				onClick={(event) => {
+					event.preventDefault()
+					onBackButtonClick();
+				}}
+			>
 				<ArrowBack />
 			</IconButton>
 			<h1 className="title text-2xl">Авторизация</h1>

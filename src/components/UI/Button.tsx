@@ -10,6 +10,7 @@ interface IButtonProps extends ComponentProps<'button'> {
 export const Button: FC<IButtonProps> = ({
 	children,
 	className,
+	disabled,
 	onClick,
 	size,
 	variant,
@@ -17,7 +18,7 @@ export const Button: FC<IButtonProps> = ({
 	const variants = { size, variant };
 
 	const styles = cva<TVariants<typeof variants>>(
-		'flex h-14 items-center justify-center rounded-2xl font-semibold',
+		'flex h-14 items-center justify-center rounded-2xl font-semibold disabled:opacity-70 disabled:cursor-not-allowed',
 		{
 			variants: {
 				size: {
@@ -36,6 +37,7 @@ export const Button: FC<IButtonProps> = ({
 	return (
 		<button
 			className={clsx(styles(variants), className)}
+			disabled={disabled}
 			onClick={(event) => onClick?.(event)}
 		>
 			{children}

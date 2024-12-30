@@ -27,14 +27,14 @@ export const BottomNavigation = () => {
 						color="gray"
 						isActive={pathname === ROUTES.TICKETS}
 						startIcon={<Ticket />}
-						to={isAuth ? ROUTES.TICKETS : ROUTES.PROFILE}
+						to={isAuth ? ROUTES.TICKETS : ROUTES.SIGNIN}
 					>
 						Билеты
 					</Link>
 					<Link
 						className="flex w-full flex-col items-center gap-[2px] py-[10px]"
 						color="gray"
-						isActive={pathname === ROUTES.PROFILE || pathname === ROUTES.LOGIN}
+						isActive={pathname === ROUTES.PROFILE}
 						startIcon={<User />}
 						to={isAuth ? ROUTES.PROFILE : ROUTES.SIGNIN}
 					>

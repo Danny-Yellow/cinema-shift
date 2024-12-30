@@ -17,18 +17,28 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export const ProfileForm: FC<ComponentProps<'form'>> = ({ className }) => {
 	const [formSubmitted, setFormSubmitted] = useState(false);
+	const [isVisibleMessage, setIsVisibleMessage] = useState(false);
+	const [buttonIsActive, setButtonIsActive] = useState(false);
 
-	const [updateProfile] = useUpdateProfileMutation();
+	const [updateProfile, { fulfilledTimeStamp, isSuccess: isSuccessUpdate }] =
+		useUpdateProfileMutation();
 
 	const hasError = useSelector(hasErrorPersonalDataForm);
 	const inputValues = useSelector(getPersonalDataFormField);
 
 	const dispatch = useDispatch();
 
+	function handleChangeInput() {
+		setButtonIsActive(true);
+		setIsVisibleMessage(false);
+		setFormSubmitted(false);
+	}
+
 	function handleButtonClick(event: MouseEvent<HTMLButtonElement>) {
 		event.preventDefault();
 		dispatch(submit());
 		setFormSubmitted(true);
+		setButtonIsActive(false);
 	}
 
 	useEffect(() => {
@@ -44,11 +54,18 @@ export const ProfileForm: FC<ComponentProps<'form'>> = ({ className }) => {
 		}
 	}, [formSubmitted, hasError]);
 
+	useEffect(() => {
+		if (isSuccessUpdate) {
+			setIsVisibleMessage(true);
+		}
+	}, [fulfilledTimeStamp]);
+
 	return (
 		<form className={clsx('flex flex-col gap-6', className)}>
 			<h2 className="text-2xl font-bold text-black">Профиль</h2>
-			<PersonalDataFields />
+			<PersonalDataFields onChange={handleChangeInput} />
 			<Button
+				disabled={!buttonIsActive}
 				size="medium"
 				type="submit"
 				variant="contained"
@@ -56,9 +73,7 @@ export const ProfileForm: FC<ComponentProps<'form'>> = ({ className }) => {
 			>
 				Обновить данные
 			</Button>
-			{formSubmitted && !hasError && (
-				<p className="text-primary">Данные сохранены</p>
-			)}
+			{isVisibleMessage && <p className="text-primary">Данные сохранены</p>}
 			<BottomNavigation />
 		</form>
 	);

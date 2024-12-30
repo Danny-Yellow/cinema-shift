@@ -41,14 +41,14 @@ const fields: IField[] = [
 	},
 ];
 
-export const PersonalDataFields = () => {
+export const PersonalDataFields = ({ onChange }: { onChange?: () => void }) => {
 	const dispatch = useDispatch();
 	const session = useSelector(getUserSession);
 	const fieldValue = useSelector(getPersonalDataFormField);
 
 	useEffect(() => {
 		dispatch(setInitialInputValues(session.user));
-	}, []);
+	}, [session.user]);
 
 	return (
 		<>
@@ -67,6 +67,7 @@ export const PersonalDataFields = () => {
 								value: event.target.value,
 							}),
 						);
+						onChange?.();
 					}}
 				/>
 			))}
