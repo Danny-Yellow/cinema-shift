@@ -19,19 +19,17 @@ export const FilmCover: FC<IFilmCoverProps> = ({ className, img, info }) => {
 	return (
 		<div
 			className={clsx(
-				'relative overflow-hidden rounded-lg align-middle text-sm transition-opacity',
+				'relative h-[360px] w-[300px] overflow-hidden rounded-lg align-middle text-sm transition-opacity',
 				isLoad ? 'opacity-100' : 'opacity-0',
 				className,
 			)}
 		>
-			<div>
-				<img
-					alt={img.alt}
-					className="h-[360px] w-full object-cover"
-					src={img.src}
-					onLoad={() => setIsLoad(true)}
-				/>
-			</div>
+			<img
+				alt={img.alt}
+				className="h-[360px] w-full object-cover"
+				src={img.src}
+				onLoad={() => setIsLoad(true)}
+			/>
 			<div className="absolute bottom-0 right-0 flex flex-col items-center rounded-lg bg-light px-4 py-2">
 				<p className="font-semibold">{info.genre}</p>
 				<p>

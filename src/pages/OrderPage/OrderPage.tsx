@@ -1,3 +1,4 @@
+import { BottomNavigation } from '@src/components/layout/navigation/BottomNavigation';
 import { OrderList } from '@src/components/pages/orderList';
 import { useGetOrdersQuery } from '@src/store/api/cinemaApi';
 import { closeModal, openModal } from '@src/store/features/modal/modal.slice';
@@ -35,12 +36,13 @@ export const OrderPage = () => {
 		});
 
 		return (
-			<div className="mt-12">
+			<div className="mb-12 mt-12 sm:mt-3">
 				<h1 className="title mb-4 text-2xl">Билеты</h1>
 				<OrderList
 					orders={sortedOrders}
 					onReturnTicketClick={handleReturnTicketClick}
 				/>
+				<BottomNavigation />
 			</div>
 		);
 	}

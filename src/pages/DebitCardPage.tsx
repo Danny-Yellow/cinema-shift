@@ -1,6 +1,8 @@
 import type { IDebitCard, IPaymentResponse } from '@src/types';
+import { ArrowBack } from '@src/components/icons';
 import { DebitCard } from '@src/components/pages/DebitCard';
 import { Button } from '@src/components/UI/Button';
+import { IconButton } from '@src/components/UI/IconButton';
 import { usePaymentMutation } from '@src/store/api/cinemaApi';
 import {
 	changeDebitCardValue,
@@ -11,11 +13,14 @@ import { closeModal, openModal } from '@src/store/features/modal/modal.slice';
 import { getPaymentRequest } from '@src/store/globalSelectors/getPaymentRequestBody';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export const DebitCardPage = () => {
 	const [payment, { data, error, isSuccess }] = usePaymentMutation();
 
 	const dispatch = useDispatch();
+
+	const navigate = useNavigate();
 
 	const debitCard = useSelector(getDebitCard);
 	const paymentBody = useSelector(getPaymentRequest);
@@ -51,7 +56,18 @@ export const DebitCardPage = () => {
 
 	return (
 		<>
-			<h1 className="title mt-12 text-2xl">Введите данные карты для оплаты</h1>
+			<div className="mt-12 flex items-center gap-8 sm:mt-3">
+				<IconButton
+					className="hidden text-light sm:block"
+					onClick={() => navigate(-1)}
+				>
+					<ArrowBack />
+				</IconButton>
+				<h1 className="title text-2xl sm:hidden">
+					Введите данные карты для оплаты
+				</h1>
+				<h1 className="title hidden text-2xl sm:block">Карта оплаты</h1>
+			</div>
 			<div className="max-w-[380px]">
 				<DebitCard values={debitCard} onChange={handleChangeInput} />
 				<Button

@@ -30,7 +30,7 @@ export const TicketPurchase: FC<ITicketPurchaseProps> = ({
 	})();
 
 	return (
-		<div className="flex flex-col gap-6">
+		<div className="flex flex-1 min-w-[250px] max-w-[432px] flex-col gap-6">
 			<div>
 				<p className="text-xs text-gray">Зал</p>
 				<p className="text-base">{hallName}</p>
@@ -51,7 +51,7 @@ export const TicketPurchase: FC<ITicketPurchaseProps> = ({
 			</div>
 			<strong className="text-xl font-semibold">Сумма: {totalPrice} ₽</strong>
 			<Button
-				size="large"
+				size="full"
 				variant="contained"
 				onClick={() => {
 					onButtonClick();

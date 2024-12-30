@@ -1,7 +1,7 @@
 import { ModalManager } from '@src/components/modal';
 import { Container } from '@src/components/UI/Container';
 import { Outlet } from 'react-router-dom';
-import { TopNavigation } from './TopNavigation';
+import { TopNavigation } from './navigation/TopNavigation';
 
 export const Layout = () => {
 	return (

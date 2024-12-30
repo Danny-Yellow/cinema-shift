@@ -1,5 +1,5 @@
 import { ProfileForm } from '@src/components/pages/ProfileForm';
 
 export const ProfilePage = () => (
-	<ProfileForm className="mt-12 max-w-[464px]" />
+	<ProfileForm className="mt-12 max-w-[464px] sm:mt-3" />
 );

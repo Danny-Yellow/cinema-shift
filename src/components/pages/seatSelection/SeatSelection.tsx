@@ -70,10 +70,10 @@ export const SeatSelection: FC<ISeatSelectionProps> = ({
 			</Tooltip>
 			<h2 className="title mb-6 text-2xl">Выбор места</h2>
 			<div className="flex flex-wrap items-center gap-20">
-				<div className="flex flex-col items-center">
-					<span>Экран</span>
+				<div className="flex flex-col overflow-auto">
+					<span className='mx-auto'>Экран</span>
 					<div className="mb-6 mt-2 h-1 w-[410px] bg-light"></div>
-					<div>
+					<div className='p-2'>
 						<p className="mb-6">Ряд</p>
 						<Seats
 							places={schedule.seance.hall.places}

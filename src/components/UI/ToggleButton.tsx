@@ -14,7 +14,8 @@ export const ToggleButton: FC<IToggleButtonProps> = ({
 	onClick,
 	value,
 }) => {
-	const baseStyles = 'hover:cursor-pointer rounded-[14px] py-[10px] px-4';
+	const baseStyles =
+		'hover:cursor-pointer rounded-[14px] py-[10px] px-4 shrink-0';
 	const activeStyles = 'bg-white text-black';
 
 	return (

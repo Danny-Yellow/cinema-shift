@@ -15,10 +15,8 @@ export const TopNavigation = () => {
 		logout();
 	}
 
-	// Декомпозировать
-
 	return (
-		<nav className="flex items-center justify-between border-b-[1px] border-light py-6 text-neutral">
+		<nav className="flex items-center justify-between border-b-[1px] border-light py-6 text-neutral sm:hidden">
 			{userSession.isAuth ? (
 				<>
 					<div className="flex items-center gap-8">

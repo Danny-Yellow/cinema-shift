@@ -52,6 +52,10 @@ export const SigninPage = () => {
 		createOtp({ phone: form.fields.phone.value });
 	}
 
+	function handleBackButtonClick() {
+		navigate(-1);
+	}
+
 	useEffect(() => {
 		if (form.codeIsSent) createOtp({ phone: form.fields.phone.value });
 	}, [form.codeIsSent]);
@@ -66,6 +70,7 @@ export const SigninPage = () => {
 				form={form}
 				otp={otpData}
 				time={time}
+				onBackButtonClick={handleBackButtonClick}
 				onChangeInputs={handleChangeInputs}
 				onContinueClick={handleContinueClick}
 				onInputsFocus={handleInputsFocus}

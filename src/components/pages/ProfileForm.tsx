@@ -1,4 +1,5 @@
 import { PersonalDataFields } from '@src/components/common/PersonalDataFields';
+import { BottomNavigation } from '@src/components/layout/navigation/BottomNavigation';
 import { Button } from '@src/components/UI/Button';
 import { useUpdateProfileMutation } from '@src/store/api/usersApi';
 import { submit } from '@src/store/features/personalDataForm/personalDataForm.slice';
@@ -58,6 +59,7 @@ export const ProfileForm: FC<ComponentProps<'form'>> = ({ className }) => {
 			{formSubmitted && !hasError && (
 				<p className="text-primary">Данные сохранены</p>
 			)}
+			<BottomNavigation />
 		</form>
 	);
 };

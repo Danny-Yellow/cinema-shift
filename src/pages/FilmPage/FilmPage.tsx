@@ -1,4 +1,4 @@
-import { ArrowBack } from '@src/components/icons';
+import { ArrowBackSmall } from '@src/components/icons';
 import { FilmInfo } from '@src/components/pages/FilmInfo';
 import { FilmSchedule } from '@src/components/pages/filmSchedule';
 import { SeatSelection } from '@src/components/pages/seatSelection';
@@ -54,10 +54,10 @@ export const FilmPage = () => {
 
 	if (filmQuery.isSuccess && scheduleQuery.isSuccess) {
 		return (
-			<div className="mt-6">
+			<div className="mt-6 sm:mt-3">
 				<Link
 					color="gray"
-					startIcon={<ArrowBack />}
+					startIcon={<ArrowBackSmall />}
 					onClick={() => navigate(-1)}
 				>
 					Назад
@@ -69,7 +69,10 @@ export const FilmPage = () => {
 					selectedSchedule={selectedSchedule}
 				/>
 				{scheduleSeatSelection && (
-					<SeatSelection className="mb-36" schedule={scheduleSeatSelection} />
+					<SeatSelection
+						className="mb-36 md:mb-12"
+						schedule={scheduleSeatSelection}
+					/>
 				)}
 			</div>
 		);

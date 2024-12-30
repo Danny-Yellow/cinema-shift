@@ -39,7 +39,7 @@ export const ToggleButtonGroup: FC<IToggleButtonGroupProps> = ({
 	);
 
 	return (
-		<div className="inline-flex items-center rounded-2xl bg-secondary p-[2px] text-gray">
+		<div className="inline-flex items-center rounded-2xl bg-secondary p-[2px] text-gray overflow-auto max-w-full">
 			{buttonsGroup}
 		</div>
 	);

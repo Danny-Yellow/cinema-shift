@@ -57,8 +57,8 @@ export const Seats: FC<ISeatsProps> = ({
 		}
 
 		rowElements.push(
-			<div key={i} className="flex items-center justify-center gap-6">
-				<span>{i + 1}</span>
+			<div key={i} className="flex items-center gap-6">
+				<span className="w-[17px]">{i + 1}</span>
 				{columnElements}
 			</div>,
 		);
