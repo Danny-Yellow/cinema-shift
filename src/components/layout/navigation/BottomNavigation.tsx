@@ -1,13 +1,10 @@
 import { Movie, Ticket, User } from '@src/components/icons';
 import { Link } from '@src/components/UI/Link';
 import { ROUTES } from '@src/constants/routes';
-import { getUserSession } from '@src/store/features/userSession/selectors/getUserSession';
-import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 export const BottomNavigation = () => {
 	const { pathname } = useLocation();
-	const { isAuth } = useSelector(getUserSession);
 
 	return (
 		<>
@@ -27,7 +24,7 @@ export const BottomNavigation = () => {
 						color="gray"
 						isActive={pathname === ROUTES.TICKETS}
 						startIcon={<Ticket />}
-						to={isAuth ? ROUTES.TICKETS : ROUTES.SIGNIN}
+						to={ROUTES.TICKETS}
 					>
 						Билеты
 					</Link>
@@ -36,7 +33,7 @@ export const BottomNavigation = () => {
 						color="gray"
 						isActive={pathname === ROUTES.PROFILE}
 						startIcon={<User />}
-						to={isAuth ? ROUTES.PROFILE : ROUTES.SIGNIN}
+						to={ROUTES.PROFILE}
 					>
 						Профиль
 					</Link>

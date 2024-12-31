@@ -53,7 +53,7 @@ export const SigninPage = () => {
 	}
 
 	function handleBackButtonClick() {
-		navigate(-1);
+		navigate(ROUTES.POSTER);
 	}
 
 	useEffect(() => {

@@ -8,10 +8,9 @@ import { ProfilePage } from '@src/pages/ProfilePage';
 import { SigninPage } from '@src/pages/SigninPage';
 import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { ROUTES } from '../constants/routes';
+import { PrivateRoutes } from './PrivateRoutes';
 
-const isAuth = false;
-
-const publicRoutes = [
+const routes = [
 	{
 		children: [
 			{
@@ -33,12 +32,17 @@ const publicRoutes = [
 						path: ROUTES.SIGNIN,
 					},
 					{
-						element: <ProfilePage />,
-						path: ROUTES.PROFILE,
-					},
-					{
-						element: <OrderPage />,
-						path: ROUTES.TICKETS,
+						children: [
+							{
+								element: <ProfilePage />,
+								path: ROUTES.PROFILE,
+							},
+							{
+								element: <OrderPage />,
+								path: ROUTES.TICKETS,
+							},
+						],
+						element: <PrivateRoutes />,
 					},
 					{
 						element: <Navigate to={ROUTES.POSTER} />,
@@ -46,16 +50,12 @@ const publicRoutes = [
 					},
 				],
 				errorElement: <ErrorPage />,
-			}
+			},
 		],
 		element: <Layout />,
 		errorElement: <ErrorPage />,
 		path: '/',
 	},
 ];
-
-const privateRoutes: Array<object> = [];
-
-const routes = isAuth ? privateRoutes : publicRoutes;
 
 export const router = createBrowserRouter(routes);
