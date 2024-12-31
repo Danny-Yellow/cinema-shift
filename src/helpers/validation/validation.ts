@@ -112,3 +112,40 @@ export const validOtp = (otp: string): string => {
 
 	return '';
 };
+
+export const validCvv = (cvv: string): string => {
+	if (!cvv.length) {
+		return 'Поле является обязательным'
+	}
+
+	if (cvv.length !== 3){
+		return 'Код должен содержать 3 цифры'
+	}
+
+	return ''
+}
+
+export const validExpireDate = (expireDate: string): string => {
+	if (!expireDate.length) {
+		return 'Поле является обязательным'
+	}
+
+	if (expireDate.length !== 4){
+		return 'Дата должна содержать 4 цифры'
+	}
+
+	return ''
+}
+
+
+export const validPan = (pan: string): string => {
+	if (!pan.length) {
+		return 'Поле является обязательным'
+	}
+
+	if (pan.length !== 8){
+		return 'Номер должен содержать 8 цифр'
+	}
+
+	return ''
+}

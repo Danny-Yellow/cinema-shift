@@ -6,16 +6,20 @@ import { IconButton } from '@src/components/UI/IconButton';
 import { usePaymentMutation } from '@src/store/api/cinemaApi';
 import {
 	changeDebitCardValue,
+	checkErrors,
 	reset,
 } from '@src/store/features/debitCard/debitCard.slice';
 import { getDebitCard } from '@src/store/features/debitCard/selectors/getDebitCard';
+import { hasErrorDebitCardFields } from '@src/store/features/debitCard/selectors/hasErrorDebitCardFields';
 import { closeModal, openModal } from '@src/store/features/modal/modal.slice';
 import { getPaymentRequest } from '@src/store/globalSelectors/getPaymentRequestBody';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 export const DebitCardPage = () => {
+	const [formSubmitted, setFormSubmitted] = useState(false);
+
 	const [payment, { data, error, isSuccess }] = usePaymentMutation();
 
 	const dispatch = useDispatch();
@@ -23,6 +27,7 @@ export const DebitCardPage = () => {
 	const navigate = useNavigate();
 
 	const debitCard = useSelector(getDebitCard);
+	const hasError = useSelector(hasErrorDebitCardFields);
 	const paymentBody = useSelector(getPaymentRequest);
 
 	function handleChangeInput(name: keyof IDebitCard, value: string) {
@@ -30,7 +35,8 @@ export const DebitCardPage = () => {
 	}
 
 	function handleButtonClick() {
-		payment(paymentBody);
+		dispatch(checkErrors());
+		setFormSubmitted(true);
 	}
 
 	useEffect(() => {
@@ -40,6 +46,12 @@ export const DebitCardPage = () => {
 			dispatch(closeModal());
 		};
 	}, []);
+
+	useEffect(() => {
+		if (formSubmitted && !hasError) {
+			payment(paymentBody);
+		}
+	}, [formSubmitted, hasError]);
 
 	useEffect(() => {
 		if (data?.success) {
@@ -69,7 +81,7 @@ export const DebitCardPage = () => {
 				<h1 className="title hidden text-2xl sm:block">Карта оплаты</h1>
 			</div>
 			<div className="max-w-[380px]">
-				<DebitCard values={debitCard} onChange={handleChangeInput} />
+				<DebitCard debitCard={debitCard} onChange={handleChangeInput} />
 				<Button
 					className="mt-6"
 					size="full"
