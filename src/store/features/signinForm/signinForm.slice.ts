@@ -49,7 +49,7 @@ const signinFormSlice = createSlice({
 			if (error.length) {
 				state.fields.phone.errorMessage = error;
 			} else {
-				state.codeIsSent = true; // Вероятно должно считаться в селекторе
+				state.codeIsSent = true;
 			}
 		},
 	},

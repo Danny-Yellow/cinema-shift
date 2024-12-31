@@ -18,7 +18,7 @@ export const FilmInfo: FC<IFilmInfoProps> = ({ className, film }) => {
 	const releaseYear = film.releaseDate.match(/\d{4}$/)?.[0] ?? null;
 
 	return (
-		<section className={clsx('flex gap-8 flex-wrap', className)}>
+		<section className={clsx('flex flex-wrap gap-8', className)}>
 			<FilmCover
 				info={{
 					country: film.country.name,
@@ -27,10 +27,10 @@ export const FilmInfo: FC<IFilmInfoProps> = ({ className, film }) => {
 				}}
 				className="shrink-0"
 				img={{ alt: film.name, src: film.img }}
-			></FilmCover>
+			/>
 
-			<div className="flex-1 min-w-[330px]">
-				<h1 className="title mb-1 text-[32px]">
+			<div className="min-w-[330px] flex-1">
+				<h1 className="title mb-1 text-3xl">
 					{film.name} ({ageRaiting})
 				</h1>
 				<p className="mb-4 text-sm text-gray">{film.originalName}</p>
